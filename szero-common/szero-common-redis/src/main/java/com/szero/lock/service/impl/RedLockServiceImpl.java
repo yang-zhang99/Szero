@@ -2,6 +2,7 @@ package com.szero.lock.service.impl;
 
 
 import com.szero.lock.LockInfo;
+import com.szero.lock.service.LockService;
 import org.redisson.RedissonRedLock;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;

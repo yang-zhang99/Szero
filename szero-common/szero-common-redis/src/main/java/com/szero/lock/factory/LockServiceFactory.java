@@ -1,8 +1,9 @@
 package com.szero.lock.factory;
 
-import com.zx.common.lock.enums.LockType;
-import com.zx.common.lock.service.LockService;
-import com.zx.common.lock.service.impl.*;
+
+import com.szero.lock.enums.LockType;
+import com.szero.lock.service.LockService;
+import com.szero.lock.service.impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

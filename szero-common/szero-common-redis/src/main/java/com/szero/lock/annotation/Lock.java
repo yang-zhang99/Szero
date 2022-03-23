@@ -1,7 +1,7 @@
 package com.szero.lock.annotation;
 
 
-import com.zx.common.lock.enums.LockType;
+import com.szero.lock.enums.LockType;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
