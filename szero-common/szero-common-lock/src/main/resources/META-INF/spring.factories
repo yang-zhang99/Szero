@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.szero.lock.autoconfigure.LockAutoConfiguration

@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Calendar;
 import java.util.Objects;
 
 /**
@@ -28,12 +28,24 @@ public class SysOpenLoginController extends BaseController {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+//    @Autowired
+//    private JedisPool jedisPool;
+
     @PostMapping()
     public ResponseEntity<String> login(@RequestBody() User user,
                                         HttpServletResponse response,
                                         HttpServletRequest request) {
         // 校验
         validObject(user);
+
+//        try (Jedis jedis = jedisPool.getResource()) {
+//            jedis.select(1);
+//            System.out.println(jedis.get("test"));
+//        } catch (Exception e) {
+//
+//        }
+
+
 //
         User userList =
                 jdbcTemplate.execute(

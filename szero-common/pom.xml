@@ -14,6 +14,7 @@
 
     <modules>
         <module>szero-common-core</module>
+        <module>szero-common-lock</module>
         <module>szero-common-redis</module>
     </modules>
 
