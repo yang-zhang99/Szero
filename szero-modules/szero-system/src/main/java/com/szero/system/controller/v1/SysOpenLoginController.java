@@ -68,7 +68,5 @@ public class SysOpenLoginController extends BaseController {
         } else {
             return ResponseEntity.ok("登陆成功");
         }
-
-
     }
 }
