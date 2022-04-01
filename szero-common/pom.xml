@@ -16,6 +16,7 @@
         <module>szero-common-core</module>
         <module>szero-common-lock</module>
         <module>szero-common-redis</module>
+        <module>szero-common-security</module>
     </modules>
 
 

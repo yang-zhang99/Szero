@@ -1,8 +1,8 @@
-package com.szero.system.controller.v1;
+package com.szero.system.api.controller.v1;
 
 
 import com.szero.core.base.BaseController;
-import com.szero.system.controller.dto.User;
+import com.szero.system.api.controller.dto.TestSqlUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -32,7 +32,7 @@ public class SysOpenLoginController extends BaseController {
 //    private JedisPool jedisPool;
 
     @PostMapping()
-    public ResponseEntity<String> login(@RequestBody() User user,
+    public ResponseEntity<String> login(@RequestBody() TestSqlUser user,
                                         HttpServletResponse response,
                                         HttpServletRequest request) {
         // 校验
@@ -47,7 +47,7 @@ public class SysOpenLoginController extends BaseController {
 
 
 //
-        User userList =
+        TestSqlUser userList =
                 jdbcTemplate.execute(
                         "select * from iam_user where login_name = ? and HASH_PASSWORD = ?", (PreparedStatement ps) -> {
                             ps.setObject(1, user.getLoginName());
@@ -55,7 +55,7 @@ public class SysOpenLoginController extends BaseController {
 
                             try (ResultSet rs = ps.executeQuery()) {
                                 if (rs.next()) {
-                                    User u = new User();
+                                    TestSqlUser u = new TestSqlUser();
                                     u.setLoginName(rs.getString("login_name"));
                                     u.setPassword(rs.getString("HASH_PASSWORD"));
                                     return u;

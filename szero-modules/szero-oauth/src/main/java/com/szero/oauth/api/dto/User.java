@@ -1,7 +1,6 @@
-package com.szero.system.controller.dto;
+package com.szero.oauth.api.dto;
 
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 public class User {
