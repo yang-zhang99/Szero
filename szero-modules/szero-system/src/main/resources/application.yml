@@ -49,3 +49,10 @@ security:
     resource:
       userInfoUri: https://api.github.com/user
       preferTokenInfo: false
+
+
+
+mybatis:
+  mapperLocations: classpath*:/mapper/*.xml
+  configuration:
+    mapUnderscoreToCamelCase: true

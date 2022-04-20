@@ -1,4 +1,4 @@
-package com.szero.designpatterns.observer;
+package com.szero.jdbc.observer;
 
 import javax.servlet.http.HttpSessionBindingListener;
 

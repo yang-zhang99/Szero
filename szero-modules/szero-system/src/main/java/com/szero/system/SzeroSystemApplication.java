@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 //import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @SpringBootApplication
-//@ComponentScan("com.szero.system.controller")
+@ComponentScan({"com.szero.system.api", "com.szero.system.app", "com.szero.system.domain", "com.szero.system.infra"})
 //@EnableWebSecurity
 //@EnableOAuth2Sso
 public class SzeroSystemApplication {

@@ -16,7 +16,7 @@ import java.util.Date;
 //@VersionAudit
 //@Table(name = "iam_user")
 //extends AuditDomain
-public class User  implements Serializable {
+public class User implements Serializable {
     private static final long serialVersionUID = 1280333995775842225L;
 
     public static final String FIELD_PASSWORD = "password";
@@ -43,7 +43,7 @@ public class User  implements Serializable {
 //        this.lockedUntilAt = null;
 //    }
 
-//    @Id
+    //    @Id
 //    @GeneratedValue
     private Long id;
 
@@ -53,7 +53,7 @@ public class User  implements Serializable {
 
     private Long organizationId;
 
-//    @Column(name = "hash_password")
+    //    @Column(name = "hash_password")
     private String password;
 
     private String realName;
@@ -74,20 +74,20 @@ public class User  implements Serializable {
 
     private Date lastLoginAt;
 
-//    @Column(name = "is_enabled")
+    //    @Column(name = "is_enabled")
     private Boolean enabled;
 
-//    @Column(name = "is_locked")
+    //    @Column(name = "is_locked")
     private Boolean locked;
 
-//    @Column(name = "is_ldap")
+    //    @Column(name = "is_ldap")
     private Boolean ldap;
 
     private Date lockedUntilAt;
 
     private Integer passwordAttempt;
 
-//    @Column(name = "is_admin")
+    //    @Column(name = "is_admin")
     private Boolean admin;
 
     private String userType;

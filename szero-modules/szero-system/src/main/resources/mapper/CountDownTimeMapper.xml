@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.szero.system.infra.mapper.CountDownTimeMapper">
+
+    <select id="listCountDownTime" resultType="com.szero.system.domain.entity.CountDownTime">
+        SELECT t.id,
+               t.target_name,
+               t.expiration_date,
+               t.is_must,
+               t.enabled_flag,
+               t.user_id
+        FROM count_down_time t
+    </select>
+
+</mapper>

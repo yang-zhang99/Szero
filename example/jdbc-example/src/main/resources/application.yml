@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://db.hzero.org:3306/szero?useUnicode=true&characterEncoding=utf-8&useSSL=false}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:yang99_123!@#}
+    hikari:
+      # ??????????
+      minimum-idle: ${SPRING_DATASOURCE_MINIMUM_IDLE:20}
+      # ???????????
+      maximum-pool-size: ${SPRING_DATASOURCE_MAXIMUM_POOL_SIZE:200}
+      # ??????????????????
+      connection-timeout: ${SPRING_DATASOURCE_CONNECTION_TIMEOUT:30000}
