@@ -1,4 +1,4 @@
-package com.szero.system.api.controller.dto;
+package com.szero.system.api.dto;
 
 
 import javax.validation.constraints.NotBlank;

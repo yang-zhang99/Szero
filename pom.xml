@@ -7,13 +7,6 @@
     <artifactId>szero-cloud</artifactId>
     <version>0.0.1</version>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.4</version>
-        <relativePath/>
-    </parent>
-
     <name>szero-cloud</name>
     <description>Szero 自研学习微服务架构</description>
     <properties>
@@ -25,9 +18,15 @@
         <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
     </properties>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.6.4</version>
+        <relativePath/>
+    </parent>
+
     <dependencies>
         <!-- SpringCloud 微服务 -->
-
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-dependencies</artifactId>
@@ -35,7 +34,7 @@
             <type>pom</type>
             <scope>import</scope>
         </dependency>
-
+        <!-- SpringCloud Alibaba 微服务 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-alibaba-dependencies</artifactId>
@@ -43,8 +42,6 @@
             <type>pom</type>
             <scope>import</scope>
         </dependency>
-
-
         <!-- SpringBoot 依赖配置 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -79,33 +76,33 @@
         <!--        </dependency>-->
 
 <!-- 数据持久化 -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>mysql</groupId>-->
+<!--            <artifactId>mysql-connector-java</artifactId>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-jdbc</artifactId>-->
+<!--        </dependency>-->
 
 
 <!--        <dependency>-->
 <!--            <groupId>org.springframework.boot</groupId>-->
 <!--            <artifactId>spring-boot-starter-security</artifactId>-->
 <!--        </dependency>-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjrt</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-configuration-processor</artifactId>-->
+<!--            <optional>true</optional>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.aspectj</groupId>-->
+<!--            <artifactId>aspectjrt</artifactId>-->
+<!--        </dependency>-->
     </dependencies>
 
     <modules>
-        <module>szero-common</module>
+<!--        <module>szero-common</module>-->
 
         <module>szero-modules</module>
     </modules>

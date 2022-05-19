@@ -13,8 +13,9 @@
 
 
     <modules>
-        <module>szero-system</module>
-<!--        <module>szero-jdbc-examples</module>-->
+<!--        <module>szero-system</module>-->
+        <module>ttdo-gateway</module>
+        <!--        <module>szero-jdbc-examples</module>-->
     </modules>
 
 

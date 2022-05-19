@@ -2,7 +2,7 @@ package com.szero.system.api.controller.v1;
 
 
 import com.szero.core.base.BaseController;
-import com.szero.system.api.controller.dto.TestSqlUser;
+import com.szero.system.api.dto.TestSqlUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
