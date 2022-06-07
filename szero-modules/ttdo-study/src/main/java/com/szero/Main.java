@@ -5,15 +5,20 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws InterruptedException {
+//
         MyThread a = new MyThread("A");
-        MyThread b = new MyThread("B");
-        MyThread c = new MyThread("C");
 
         a.start();
-        b.start();
-        c.start();
+        TimeUnit.SECONDS.sleep(1);
+        a.interrupt();
+        System.out.println("zzz");
+//        MyThread b = new MyThread("B");
+//        MyThread c = new MyThread("C");
+//
+//        a.start();
+//        b.start();
+//        c.start();
 
 
 //        new Thread(new UploadThread()).start();
