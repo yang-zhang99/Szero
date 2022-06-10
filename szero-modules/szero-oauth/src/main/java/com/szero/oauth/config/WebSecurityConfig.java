@@ -1,4 +1,4 @@
-package com.szero.oauth.config;
+package com.yang.oauth.config;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

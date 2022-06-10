@@ -21,13 +21,13 @@
 
     <dependencies>
 <!--        <dependency>-->
-<!--            <groupId>com.szero</groupId>-->
+<!--            <groupId>com.yang</groupId>-->
 <!--            <artifactId>szero-common-core</artifactId>-->
 <!--            <version>0.0.1</version>-->
 <!--        </dependency>-->
 
 <!--        <dependency>-->
-<!--            <groupId>com.szero</groupId>-->
+<!--            <groupId>com.yang</groupId>-->
 <!--            <artifactId>szero-common-redis</artifactId>-->
 <!--            <version>0.0.1</version>-->
 <!--        </dependency>-->

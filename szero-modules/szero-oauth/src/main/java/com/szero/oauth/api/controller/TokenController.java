@@ -1,8 +1,8 @@
-package com.szero.oauth.api.controller;
+package com.yang.oauth.api.controller;
 
 
-import com.szero.core.base.BaseController;
-import com.szero.oauth.api.dto.LoginUserDTO;
+import com.yang.core.base.BaseController;
+import com.yang.oauth.api.dto.LoginUserDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

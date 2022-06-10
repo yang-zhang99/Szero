@@ -1,4 +1,4 @@
-package com.szero.oauth.service;
+package com.yang.oauth.service;
 
 public class TokenService {
 }

@@ -1,4 +1,4 @@
-package com.szero.oauth.api.dto;
+package com.yang.oauth.api.dto;
 
 public class LoginUserDTO {
 

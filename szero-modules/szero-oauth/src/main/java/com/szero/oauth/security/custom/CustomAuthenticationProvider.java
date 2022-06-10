@@ -1,7 +1,7 @@
-package com.szero.oauth.security.custom;
+package com.yang.oauth.security.custom;
 
 
-import com.szero.oauth.api.dto.LoginUserDTO;
+import com.yang.oauth.api.dto.LoginUserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

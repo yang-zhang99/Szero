@@ -1,4 +1,4 @@
-package com.szero.jdbc;
+package com.yang.jdbc;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

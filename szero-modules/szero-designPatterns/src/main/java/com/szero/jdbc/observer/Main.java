@@ -1,4 +1,4 @@
-package com.szero.jdbc.observer;
+package com.yang.jdbc.observer;
 
 import javax.servlet.http.HttpSessionBindingListener;
 

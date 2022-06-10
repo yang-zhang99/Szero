@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.szero.security.config.WebSecurityConfig
+com.yang.security.config.WebSecurityConfig
