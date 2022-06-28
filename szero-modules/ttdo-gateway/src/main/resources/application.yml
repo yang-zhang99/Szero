@@ -1,7 +1,7 @@
 spring:
-  main:
-    web-application-type:
-      reactive
+  application:
+    name: ttdo-gateway
+
 
 
 logging:
