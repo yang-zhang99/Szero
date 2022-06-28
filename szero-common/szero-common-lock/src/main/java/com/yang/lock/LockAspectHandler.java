@@ -33,7 +33,6 @@ public class LockAspectHandler {
 
     @Around(value = "@annotation(lock)")
     public Object around(ProceedingJoinPoint joinPoint, Lock lock) throws Throwable {
-
         LockInfo lockInfo = lockInfoProvider.getLockInfo(joinPoint, lock);
         LockService lockService = lockServiceFactory.getLock(lock.lockType());
 

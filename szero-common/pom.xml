@@ -13,11 +13,11 @@
 
 
     <modules>
-        <module>szero-common-core</module>
-        <module>szero-common-lock</module>
-        <module>szero-common-redis</module>
-        <module>szero-common-security</module>
-        <module>szero-common-feign</module>
+<!--        <module>szero-common-core</module>-->
+<!--        <module>szero-common-lock</module>-->
+<!--        <module>szero-common-redis</module>-->
+<!--        <module>szero-common-security</module>-->
+<!--        <module>szero-common-feign</module>-->
     </modules>
 
 
