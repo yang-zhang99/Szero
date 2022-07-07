@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.ttdo.gateway.helper.config.GatewayHelperProperties

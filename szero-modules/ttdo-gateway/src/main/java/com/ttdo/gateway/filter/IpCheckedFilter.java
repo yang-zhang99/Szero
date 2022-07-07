@@ -1,5 +1,6 @@
 package com.ttdo.gateway.filter;
 
+import com.ttdo.gateway.filter.metric.RequestCountRules;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
@@ -23,6 +24,13 @@ public class IpCheckedFilter implements WebFilter {
 
     public static final String X_REAL_IP = "X-Real-IP";
     public static final String X_FORWARDED_FOR = "X-Forwarded-For";
+    private static final String ERROR_MESSAGE = "You are not allowed to access.";
+
+    private final RequestCountRules requestCountRules;
+
+    public IpCheckedFilter(RequestCountRules requestCountRules) {
+        this.requestCountRules = requestCountRules;
+    }
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
@@ -33,17 +41,27 @@ public class IpCheckedFilter implements WebFilter {
         }
 
         /**
-         * url 匹配白名单
+         * url匹配白名单
          */
+//        Set<String> urlWhitelist = requestCountRules.getWhitelist(uri);
+//        if (!CollectionUtils.isEmpty(urlWhitelist)) {
+//            if (!urlWhitelist.contains(realIp)) {
+//                return response(exchange.getResponse(), ERROR_MESSAGE);
+//            }
+//        }
+//
+//        /**
+//         * url匹配黑名单
+//         */
+//        Set<String> urlBlacklist = requestCountRules.getBlacklist(uri);
+//        if (!CollectionUtils.isEmpty(urlBlacklist)) {
+//            if (urlBlacklist.contains(realIp)) {
+//                return response(exchange.getResponse(), ERROR_MESSAGE);
+//            }
+//        }
 
-//        Set<String> urlWhitelist =
+        return chain.filter(exchange);
 
-
-        /**
-         * url 匹配黑名单
-         */
-
-        return null;
     }
 
     private String getRealIp(ServerWebExchange exchange) {

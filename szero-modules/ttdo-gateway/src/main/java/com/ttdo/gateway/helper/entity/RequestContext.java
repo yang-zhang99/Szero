@@ -31,6 +31,26 @@ public class RequestContext {
     private CustomUserDetails customUserDetails;
 
 
+    private CommonRoute route;
+
+    private PermissionDO permissionDO;
+
+    public CommonRoute getRoute() {
+        return route;
+    }
+
+    public void setRoute(CommonRoute route) {
+        this.route = route;
+    }
+
+    public PermissionDO getPermissionDO() {
+        return permissionDO;
+    }
+
+    public void setPermissionDO(PermissionDO permissionDO) {
+        this.permissionDO = permissionDO;
+    }
+
     public RequestContext(CheckRequest request, CheckResponse response) {
         this.request = request;
         this.response = response;
