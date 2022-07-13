@@ -14,6 +14,9 @@ public class GatewayHelperProperties {
     private Filter filter = new Filter();
 
 
+    private boolean enabledJwtLog = false;
+
+
     public Filter getFilter() {
         return filter;
     }
@@ -22,6 +25,14 @@ public class GatewayHelperProperties {
         this.filter = filter;
     }
 
+
+    public boolean isEnabledJwtLog() {
+        return enabledJwtLog;
+    }
+
+    public void setEnabledJwtLog(boolean enabledJwtLog) {
+        this.enabledJwtLog = enabledJwtLog;
+    }
 
     public static class Filter {
 
