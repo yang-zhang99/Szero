@@ -2,9 +2,8 @@ package com.ttdo.gateway.filter;
 
 import com.ttdo.core.redis.RedisHelper;
 import com.ttdo.gateway.common.StringSetRepository;
-import com.ttdo.gateway.filter.metric.Query;
-import com.ttdo.utils.RedisOpUtils;
 
+import javax.management.Query;
 import java.util.Set;
 
 public abstract class RedisSetRepository implements StringSetRepository {
@@ -26,30 +25,33 @@ public abstract class RedisSetRepository implements StringSetRepository {
         this.redisHelper = redisHelper;
     }
 
-    private <T> T selectDbAndClear(RedisHelper redisHelper, Query<T> query){
-        return RedisOpUtils.selectDbAndClear(redisHelper, SELECT_DB, query);
-    }
+//    private <T> T selectDbAndClear(RedisHelper redisHelper, Query<T> query){
+//        return RedisOpUtils.selectDbAndClear(redisHelper, SELECT_DB, query);
+//    }
 
     @Override
     public boolean isEnable() {
-        return selectDbAndClear(redisHelper, () -> Boolean.parseBoolean(redisHelper.strGet(getKeyPrefix() + ENABLE)));
+//        return selectDbAndClear(redisHelper, () -> Boolean.parseBoolean(redisHelper.strGet(getKeyPrefix() + ENABLE)));
+        return true;
     }
 
     @Override
     public Set<String> get() {
-        return selectDbAndClear(redisHelper, () -> redisHelper.setMembers(getKeyPrefix() + VALUE));
+//        return selectDbAndClear(redisHelper, () -> redisHelper.setMembers(getKeyPrefix() + VALUE));
+        return null;
     }
 
     @Override
     public boolean contains(String key) {
-        return selectDbAndClear(redisHelper, () -> redisHelper.setIsmember(getKeyPrefix() + VALUE, key));
+//        return selectDbAndClear(redisHelper, () -> redisHelper.setIsmember(getKeyPrefix() + VALUE, key));
+        return true;
     }
 
-    protected String getKeyPrefix() {
-        return keyPrefix;
-    }
-
-    protected RedisHelper getRedisHelper() {
-        return redisHelper;
-    }
+//    protected String getKeyPrefix() {
+//        return keyPrefix;
+//    }
+//
+//    protected RedisHelper getRedisHelper() {
+//        return redisHelper;
+//    }
 }

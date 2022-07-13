@@ -1,6 +1,7 @@
 package com.ttdo.gateway.common;
 
-public interface StringSetRepository extends SetRepository<String>{
-
-
+/**
+ * 只读列表
+ */
+public interface StringSetRepository extends SetRepository<String> {
 }
