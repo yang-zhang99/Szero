@@ -24,25 +24,30 @@ import java.util.concurrent.TimeUnit;
 
 @Component
 public class RedisHelper implements InitializingBean {
-    private Logger logger = LoggerFactory.getLogger(RedisHelper.class);
+    private final Logger logger = LoggerFactory.getLogger(RedisHelper.class);
+
     public static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
-
-    @Autowired
-    private RedisTemplate<String, String> redisTemplate;
-    @Autowired
-    private ValueOperations<String, String> valueOpr;
-    @Autowired
-    private HashOperations<String, String, String> hashOpr;
-    @Autowired
-    private ListOperations<String, String> listOpr;
-    @Autowired
-    private SetOperations<String, String> setOpr;
-    @Autowired
-    private ZSetOperations<String, String> zSetOpr;
-    static ObjectMapper objectMapper = new ObjectMapper();
-
     public static final long DEFAULT_EXPIRE = 86400L;
     public static final long NOT_EXPIRE = -1L;
+
+    private final RedisTemplate<String, String> redisTemplate;
+    private final ValueOperations<String, String> valueOpr;
+    private final HashOperations<String, String, String> hashOpr;
+    private final ListOperations<String, String> listOpr;
+    private final SetOperations<String, String> setOpr;
+    private final ZSetOperations<String, String> zSetOpr;
+
+    @Autowired
+    public RedisHelper(RedisTemplate<String, String> redisTemplate, ValueOperations<String, String> valueOpr, HashOperations<String, String, String> hashOpr, ListOperations<String, String> listOpr, SetOperations<String, String> setOpr, ZSetOperations<String, String> zSetOpr) {
+        this.redisTemplate = redisTemplate;
+        this.valueOpr = valueOpr;
+        this.hashOpr = hashOpr;
+        this.listOpr = listOpr;
+        this.setOpr = setOpr;
+        this.zSetOpr = zSetOpr;
+    }
+
+    static ObjectMapper objectMapper = new ObjectMapper();
 
     public void afterPropertiesSet() {
         Assert.notNull(this.redisTemplate, "redisTemplate must not be null.");
@@ -71,33 +76,72 @@ public class RedisHelper implements InitializingBean {
         this.logger.warn("Use default RedisHelper, you'd better use a DynamicRedisHelper instead.");
     }
 
-    // 删除 key 的值
+    /**
+     * 删除 key 的值
+     *
+     * @param key key
+     */
     public void delKey(String key) {
         this.redisTemplate.delete(key);
     }
 
-    // 是否存在 key 的值
+    /**
+     * 是否存在 key 的值
+     *
+     * @param key key
+     * @return 是否
+     */
     public Boolean hasKey(String key) {
         return this.redisTemplate.hasKey(key);
     }
 
-    // 剩余时间
+    /**
+     * 剩余时间
+     *
+     * @param key key
+     * @return Long Long
+     */
     public Long getExpire(String key) {
         return this.redisTemplate.getExpire(key);
     }
 
+    /**
+     * 剩余时间
+     *
+     * @param key key
+     * @return Long Long
+     */
     public Long getExpire(String key, final TimeUnit timeUnit) {
         return this.redisTemplate.getExpire(key, timeUnit);
     }
 
+    /**
+     * 设置时间
+     *
+     * @param key key
+     * @return Boolean Boolean
+     */
     public Boolean setExpire(String key) {
         return this.setExpire(key, 86400L, TimeUnit.SECONDS);
     }
 
+    /**
+     * 设置时间
+     *
+     * @param key key
+     * @return expire expire
+     */
     public Boolean setExpire(String key, long expire) {
         return this.setExpire(key, expire, TimeUnit.SECONDS);
     }
 
+    /**
+     * String 设置值
+     *
+     * @param key      缓存key
+     * @param expire   超时时间
+     * @param timeUnit timeUnit
+     */
     public Boolean setExpire(String key, long expire, TimeUnit timeUnit) {
         return this.redisTemplate.expire(key, expire, timeUnit == null ? TimeUnit.SECONDS : timeUnit);
     }
@@ -122,6 +166,13 @@ public class RedisHelper implements InitializingBean {
         this.redisTemplate.delete(fullKeys);
     }
 
+    /**
+     * String 设置值
+     *
+     * @param key    缓存key
+     * @param value  缓存value
+     * @param expire 超时时间
+     */
     public void strSet(String key, String value, long expire, TimeUnit timeUnit) {
         this.valueOpr.set(key, value);
         if (expire != -1L) {
@@ -129,10 +180,22 @@ public class RedisHelper implements InitializingBean {
         }
     }
 
+    /**
+     * String 设置值
+     *
+     * @param key   缓存key
+     * @param value 缓存value
+     */
     public void strSet(String key, String value) {
         this.valueOpr.set(key, value);
     }
 
+    /**
+     * String 获取值
+     *
+     * @param key 缓存key
+     * @return 缓存value
+     */
     public String strGet(String key) {
         return this.valueOpr.get(key);
     }
@@ -168,10 +231,24 @@ public class RedisHelper implements InitializingBean {
         return this.valueOpr.setIfAbsent(key, value);
     }
 
+    /**
+     * String 获取自增字段，递减字段可使用delta为负数的方式
+     *
+     * @param key   缓存key
+     * @param delta 只增量
+     * @return
+     */
     public Long strIncrement(String key, Long delta) {
         return this.valueOpr.increment(key, delta);
     }
 
+    /**
+     * List 推入数据至列表左端
+     *
+     * @param key
+     * @param value
+     * @return
+     */
     public Long lstLeftPush(String key, String value) {
         return this.listOpr.leftPush(key, value);
     }
@@ -196,6 +273,12 @@ public class RedisHelper implements InitializingBean {
         return this.lstRange(key, 0L, this.lstLen(key));
     }
 
+    /**
+     * List 移除并返回列表最左端的项
+     *
+     * @param key
+     * @return
+     */
     public String lstLeftPop(String key) {
         return this.listOpr.leftPop(key);
     }
@@ -216,6 +299,14 @@ public class RedisHelper implements InitializingBean {
         return this.listOpr.size(key);
     }
 
+    /**
+     * List 设置指定索引上的列表项。将列表键 key索引index上的列表项设置为value。
+     * 如果index参数超过了列表的索引范围，那么命令返回了一个错误
+     *
+     * @param key
+     * @param index
+     * @param value
+     */
     public void lstSet(String key, long index, String value) {
         this.listOpr.set(key, index, value);
     }
@@ -224,6 +315,13 @@ public class RedisHelper implements InitializingBean {
         return this.listOpr.remove(key, index, value);
     }
 
+    /**
+     * List 返回列表键key中，指定索引index上的列表项。index索引可以是正数或者负数
+     *
+     * @param key
+     * @param index
+     * @return
+     */
     public Object lstIndex(String key, long index) {
         return this.listOpr.index(key, index);
     }
@@ -231,7 +329,13 @@ public class RedisHelper implements InitializingBean {
     public void lstTrim(String key, long start, long end) {
         this.listOpr.trim(key, start, end);
     }
-
+    /**
+     * Set 将数组添加到给定的集合里面，已经存在于集合的元素会自动的被忽略， 命令返回新添加到集合的元素数量。
+     *
+     * @param key
+     * @param values
+     * @return
+     */
     public Long setAdd(String key, String[] values) {
         return this.setOpr.add(key, values);
     }
@@ -239,7 +343,12 @@ public class RedisHelper implements InitializingBean {
     public Long setIrt(String key, String... values) {
         return this.setOpr.add(key, values);
     }
-
+    /**
+     * Set 将返回集合中所有的元素。
+     *
+     * @param key
+     * @return
+     */
     public Set<String> setMembers(String key) {
         return this.setOpr.members(key);
     }
@@ -251,23 +360,53 @@ public class RedisHelper implements InitializingBean {
     public Long setSize(String key) {
         return this.setOpr.size(key);
     }
-
+    /**
+     * Set 计算所有给定集合的交集，并返回结果
+     *
+     * @param key
+     * @param otherKey
+     * @return
+     */
     public Set<String> setIntersect(String key, String otherKey) {
         return this.setOpr.intersect(key, otherKey);
     }
-
+    /**
+     * Set 计算所有的并集并返回结果
+     *
+     * @param key
+     * @param otherKey
+     * @return
+     */
     public Set<String> setUnion(String key, String otherKey) {
         return this.setOpr.union(key, otherKey);
     }
-
+    /**
+     * Set 计算所有的并集并返回结果
+     *
+     * @param key
+     * @param otherKey
+     * @return
+     */
     public Set<String> setUnion(String key, Collection<String> otherKeys) {
         return this.setOpr.union(key, otherKeys);
     }
-
+    /**
+     * Set 返回一个集合的全部成员，该集合是所有给定集合之间的差集
+     *
+     * @param key
+     * @param otherKey
+     * @return
+     */
     public Set<String> setDifference(String key, String otherKey) {
         return this.setOpr.difference(key, otherKey);
     }
-
+    /**
+     * Set 返回一个集合的全部成员，该集合是所有给定集合之间的差集
+     *
+     * @param key
+     * @param otherKey
+     * @return
+     */
     public Set<String> setDifference(String key, Collection<String> otherKeys) {
         return this.setOpr.difference(key, otherKeys);
     }
@@ -340,6 +479,14 @@ public class RedisHelper implements InitializingBean {
         return this.zSetOpr.count(key, min, max);
     }
 
+    /**
+     * Hash 将哈希表 key 中的域 field的值设为 value。如果 key不存在，一个新的哈希表被创建并进行HSET操作。
+     * 如果域 field已经存在于哈希表中，旧值将被覆盖
+     *
+     * @param key     key
+     * @param hashKey hashKey
+     * @param value   value
+     */
     public void hshPut(String key, String hashKey, String value) {
         this.hashOpr.put(key, hashKey, value);
     }
@@ -372,6 +519,13 @@ public class RedisHelper implements InitializingBean {
         });
     }
 
+    /**
+     * Hash 返回哈希表 key 中给定域 field的值，返回值：给定域的值。当给定域不存在或是给定 key不存在时，返回 nil。
+     *
+     * @param key
+     * @param hashKey
+     * @return
+     */
     public String hshGet(String key, String hashKey) {
         return this.hashOpr.get(key, hashKey);
     }
@@ -384,6 +538,13 @@ public class RedisHelper implements InitializingBean {
         return this.hashOpr.entries(key);
     }
 
+    /**
+     * Hash 查看哈希表 key 中，给定域 field是否存在
+     *
+     * @param key     key
+     * @param hashKey hashKey
+     * @return Boolean
+     */
     public Boolean hshHasKey(String key, String hashKey) {
         return this.hashOpr.hasKey(key, hashKey);
     }
