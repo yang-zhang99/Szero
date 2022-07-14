@@ -1,10 +1,12 @@
 package com.ttdo.core;
 
 
+import com.ttdo.core.redis.RedisHelper;
 import com.ttdo.core.redis.YRedisProperties;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -73,15 +75,15 @@ public class YRedisAutoConfiguration {
     }
 
 
-//    @Bean
-//    @ConditionalOnProperty(
-//            prefix = "y.redis",
-//            name = {"dynamic-database"},
-//            havingValue = "false"
-//    )
-//    public RedisHelper redisHelper(RedisProperties redisProperties) {
-//        return new RedisHelper();
-//    }
+    @Bean
+    @ConditionalOnProperty(
+            prefix = "y.redis",
+            name = {"dynamic-database"},
+            havingValue = "false"
+    )
+    public RedisHelper redisHelper(YRedisProperties redisProperties) {
+        return new RedisHelper();
+    }
 //
 //    @Bean
 //    @ConditionalOnMissingBean({RedisMessageSource.class})

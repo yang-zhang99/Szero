@@ -30,22 +30,19 @@ public class RedisHelper implements InitializingBean {
     public static final long DEFAULT_EXPIRE = 86400L;
     public static final long NOT_EXPIRE = -1L;
 
-    private final RedisTemplate<String, String> redisTemplate;
-    private final ValueOperations<String, String> valueOpr;
-    private final HashOperations<String, String, String> hashOpr;
-    private final ListOperations<String, String> listOpr;
-    private final SetOperations<String, String> setOpr;
-    private final ZSetOperations<String, String> zSetOpr;
-
     @Autowired
-    public RedisHelper(RedisTemplate<String, String> redisTemplate, ValueOperations<String, String> valueOpr, HashOperations<String, String, String> hashOpr, ListOperations<String, String> listOpr, SetOperations<String, String> setOpr, ZSetOperations<String, String> zSetOpr) {
-        this.redisTemplate = redisTemplate;
-        this.valueOpr = valueOpr;
-        this.hashOpr = hashOpr;
-        this.listOpr = listOpr;
-        this.setOpr = setOpr;
-        this.zSetOpr = zSetOpr;
-    }
+    private RedisTemplate<String, String> redisTemplate;
+    @Autowired
+    private ValueOperations<String, String> valueOpr;
+    @Autowired
+    private HashOperations<String, String, String> hashOpr;
+    @Autowired
+    private ListOperations<String, String> listOpr;
+    @Autowired
+    private SetOperations<String, String> setOpr;
+    @Autowired
+    private ZSetOperations<String, String> zSetOpr;
+
 
     static ObjectMapper objectMapper = new ObjectMapper();
 

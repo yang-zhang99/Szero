@@ -1,0 +1,41 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.ttdo.core.redis.YRedisProperties",
+      "name": "y.redis",
+      "type": "com.ttdo.core.redis.YRedisProperties"
+    }
+  ],
+  "properties": [
+
+    {
+      "sourceType": "com.ttdo.core.redis.YRedisProperties",
+      "defaultValue": true,
+      "name": "y.redis.dynamic-database",
+      "description": "是否开启动态数据库切换 默认开启",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "com.ttdo.core.redis.YRedisProperties",
+      "defaultValue": 5,
+      "name": "y.redis.intervals",
+      "description": "消费间隔时间，单位秒",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.ttdo.core.redis.YRedisProperties",
+      "defaultValue": 1,
+      "name": "y.redis.queue-db",
+      "description": "队列消息默认db",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.ttdo.core.redis.YRedisProperties",
+      "defaultValue": false,
+      "name": "y.redis.redis-queue",
+      "description": "启用redis消息队列",
+      "type": "java.lang.Boolean"
+    }
+  ]
+}

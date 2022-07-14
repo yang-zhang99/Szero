@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 )
 public class YRedisProperties {
 
-    public static final String PREFIX = "hzero.redis";
+    public static final String PREFIX = "y.redis";
     private boolean dynamicDatabase = true;
     private boolean redisQueue = false;
     private int queueDb = 1;
