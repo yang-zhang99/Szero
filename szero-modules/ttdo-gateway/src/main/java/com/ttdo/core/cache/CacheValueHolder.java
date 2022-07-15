@@ -1,30 +1,30 @@
-//package com.ttdo.core.redis.cache;
-//
-//
-//import com.fasterxml.jackson.databind.ObjectMapper;
-//import io.choerodon.core.convertor.ApplicationContextHelper;
-//import io.choerodon.core.oauth.CustomUserDetails;
-//import io.choerodon.core.oauth.DetailsHelper;
-//import java.io.IOException;
-//import java.util.HashMap;
-//import java.util.Iterator;
-//import java.util.List;
-//import org.apache.commons.lang3.StringUtils;
-//import org.hzero.core.base.BaseConstants;
-//import org.hzero.core.helper.LanguageHelper;
-//import org.hzero.core.redis.RedisHelper;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
-//
-//public class CacheValueHolder {
-//    public static final String PLACEHOLDER_LANG = "{lang}";
-//    public static final String PLACEHOLDER_TENANT_ID = "{tenantId}";
-//    private static final Logger logger = LoggerFactory.getLogger(CacheValueHolder.class);
-//
-//    private CacheValueHolder() throws IllegalAccessException {
-//        throw new IllegalAccessException();
-//    }
-//
+package com.ttdo.core.cache;
+
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+
+import com.ttdo.core.oauth.CustomUserDetails;
+import com.ttdo.core.oauth.DetailsHelper;
+import com.ttdo.core.redis.RedisHelper;
+import org.apache.commons.lang3.StringUtils;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class CacheValueHolder {
+    public static final String PLACEHOLDER_LANG = "{lang}";
+    public static final String PLACEHOLDER_TENANT_ID = "{tenantId}";
+    private static final Logger logger = LoggerFactory.getLogger(CacheValueHolder.class);
+
+    private CacheValueHolder() throws IllegalAccessException {
+        throw new IllegalAccessException();
+    }
+
 //    public static String getValue(String key) {
 //        key = replacePlaceholder(key);
 //        return getRedisHelper().strGet(key);
@@ -120,4 +120,4 @@
 //
 //        return key;
 //    }
-//}
+}

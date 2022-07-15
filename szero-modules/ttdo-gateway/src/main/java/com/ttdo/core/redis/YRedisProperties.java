@@ -3,7 +3,7 @@ package com.ttdo.core.redis;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(
-        prefix = "y.redis"
+        prefix = YRedisProperties.PREFIX
 )
 public class YRedisProperties {
 

@@ -2,6 +2,7 @@ package com.ttdo.core.redis.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.data.redis.JedisClientConfigurationBuilderCustomizer;
 import org.springframework.boot.autoconfigure.data.redis.LettuceClientConfigurationBuilderCustomizer;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
@@ -25,15 +26,15 @@ public class DynamicRedisTemplateFactory<K, V> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DynamicRedisTemplateFactory.class);
     private RedisProperties properties;
-    private RedisSentinelConfiguration sentinelConfiguration;
-    private RedisClusterConfiguration clusterConfiguration;
-    private List<JedisClientConfigurationBuilderCustomizer> jedisBuilderCustomizers;
-    private List<LettuceClientConfigurationBuilderCustomizer> lettuceBuilderCustomizers;
+    private ObjectProvider<RedisSentinelConfiguration> sentinelConfiguration;
+    private ObjectProvider<RedisClusterConfiguration> clusterConfiguration;
+    private ObjectProvider<List<JedisClientConfigurationBuilderCustomizer>> jedisBuilderCustomizers;
+    private ObjectProvider<List<LettuceClientConfigurationBuilderCustomizer>> lettuceBuilderCustomizers;
 
     private static final String REDIS_CLIENT_LETTUCE = "lettuce";
     private static final String REDIS_CLIENT_JEDIS = "jedis";
 
-    public DynamicRedisTemplateFactory(RedisProperties properties, RedisSentinelConfiguration sentinelConfiguration, RedisClusterConfiguration clusterConfiguration, List<JedisClientConfigurationBuilderCustomizer> jedisBuilderCustomizers, List<LettuceClientConfigurationBuilderCustomizer> lettuceBuilderCustomizers) {
+    public DynamicRedisTemplateFactory(RedisProperties properties, ObjectProvider<RedisSentinelConfiguration> sentinelConfiguration, ObjectProvider<RedisClusterConfiguration> clusterConfiguration, ObjectProvider<List<JedisClientConfigurationBuilderCustomizer>> jedisBuilderCustomizers, ObjectProvider<List<LettuceClientConfigurationBuilderCustomizer>> lettuceBuilderCustomizers) {
         this.properties = properties;
         this.sentinelConfiguration = sentinelConfiguration;
         this.clusterConfiguration = clusterConfiguration;
@@ -49,12 +50,12 @@ public class DynamicRedisTemplateFactory<K, V> {
                 redisConnectionFactory = lettuceConnectionConfigure.redisConnectionFactory();
                 break;
             case "jedis":
-                JedisConnectionConfigure jedisConnectionConfigure = new JedisConnectionConfigure(this.properties, this.sentinelConfiguration, this.clusterConfiguration, database, this.jedisBuilderCustomizers);
+                JedisConnectionConfigure jedisConnectionConfigure = new JedisConnectionConfigure(this.properties, this.sentinelConfiguration, this.clusterConfiguration, this.jedisBuilderCustomizers, database);
                 redisConnectionFactory = jedisConnectionConfigure.redisConnectionFactory();
         }
 
         Assert.notNull(redisConnectionFactory, "redisConnectionFactory is null.");
-        return this.createRedisTemplate(redisConnectionFactory);
+        return this.createRedisTemplate((RedisConnectionFactory)redisConnectionFactory);
     }
 
     private RedisTemplate<K, V> createRedisTemplate(RedisConnectionFactory factory) {

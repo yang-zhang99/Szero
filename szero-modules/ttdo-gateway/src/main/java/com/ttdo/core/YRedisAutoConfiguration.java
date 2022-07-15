@@ -1,19 +1,32 @@
 package com.ttdo.core;
 
 
-import com.ttdo.core.redis.RedisHelper;
-import com.ttdo.core.redis.YRedisProperties;
-import org.springframework.boot.autoconfigure.AutoConfigureAfter;
+//import com.ttdo.core.cache.CacheValueAspect;
+import com.ttdo.core.redis.*;
+import com.ttdo.core.redis.config.DynamicRedisTemplateFactory;
+import com.ttdo.core.redis.handler.HandlerInit;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.autoconfigure.data.redis.JedisClientConfigurationBuilderCustomizer;
+import org.springframework.boot.autoconfigure.data.redis.LettuceClientConfigurationBuilderCustomizer;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
+import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+import org.springframework.data.redis.connection.RedisClusterConfiguration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.connection.RedisSentinelConfiguration;
 import org.springframework.data.redis.core.*;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Configuration
 @ConditionalOnClass(
@@ -75,17 +88,17 @@ public class YRedisAutoConfiguration {
     }
 
 
-    @Bean
-    @ConditionalOnProperty(
-            prefix = "y.redis",
-            name = {"dynamic-database"},
-            havingValue = "false"
-    )
-    public RedisHelper redisHelper(YRedisProperties redisProperties) {
-        return new RedisHelper();
-    }
-//
 //    @Bean
+//    @ConditionalOnProperty(
+//            prefix = "y.redis",
+//            name = {"dynamic-database"},
+//            havingValue = "false"
+//    )
+//    public RedisHelper redisHelper(YRedisProperties redisProperties) {
+//        return new RedisHelper();
+//    }
+
+    //    @Bean
 //    @ConditionalOnMissingBean({RedisMessageSource.class})
 //    public MessageSource messageSource(RedisHelper redisHelper) {
 //        ReloadableResourceBundleMessageSource parentMessageSource = new ReloadableResourceBundleMessageSource();
@@ -98,47 +111,48 @@ public class YRedisAutoConfiguration {
 //
 //    @Bean
 //    @ConditionalOnProperty(
-//            prefix = "hzero.cache-value",
+//            prefix = "y.cache-value",
 //            name = {"enable"},
 //            havingValue = "true"
 //    )
 //    public CacheValueAspect cacheValueAspect(RedisHelper redisHelper, Environment environment) {
 //        return new CacheValueAspect(redisHelper, environment);
 //    }
-//
-//    @Bean
-//    @ConditionalOnMissingBean
-//    public RedisQueueHelper redisQueueHelper(RedisHelper redisHelper, RedisProperties redisProperties) {
-//        return new RedisQueueHelper(redisHelper, redisProperties);
-//    }
-//
-//    @Bean
-//    @ConditionalOnMissingBean
-//    public HandlerInit handlerInit(RedisQueueHelper redisQueueHelper, RedisProperties redisProperties) {
-//        return new HandlerInit(redisQueueHelper, redisProperties);
-//    }
-//
-//    @Configuration
-//    @ConditionalOnProperty(
-//            prefix = "hzero.redis",
-//            name = {"dynamic-database"},
-//            havingValue = "true",
-//            matchIfMissing = true
-//    )
-//    protected static class DynamicRedisAutoConfiguration {
-//        protected DynamicRedisAutoConfiguration() {
-//        }
-//
-//        @Bean
-//        public RedisHelper redisHelper(StringRedisTemplate redisTemplate, RedisProperties redisProperties, RedisSentinelConfiguration sentinelConfiguration, RedisClusterConfiguration clusterConfiguration, List<JedisClientConfigurationBuilderCustomizer> jedisBuilderCustomizers, List<LettuceClientConfigurationBuilderCustomizer> lettuceBuilderCustomizers) {
-//            DynamicRedisTemplateFactory<String, String> dynamicRedisTemplateFactory = new DynamicRedisTemplateFactory(redisProperties, sentinelConfiguration, clusterConfiguration, jedisBuilderCustomizers, lettuceBuilderCustomizers);
-//            DynamicRedisTemplate<String, String> dynamicRedisTemplate = new DynamicRedisTemplate(dynamicRedisTemplateFactory);
-//            dynamicRedisTemplate.setDefaultRedisTemplate(redisTemplate);
-//            Map<Object, RedisTemplate<String, String>> map = new HashMap(8);
-//            map.put(redisProperties.getDatabase(), redisTemplate);
-//            dynamicRedisTemplate.setRedisTemplates(map);
-//            return new DynamicRedisHelper(dynamicRedisTemplate);
-//        }
-//    }
+
+
+    @Bean
+    @ConditionalOnMissingBean
+    public RedisQueueHelper redisQueueHelper(RedisHelper redisHelper, YRedisProperties redisProperties) {
+        return new RedisQueueHelper(redisHelper, redisProperties);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public HandlerInit handlerInit(RedisQueueHelper redisQueueHelper, YRedisProperties redisProperties) {
+        return new HandlerInit(redisQueueHelper, redisProperties);
+    }
+
+    @Configuration
+    @ConditionalOnProperty(
+            prefix = "y.redis",
+            name = {"dynamic-database"},
+            havingValue = "true",
+            matchIfMissing = true
+    )
+    protected static class DynamicRedisAutoConfiguration {
+        protected DynamicRedisAutoConfiguration() {
+        }
+
+        @Bean
+        public RedisHelper redisHelper(StringRedisTemplate redisTemplate, RedisProperties redisProperties, ObjectProvider<RedisSentinelConfiguration> sentinelConfiguration, ObjectProvider<RedisClusterConfiguration> clusterConfiguration, ObjectProvider<List<JedisClientConfigurationBuilderCustomizer>> jedisBuilderCustomizers, ObjectProvider<List<LettuceClientConfigurationBuilderCustomizer>> lettuceBuilderCustomizers) {
+            DynamicRedisTemplateFactory<String, String> dynamicRedisTemplateFactory = new DynamicRedisTemplateFactory(redisProperties, sentinelConfiguration, clusterConfiguration, jedisBuilderCustomizers, lettuceBuilderCustomizers);
+            DynamicRedisTemplate<String, String> dynamicRedisTemplate = new DynamicRedisTemplate(dynamicRedisTemplateFactory);
+            dynamicRedisTemplate.setDefaultRedisTemplate(redisTemplate);
+            Map<Object, RedisTemplate<String, String>> map = new HashMap(8);
+            map.put(redisProperties.getDatabase(), redisTemplate);
+            dynamicRedisTemplate.setRedisTemplates(map);
+            return new DynamicRedisHelper(dynamicRedisTemplate);
+        }
+    }
 
 }

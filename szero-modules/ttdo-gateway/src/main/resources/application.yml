@@ -22,7 +22,11 @@ spring:
         add-request-header:
           enabled: false
 
+  main:
+    allow-bean-definition-overriding: true
 logging:
   level:
     root: info
     org.springframework.web: debug
+
+

@@ -1,6 +1,7 @@
 package com.ttdo.core.redis.config;
 
 
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.data.redis.JedisClientConfigurationBuilderCustomizer;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.data.redis.connection.RedisClusterConfiguration;
@@ -11,6 +12,7 @@ import org.springframework.util.StringUtils;
 import redis.clients.jedis.JedisPoolConfig;
 
 import java.time.Duration;
+import java.util.Collections;
 import java.util.List;
 
 public class JedisConnectionConfigure extends RedisConnectionConfiguration {
@@ -18,10 +20,10 @@ public class JedisConnectionConfigure extends RedisConnectionConfiguration {
     private final RedisProperties properties;
     private final List<JedisClientConfigurationBuilderCustomizer> builderCustomizers;
 
-    public JedisConnectionConfigure(RedisProperties properties, RedisSentinelConfiguration sentinelConfiguration, RedisClusterConfiguration clusterConfiguration, int database, List<JedisClientConfigurationBuilderCustomizer> builderCustomizers) {
+    JedisConnectionConfigure(RedisProperties properties, ObjectProvider<RedisSentinelConfiguration> sentinelConfiguration, ObjectProvider<RedisClusterConfiguration> clusterConfiguration, ObjectProvider<List<JedisClientConfigurationBuilderCustomizer>> builderCustomizers, int database) {
         super(properties, sentinelConfiguration, clusterConfiguration, database);
         this.properties = properties;
-        this.builderCustomizers = builderCustomizers;
+        this.builderCustomizers = (List) builderCustomizers.getIfAvailable(Collections::emptyList);
     }
 
     // 获取 Redis 的配置文件

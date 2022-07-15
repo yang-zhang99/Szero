@@ -1,4 +1,4 @@
-package com.ttdo.core.redis.cache;
+package com.ttdo.core.cache;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -1,5 +1,6 @@
 package com.ttdo.core.redis.config;
 
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.data.redis.connection.*;
 import org.springframework.util.Assert;
@@ -22,12 +23,13 @@ public abstract class RedisConnectionConfiguration {
     // Redis 的数据库号
     private final int database;
 
-    protected RedisConnectionConfiguration(RedisProperties properties, RedisSentinelConfiguration sentinelConfiguration, RedisClusterConfiguration clusterConfiguration, int database) {
+    protected RedisConnectionConfiguration(RedisProperties properties, ObjectProvider<RedisSentinelConfiguration> sentinelConfigurationProvider, ObjectProvider<RedisClusterConfiguration> clusterConfigurationProvider, int database) {
         this.properties = properties;
-        this.sentinelConfiguration = sentinelConfiguration;
-        this.clusterConfiguration = clusterConfiguration;
+        this.sentinelConfiguration = sentinelConfigurationProvider.getIfAvailable();
+        this.clusterConfiguration = clusterConfigurationProvider.getIfAvailable();
         this.database = database;
     }
+
 
     // Redis 单例模式
     protected final RedisStandaloneConfiguration getStandaloneConfig() {

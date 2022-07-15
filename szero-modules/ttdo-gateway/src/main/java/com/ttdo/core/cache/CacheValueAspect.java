@@ -1,25 +1,25 @@
-//package com.ttdo.core.redis.cache;
+//package com.ttdo.core.cache;
 //
 //
 //import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.ttdo.core.base.BaseConstants;
 //import com.ttdo.core.redis.RedisHelper;
-//
-//import java.io.IOException;
-//import java.lang.reflect.Field;
-//import java.util.Collection;
-//import java.util.HashMap;
-//import java.util.Iterator;
-//import java.util.List;
-//import java.util.Map;
+//import com.ttdo.core.util.Reflections;
 //import org.apache.commons.lang3.ArrayUtils;
 //import org.apache.commons.lang3.StringUtils;
-//
+//import org.aspectj.lang.JoinPoint;
+//import org.aspectj.lang.annotation.AfterReturning;
+//import org.aspectj.lang.annotation.Aspect;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 //import org.springframework.core.annotation.Order;
 //import org.springframework.core.env.Environment;
 //import org.springframework.http.ResponseEntity;
 //import org.springframework.util.Assert;
+//
+//import java.io.IOException;
+//import java.lang.reflect.Field;
+//import java.util.*;
 //
 //@Aspect
 //@Order(20)
@@ -52,15 +52,15 @@
 //            return null;
 //        } else {
 //            if (result instanceof ResponseEntity) {
-//                Object body = ((ResponseEntity)result).getBody();
+//                Object body = ((ResponseEntity) result).getBody();
 //                if (body == null) {
 //                    return result;
 //                }
 //
 //                if (body instanceof Collection) {
-//                    Iterator var5 = ((Collection)body).iterator();
+//                    Iterator var5 = ((Collection) body).iterator();
 //
-//                    while(var5.hasNext()) {
+//                    while (var5.hasNext()) {
 //                        Object obj = var5.next();
 //                        this.processObject(obj);
 //                    }
@@ -68,9 +68,9 @@
 //                    this.processObject(body);
 //                }
 //            } else if (result instanceof Collection) {
-//                Iterator var7 = ((Collection)result).iterator();
+//                Iterator var7 = ((Collection) result).iterator();
 //
-//                while(var7.hasNext()) {
+//                while (var7.hasNext()) {
 //                    Object obj = var7.next();
 //                    this.processObject(obj);
 //                }
@@ -88,19 +88,19 @@
 //            Field[] var3 = fields;
 //            int var4 = fields.length;
 //
-//            for(int var5 = 0; var5 < var4; ++var5) {
+//            for (int var5 = 0; var5 < var4; ++var5) {
 //                Field field = var3[var5];
 //                if (field.isAnnotationPresent(CacheValue.class)) {
-//                    this.processObjectCacheValue(obj, fields, field, (CacheValue)field.getAnnotation(CacheValue.class));
+//                    this.processObjectCacheValue(obj, fields, field, (CacheValue) field.getAnnotation(CacheValue.class));
 //                }
 //
 //                Reflections.makeAccessible(field);
 //                Object fieldValue = field.get(obj);
 //                if (fieldValue != null) {
 //                    if (fieldValue instanceof Collection) {
-//                        Iterator var8 = ((Collection)fieldValue).iterator();
+//                        Iterator var8 = ((Collection) fieldValue).iterator();
 //
-//                        while(var8.hasNext()) {
+//                        while (var8.hasNext()) {
 //                            Object fv = var8.next();
 //                            this.processObject(fv);
 //                        }
@@ -131,7 +131,7 @@
 //        int var9 = targetFields.length;
 //
 //        Field json;
-//        for(int var10 = 0; var10 < var9; ++var10) {
+//        for (int var10 = 0; var10 < var9; ++var10) {
 //            json = var8[var10];
 //            if (StringUtils.equals(cacheValue.primaryKey(), json.getName())) {
 //                primaryField = json;
@@ -145,7 +145,7 @@
 //            primaryValue = String.valueOf(primaryField.get(target));
 //        }
 //
-//        primaryValue = (String)StringUtils.defaultIfBlank(primaryValue, "null");
+//        primaryValue = (String) StringUtils.defaultIfBlank(primaryValue, "null");
 //        String searchKey = cacheValue.searchKey();
 //        logger.debug("process cache value, key is [{}], primaryValue is [{}], db is [{}]", new Object[]{key, primaryValue, db});
 //        String searchValue = null;
@@ -163,8 +163,8 @@
 //            case OBJECT:
 //                json = this.redisHelper.strGet(key);
 //                if (StringUtils.isNotBlank(json)) {
-//                    map = (Map)this.mapper.readValue(json, HashMap.class);
-//                    searchValue = (String)map.get(searchKey);
+//                    map = (Map) this.mapper.readValue(json, HashMap.class);
+//                    searchValue = (String) map.get(searchKey);
 //                }
 //                break;
 //            case MAP_VALUE:
@@ -173,20 +173,20 @@
 //            case MAP_OBJECT:
 //                json = this.redisHelper.hshGet(key, primaryValue);
 //                if (StringUtils.isNotBlank(json)) {
-//                    map = (Map)this.mapper.readValue(json, HashMap.class);
-//                    searchValue = (String)map.get(searchKey);
+//                    map = (Map) this.mapper.readValue(json, HashMap.class);
+//                    searchValue = (String) map.get(searchKey);
 //                }
 //                break;
 //            case LIST_OBJECT:
 //                List<String> list = this.redisHelper.lstAll(key);
 //                Iterator var14 = list.iterator();
 //
-//                while(var14.hasNext()) {
-//                    String obj = (String)var14.next();
-//                    map = (Map)this.mapper.readValue(obj, HashMap.class);
-//                    String mapKey = (String)StringUtils.defaultIfBlank(cacheValue.primaryKeyAlias(), cacheValue.primaryKey());
-//                    if (StringUtils.equals((CharSequence)map.get(mapKey), primaryValue)) {
-//                        searchValue = (String)map.get(searchKey);
+//                while (var14.hasNext()) {
+//                    String obj = (String) var14.next();
+//                    map = (Map) this.mapper.readValue(obj, HashMap.class);
+//                    String mapKey = (String) StringUtils.defaultIfBlank(cacheValue.primaryKeyAlias(), cacheValue.primaryKey());
+//                    if (StringUtils.equals((CharSequence) map.get(mapKey), primaryValue)) {
+//                        searchValue = (String) map.get(searchKey);
 //                        break;
 //                    }
 //                }
@@ -210,12 +210,12 @@
 //            int var7 = targetFields.length;
 //
 //            int var8;
-//            for(var8 = 0; var8 < var7; ++var8) {
+//            for (var8 = 0; var8 < var7; ++var8) {
 //                Field targetField = var6[var8];
 //                String[] var10 = placeholders;
 //                int var11 = placeholders.length;
 //
-//                for(int var12 = 0; var12 < var11; ++var12) {
+//                for (int var12 = 0; var12 < var11; ++var12) {
 //                    String placeholder = var10[var12];
 //                    if (StringUtils.equals(placeholder, targetField.getName())) {
 //                        Reflections.makeAccessible(targetField);
@@ -228,49 +228,49 @@
 //            String[] var14 = placeholders;
 //            var7 = placeholders.length;
 //
-//            for(var8 = 0; var8 < var7; ++var8) {
+//            for (var8 = 0; var8 < var7; ++var8) {
 //                String placeholder = var14[var8];
 //                if (values.containsKey(placeholder)) {
-//                    key = StringUtils.replace(key, "{" + placeholder + "}", (String)StringUtils.defaultIfBlank((CharSequence)values.get(placeholder), "null"));
+//                    key = StringUtils.replace(key, "{" + placeholder + "}", (String) StringUtils.defaultIfBlank((CharSequence) values.get(placeholder), "null"));
 //                }
 //            }
-//
-//            String tenantId;
-//            CustomUserDetails details;
-//            if (key.contains("{lang}")) {
-//                details = DetailsHelper.getUserDetails();
-//                if (details != null) {
-//                    tenantId = details.getLanguage();
-//                } else {
-//                    tenantId = LanguageHelper.language();
-//                }
-//
-//                key = StringUtils.replace(key, "{lang}", String.valueOf(tenantId));
-//            }
-//
-//            if (key.contains("{userId}")) {
-//                details = DetailsHelper.getUserDetails();
-//                Object userId;
-//                if (details != null) {
-//                    userId = details.getUserId();
-//                } else {
-//                    userId = "null";
-//                }
-//
-//                key = StringUtils.replace(key, "{userId}", String.valueOf(userId));
-//            }
-//
-//            if (key.contains("{tenantId}")) {
-//                details = DetailsHelper.getUserDetails();
-//                if (details != null) {
-//                    tenantId = details.getOrganizationId().toString();
-//                } else {
-//                    tenantId = BaseConstants.DEFAULT_TENANT_ID.toString();
-//                }
-//
-//                key = StringUtils.replace(key, "{tenantId}", String.valueOf(tenantId));
-//            }
-//
+//// todo
+////            String tenantId;
+////            CustomUserDetails details;
+////            if (key.contains("{lang}")) {
+////                details = DetailsHelper.getUserDetails();
+////                if (details != null) {
+////                    tenantId = details.getLanguage();
+////                } else {
+////                    tenantId = LanguageHelper.language();
+////                }
+////
+////                key = StringUtils.replace(key, "{lang}", String.valueOf(tenantId));
+////            }
+////
+////            if (key.contains("{userId}")) {
+////                details = DetailsHelper.getUserDetails();
+////                Object userId;
+////                if (details != null) {
+////                    userId = details.getUserId();
+////                } else {
+////                    userId = "null";
+////                }
+////
+////                key = StringUtils.replace(key, "{userId}", String.valueOf(userId));
+////            }
+////
+////            if (key.contains("{tenantId}")) {
+////                details = DetailsHelper.getUserDetails();
+////                if (details != null) {
+////                    tenantId = details.getOrganizationId().toString();
+////                } else {
+////                    tenantId = BaseConstants.DEFAULT_TENANT_ID.toString();
+////                }
+////
+////                key = StringUtils.replace(key, "{tenantId}", String.valueOf(tenantId));
+////            }
+////
 //            return key;
 //        }
 //    }
