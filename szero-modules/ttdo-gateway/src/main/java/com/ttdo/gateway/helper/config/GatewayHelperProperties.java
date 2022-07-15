@@ -17,6 +17,8 @@ public class GatewayHelperProperties {
     private boolean enabledJwtLog = false;
 
 
+    private String jwtKey = "hzero";
+
     public Filter getFilter() {
         return filter;
     }
@@ -32,6 +34,14 @@ public class GatewayHelperProperties {
 
     public void setEnabledJwtLog(boolean enabledJwtLog) {
         this.enabledJwtLog = enabledJwtLog;
+    }
+
+    public String getJwtKey() {
+        return jwtKey;
+    }
+
+    public void setJwtKey(String jwtKey) {
+        this.jwtKey = jwtKey;
     }
 
     public static class Filter {

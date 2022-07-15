@@ -30,3 +30,8 @@ logging:
     org.springframework.web: debug
 
 
+y:
+  request:
+    counter:
+      # http请求监控
+      enable: true

@@ -16,6 +16,11 @@ public class AddJwtFilter implements HelperFilter {
     private final ObjectMapper objectMapper = new ObjectMapper();
     private Signer jwtSigner;
 
+    public AddJwtFilter(Signer jwtSigner) {
+        this.jwtSigner = jwtSigner;
+    }
+
+
     @Override
     public int filterOrder() {
         return 50;

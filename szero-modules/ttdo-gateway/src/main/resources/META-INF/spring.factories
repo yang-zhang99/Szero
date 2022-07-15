@@ -1,2 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.ttdo.core.YRedisAutoConfiguration
+  com.ttdo.core.YRedisAutoConfiguration, \
+  com.ttdo.autoconfigure.gateway.helper.GatewayHelperAutoConfiguration 

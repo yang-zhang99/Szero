@@ -9,13 +9,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public final class HelperChain {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HelperChain.class);
 
     private List<HelperFilter> helperFilters;
+
+    public HelperChain(Optional<List<HelperFilter>> optionalHelperFilters) {
+        this.helperFilters = (List) ((List) optionalHelperFilters.orElseGet(Collections::emptyList)).stream().sorted(Comparator.comparing(HelperFilter::filterOrder)).collect(Collectors.toList());
+    }
 
     public ResponseContext doFilter(RequestContext requestContext) {
 

@@ -4,6 +4,7 @@ import com.ttdo.core.redis.RedisHelper;
 import com.ttdo.gateway.helper.api.HelperFilter;
 import com.ttdo.gateway.helper.config.ListFilterProperties;
 import com.ttdo.gateway.helper.entity.RequestContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -18,6 +19,13 @@ public class BlackListFilter implements HelperFilter {
     private static final String BLACK_LIST_KEY = "gateway.BLACK_LIST";
     private ListFilterProperties filterProperties;
     private RedisHelper redisHelper;
+
+
+    @Autowired
+    public BlackListFilter(ListFilterProperties filterProperties, RedisHelper redisHelper) {
+        this.filterProperties = filterProperties;
+        this.redisHelper = redisHelper;
+    }
 
     @Override
     public int filterOrder() {
