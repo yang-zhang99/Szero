@@ -1,14 +1,6 @@
 package com.ttdo.core.redis.handler;
 
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-
 import com.ttdo.core.convertor.ApplicationContextHelper;
 import com.ttdo.core.redis.RedisQueueHelper;
 import com.ttdo.core.redis.YRedisProperties;
@@ -21,8 +13,16 @@ import org.springframework.data.util.ProxyUtils;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
 public class HandlerInit implements CommandLineRunner {
-    private static Logger logger = LoggerFactory.getLogger(HandlerInit.class);
+    private static final Logger logger = LoggerFactory.getLogger(HandlerInit.class);
     private final YRedisProperties redisProperties;
     private final RedisQueueHelper redisQueueHelper;
 
@@ -35,26 +35,23 @@ public class HandlerInit implements CommandLineRunner {
         if (this.redisProperties != null && this.redisProperties.isRedisQueue()) {
             this.scanQueueHandler();
             ScheduledExecutorService register = new ScheduledThreadPoolExecutor(1, (new BasicThreadFactory.Builder()).namingPattern("redis-queue-consumer").daemon(true).build());
-            register.scheduleAtFixedRate(new Listener(this.redisQueueHelper), 0L, (long) this.redisProperties.getIntervals(), TimeUnit.SECONDS);
+            register.scheduleAtFixedRate(new Listener(this.redisQueueHelper), 0L, this.redisProperties.getIntervals(), TimeUnit.SECONDS);
         }
-
     }
 
     private void scanQueueHandler() {
         Map<String, Object> map = ApplicationContextHelper.getContext().getBeansWithAnnotation(QueueHandler.class);
-        Iterator var2 = map.values().iterator();
-
+        Iterator<Object> value = map.values().iterator();
         while (true) {
             Object service;
             do {
-                if (!var2.hasNext()) {
+                if (!value.hasNext()) {
                     return;
                 }
-
-                service = var2.next();
+                service = value.next();
             } while (!(service instanceof IQueueHandler) && !(service instanceof IBatchQueueHandler));
 
-            QueueHandler queueHandler = (QueueHandler) ProxyUtils.getUserClass(service).getAnnotation(QueueHandler.class);
+            QueueHandler queueHandler = ProxyUtils.getUserClass(service).getAnnotation(QueueHandler.class);
             if (ObjectUtils.isEmpty(queueHandler)) {
                 logger.debug("could not get target bean , queueHandler : {}", service);
             } else {
@@ -66,7 +63,6 @@ public class HandlerInit implements CommandLineRunner {
     static class Consumer implements Runnable {
         private final String key;
         private final RedisQueueHelper redisQueueHelper;
-
         public Consumer(String key, RedisQueueHelper redisQueueHelper) {
             this.key = key;
             this.redisQueueHelper = redisQueueHelper;
@@ -81,7 +77,6 @@ public class HandlerInit implements CommandLineRunner {
                         if (StringUtils.isBlank(message)) {
                             return;
                         }
-
                         ((IQueueHandler) handler).process(message);
                     }
                 } else {
@@ -94,11 +89,9 @@ public class HandlerInit implements CommandLineRunner {
                                 if (CollectionUtils.isEmpty(list)) {
                                     return;
                                 }
-
                                 batchQueueHandler.process(list);
                             }
                         }
-
                         batchQueueHandler.process(this.redisQueueHelper.pullAll(this.key));
                     }
 
