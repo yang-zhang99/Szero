@@ -3,6 +3,7 @@ package com.ttdo.core;
 
 //import com.ttdo.core.cache.CacheValueAspect;
 
+import com.ttdo.core.cache.CacheProperties;
 import com.ttdo.core.redis.*;
 import com.ttdo.core.redis.config.DynamicRedisTemplateFactory;
 import com.ttdo.core.redis.handler.HandlerInit;
@@ -35,7 +36,7 @@ import java.util.Map;
 @ConditionalOnClass(
         name = {"org.springframework.data.redis.connection.RedisConnectionFactory"}
 )
-@EnableConfigurationProperties(YRedisProperties.class)
+@EnableConfigurationProperties({YRedisProperties.class, CacheProperties.class})
 @AutoConfigureBefore(RedisAutoConfiguration.class)
 public class YRedisAutoConfiguration {
 
