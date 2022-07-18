@@ -12,10 +12,14 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+/**
+ * 动态库 Redis 帮助类
+ */
 public class DynamicRedisHelper extends RedisHelper {
 
-    private Logger logger = LoggerFactory.getLogger(DynamicRedisHelper.class);
-    private DynamicRedisTemplate<String, String> redisTemplate;
+    private final Logger logger = LoggerFactory.getLogger(DynamicRedisHelper.class);
+    private final DynamicRedisTemplate<String, String> redisTemplate;
+
     public static final long DEFAULT_EXPIRE = 86400L;
     public static final long NOT_EXPIRE = -1L;
 
@@ -27,10 +31,17 @@ public class DynamicRedisHelper extends RedisHelper {
         return this.redisTemplate;
     }
 
+    /**
+     * 设置当前的 Redis 库
+     * @param database database
+     */
     public void setCurrentDatabase(int database) {
         RedisDatabaseThreadLocal.set(database);
     }
 
+    /**
+     * 设置当前设置的 Redis 库
+     */
     public void clearCurrentDatabase() {
         RedisDatabaseThreadLocal.clear();
     }
@@ -64,14 +75,7 @@ public class DynamicRedisHelper extends RedisHelper {
     }
 
     public void delKeys(Collection<String> keys) {
-        Set<String> hs = new HashSet();
-        Iterator var3 = keys.iterator();
-
-        while (var3.hasNext()) {
-            String key = (String) var3.next();
-            hs.add(key);
-        }
-
+        Set<String> hs = new HashSet(keys);
         this.redisTemplate.delete(hs);
     }
 
@@ -100,7 +104,7 @@ public class DynamicRedisHelper extends RedisHelper {
     }
 
     public String strGet(String key, long expire, TimeUnit timeUnit) {
-        String value = (String) this.redisTemplate.opsForValue().get(key);
+        String value =   this.redisTemplate.opsForValue().get(key);
         if (expire != -1L) {
             this.setExpire(key, expire, timeUnit == null ? TimeUnit.SECONDS : timeUnit);
         }
@@ -109,12 +113,12 @@ public class DynamicRedisHelper extends RedisHelper {
     }
 
     public <T> T strGet(String key, Class<T> clazz) {
-        String value = (String) this.redisTemplate.opsForValue().get(key);
+        String value =  this.redisTemplate.opsForValue().get(key);
         return value == null ? null : this.fromJson(value, clazz);
     }
 
     public <T> T strGet(String key, Class<T> clazz, long expire, TimeUnit timeUnit) {
-        String value = (String) this.redisTemplate.opsForValue().get(key);
+        String value =   this.redisTemplate.opsForValue().get(key);
         if (expire != -1L) {
             this.setExpire(key, expire, timeUnit == null ? TimeUnit.SECONDS : timeUnit);
         }
@@ -155,19 +159,19 @@ public class DynamicRedisHelper extends RedisHelper {
     }
 
     public String lstLeftPop(String key) {
-        return (String) this.redisTemplate.opsForList().leftPop(key);
+        return this.redisTemplate.opsForList().leftPop(key);
     }
 
     public String lstRightPop(String key) {
-        return (String) this.redisTemplate.opsForList().rightPop(key);
+        return this.redisTemplate.opsForList().rightPop(key);
     }
 
     public String lstLeftPop(String key, long timeout, TimeUnit timeUnit) {
-        return (String) this.redisTemplate.opsForList().leftPop(key, timeout, timeUnit);
+        return  this.redisTemplate.opsForList().leftPop(key, timeout, timeUnit);
     }
 
     public String lstRightPop(String key, long timeout, TimeUnit timeUnit) {
-        return (String) this.redisTemplate.opsForList().rightPop(key, timeout, timeUnit);
+        return  this.redisTemplate.opsForList().rightPop(key, timeout, timeUnit);
     }
 
     public Long lstLen(String key) {
@@ -255,9 +259,9 @@ public class DynamicRedisHelper extends RedisHelper {
     /**
      * ZSet 返回有序集合中，指定元素的分值
      *
-     * @param key
-     * @param value
-     * @return
+     * @param key key
+     * @param value value
+     * @return Double
      */
     public Double zSetScore(String key, String value) {
         return this.redisTemplate.opsForZSet().score(key, value);
@@ -270,9 +274,9 @@ public class DynamicRedisHelper extends RedisHelper {
     /**
      * ZSet 返回指定元素在有序集合中的排名，其中排名按照元素的分值从小到大计算。排名以 0 开始
      *
-     * @param key
-     * @param value
-     * @return
+     * @param key key
+     * @param value value
+     * @return Long Long
      */
     public Long zSetRank(String key, String value) {
         return this.redisTemplate.opsForZSet().rank(key, value);
@@ -363,18 +367,16 @@ public class DynamicRedisHelper extends RedisHelper {
     }
 
     public List<String> hshMultiGet(String key, Collection<String> hashKeys) {
-        Collection<Object> list = new ArrayList(hashKeys);
+        Collection<Object> list = new ArrayList<>(hashKeys);
         List<Object> ret = this.redisTemplate.opsForHash().multiGet(key, list);
-        return (List) ret.stream().map((o) -> {
-            return (String) o;
-        }).collect(Collectors.toList());
+        return  ret.stream().map((o) -> (String) o).collect(Collectors.toList());
     }
 
     public Map<String, String> hshGetAll(String key) {
         Map<Object, Object> map = this.redisTemplate.opsForHash().entries(key);
-        Map<String, String> ret = new LinkedHashMap();
+        Map<String, String> ret = new LinkedHashMap<>();
         map.forEach((k, v) -> {
-            String var10000 = (String) ret.put((String) k, (String) v);
+            String var10000 = ret.put((String) k, (String) v);
         });
         return ret;
     }
@@ -385,24 +387,18 @@ public class DynamicRedisHelper extends RedisHelper {
 
     public Set<String> hshKeys(String key) {
         Set<Object> set = this.redisTemplate.opsForHash().keys(key);
-        return (Set) set.stream().map((o) -> {
-            return (String) o;
-        }).collect(Collectors.toSet());
+        return  set.stream().map((o) -> (String) o).collect(Collectors.toSet());
     }
 
-    public List<String> hshVals(String key) {
+    public List hshVals(String key) {
         List<Object> list = this.redisTemplate.opsForHash().values(key);
-        return (List) list.stream().map((o) -> {
-            return (String) o;
-        }).collect(Collectors.toList());
+        return list.stream().map((o) -> (String) o).collect(Collectors.toList());
     }
 
     public List<String> hshVals(String key, Collection<String> hashKeys) {
         Collection<Object> list = new ArrayList(hashKeys);
         List<Object> ret = this.redisTemplate.opsForHash().multiGet(key, list);
-        return (List) ret.stream().map((o) -> {
-            return (String) o;
-        }).collect(Collectors.toList());
+        return ret.stream().map((o) -> (String) o).collect(Collectors.toList());
     }
 
     public Long hshSize(String key) {

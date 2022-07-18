@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Redis 队列帮助类
+ */
 public class RedisQueueHelper {
 
     private static final String PREFIX = "hzero-queue:";
@@ -19,22 +22,22 @@ public class RedisQueueHelper {
 
     public void push(String key, String message) {
         this.redisHelper.setCurrentDatabase(this.properties.getQueueDb());
-        this.redisHelper.lstRightPush("hzero-queue:" + key, message);
+        this.redisHelper.lstRightPush(PREFIX + key, message);
         this.redisHelper.clearCurrentDatabase();
     }
 
     public void pushAll(String key, Collection<String> messages) {
         this.redisHelper.setCurrentDatabase(this.properties.getQueueDb());
-        this.redisHelper.lstRightPushAll("hzero-queue:" + key, messages);
+        this.redisHelper.lstRightPushAll(PREFIX + key, messages);
         this.redisHelper.clearCurrentDatabase();
     }
 
     public void push(String key, String message, boolean right) {
         this.redisHelper.setCurrentDatabase(this.properties.getQueueDb());
         if (right) {
-            this.redisHelper.lstRightPush("hzero-queue:" + key, message);
+            this.redisHelper.lstRightPush(PREFIX + key, message);
         } else {
-            this.redisHelper.lstLeftPush("hzero-queue:" + key, message);
+            this.redisHelper.lstLeftPush(PREFIX + key, message);
         }
 
         this.redisHelper.clearCurrentDatabase();
@@ -43,9 +46,9 @@ public class RedisQueueHelper {
     public void pushAll(String key, Collection<String> messages, boolean right) {
         this.redisHelper.setCurrentDatabase(this.properties.getQueueDb());
         if (right) {
-            this.redisHelper.lstRightPushAll("hzero-queue:" + key, messages);
+            this.redisHelper.lstRightPushAll(PREFIX + key, messages);
         } else {
-            this.redisHelper.lstLeftPushAll("hzero-queue:" + key, messages);
+            this.redisHelper.lstLeftPushAll(PREFIX + key, messages);
         }
 
         this.redisHelper.clearCurrentDatabase();
@@ -53,7 +56,7 @@ public class RedisQueueHelper {
 
     public String pull(String key) {
         this.redisHelper.setCurrentDatabase(this.properties.getQueueDb());
-        String str = this.redisHelper.lstLeftPop("hzero-queue:" + key);
+        String str = this.redisHelper.lstLeftPop(PREFIX + key);
         this.redisHelper.clearCurrentDatabase();
         return str;
     }
@@ -62,7 +65,7 @@ public class RedisQueueHelper {
         this.redisHelper.setCurrentDatabase(this.properties.getQueueDb());
         List<String> result = new ArrayList();
 
-        while(true) {
+        while (true) {
             String str = this.pull(key);
             if (str == null) {
                 this.redisHelper.clearCurrentDatabase();
@@ -77,7 +80,7 @@ public class RedisQueueHelper {
         this.redisHelper.setCurrentDatabase(this.properties.getQueueDb());
         List<String> result = new ArrayList();
 
-        while(true) {
+        while (true) {
             String str = this.pull(key);
             if (str == null || result.size() > maxSize) {
                 this.redisHelper.clearCurrentDatabase();
@@ -92,11 +95,10 @@ public class RedisQueueHelper {
         this.redisHelper.setCurrentDatabase(this.properties.getQueueDb());
         String str;
         if (left) {
-            str = this.redisHelper.lstLeftPop("hzero-queue:" + key);
+            str = this.redisHelper.lstLeftPop(PREFIX + key);
         } else {
-            str = this.redisHelper.lstRightPop("hzero-queue:" + key);
+            str = this.redisHelper.lstRightPop(PREFIX + key);
         }
-
         this.redisHelper.clearCurrentDatabase();
         return str;
     }
@@ -105,13 +107,12 @@ public class RedisQueueHelper {
         this.redisHelper.setCurrentDatabase(this.properties.getQueueDb());
         List<String> result = new ArrayList();
 
-        while(true) {
+        while (true) {
             String str = this.pull(key, left);
             if (str == null) {
                 this.redisHelper.clearCurrentDatabase();
                 return result;
             }
-
             result.add(str);
         }
     }
@@ -120,7 +121,7 @@ public class RedisQueueHelper {
         this.redisHelper.setCurrentDatabase(this.properties.getQueueDb());
         List<String> result = new ArrayList();
 
-        while(true) {
+        while (true) {
             String str = this.pull(key, left);
             if (str == null || result.size() > max) {
                 this.redisHelper.clearCurrentDatabase();

@@ -15,12 +15,15 @@ import java.io.Closeable;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * 抽象类 动态Redis库
+ *
+ * @param <K>
+ * @param <V>
+ */
 public abstract class AbstractRoutingRedisTemplate<K, V> extends RedisTemplate<K, V> implements InitializingBean {
     private Map<Object, RedisTemplate<K, V>> redisTemplates;
     private RedisTemplate<K, V> defaultRedisTemplate;
-
-    public AbstractRoutingRedisTemplate() {
-    }
 
     public <T> T execute(RedisCallback<T> action) {
         return this.determineTargetRedisTemplate().execute(action);
@@ -359,12 +362,11 @@ public abstract class AbstractRoutingRedisTemplate<K, V> extends RedisTemplate<K
         if (lookupKey == null) {
             return this.defaultRedisTemplate;
         } else {
-            RedisTemplate<K, V> redisTemplate = (RedisTemplate)this.redisTemplates.get(lookupKey);
+            RedisTemplate<K, V> redisTemplate = this.redisTemplates.get(lookupKey);
             if (redisTemplate == null) {
                 redisTemplate = this.createRedisTemplateOnMissing(lookupKey);
                 this.redisTemplates.put(lookupKey, redisTemplate);
             }
-
             return redisTemplate;
         }
     }

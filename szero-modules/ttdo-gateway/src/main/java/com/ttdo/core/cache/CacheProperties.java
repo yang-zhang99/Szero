@@ -5,10 +5,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 @ConfigurationProperties(
-        prefix = "hzero.cache-value"
+        prefix = CacheProperties.PREFIX
 )
 public class CacheProperties {
-    public static final String PREFIX = "hzero.cache-value";
+    public static final String PREFIX = "y.cache-value";
     private boolean enable = true;
 
     public CacheProperties() {

@@ -22,6 +22,9 @@ import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Redis 使用帮助类
+ */
 @Component
 public class RedisHelper implements InitializingBean {
     private final Logger logger = LoggerFactory.getLogger(RedisHelper.class);

@@ -2,6 +2,7 @@ package com.ttdo.core;
 
 
 //import com.ttdo.core.cache.CacheValueAspect;
+
 import com.ttdo.core.redis.*;
 import com.ttdo.core.redis.config.DynamicRedisTemplateFactory;
 import com.ttdo.core.redis.handler.HandlerInit;
@@ -17,7 +18,6 @@ import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
 import org.springframework.data.redis.connection.RedisClusterConfiguration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisSentinelConfiguration;
@@ -28,6 +28,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * redis 自动装配类
+ */
 @Configuration
 @ConditionalOnClass(
         name = {"org.springframework.data.redis.connection.RedisConnectionFactory"}
@@ -51,6 +54,12 @@ public class YRedisAutoConfiguration {
         return redisTemplate;
     }
 
+    /**
+     * 设置序列化程序
+     *
+     * @param redisTemplate          redisTemplate
+     * @param redisConnectionFactory redisConnectionFactory
+     */
     private void buildRedisTemplate(RedisTemplate<String, String> redisTemplate, RedisConnectionFactory redisConnectionFactory) {
         StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
         redisTemplate.setKeySerializer(stringRedisSerializer);
