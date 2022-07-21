@@ -8,6 +8,9 @@ import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * 通用路由
+ */
 public class CommonRoute {
 
 
