@@ -5,6 +5,7 @@ import com.ttdo.gateway.helper.entity.CheckRequest;
 import com.ttdo.gateway.helper.entity.CheckResponse;
 import com.ttdo.gateway.helper.entity.RequestContext;
 import com.ttdo.gateway.helper.entity.ResponseContext;
+import com.ttdo.gateway.helper.impl.HelperChain;
 import com.ttdo.utils.ServerRequestUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.http.server.reactive.ServerHttpRequest;
@@ -22,7 +23,7 @@ public class DefaultReactiveAuthenticationHelper implements ReactiveAuthenticati
     }
 
     @Override
-    public ResponseContext authentication(ServerWebExchange exchange) throws IOException {
+    public ResponseContext authentication(ServerWebExchange exchange) {
         RequestContext requestContext = RequestContext.initRequestContext(
                 new CheckRequest("Bearer ".toLowerCase() + this.parse(exchange.getRequest()),
                         exchange.getRequest().getURI().getPath(), exchange.getRequest().getMethod().name().toLowerCase()),

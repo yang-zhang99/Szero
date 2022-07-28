@@ -21,7 +21,15 @@ spring:
       filter:
         add-request-header:
           enabled: false
-
+        secure-headers:
+          frame-options: ${SECURE_HEADERS_FRAME_OPTIONS:allow-from http://dev.hzero.org}
+      routes:
+        - id: hoth
+          uri: lb://hzero-oauth
+          predicates:
+            - Path=/oauth/**
+          filters:
+            - PreserveHostHeader
   main:
     allow-bean-definition-overriding: true
 logging:
@@ -35,3 +43,55 @@ y:
     counter:
       # http请求监控
       enable: true
+  gateway:
+    # 跨域配置
+    cors:
+      allowed-origins:
+        - "*"
+      allowed-headers:
+        - "*"
+      allowed-methods:
+        - "*"
+    helper:
+      enabled: true
+      ## 启用API签名
+      signature:
+        enabled: false
+        secrets:
+          - secretId: hzero
+            secretKey: 537509248a3da7804d12905c102d14cd1bec000797a6178a7353a4c3ac23a0b3
+      jwt-key: hzero # jwt的密钥
+      # 是否打印 JWT
+      enabled-jwt-log: ${HZERO_GATEWAY_HELPER_ENABLE_JWT_LOG:false}
+      filter:
+        collect-span:
+          # 是否统计API访问情况
+          enabled: ${HZERO_GATEWAY_FILTER_COLLECT_SPAN_ENABLED:false}
+        common-request:
+          # 租户级API是否必须检查租户参数
+          check-tenant: ${HZERO_GATEWAY_FILTER_COMMON_REQUEST_CHECK_ORGANIZATION:true}
+          # 项目级API是否必须检查项目参数
+          check-project: ${HZERO_GATEWAY_FILTER_COMMON_REQUEST_CHECK_PROJECT:true}
+          # 是否启用标准的权限检查
+          enabled: ${HZERO_GATEWAY_FILTER_COMMON_REQUEST_ENABLE:true}
+        menu-permission:
+          # 是否检查菜单中包含了API权限
+          enabled: ${HZERO_GATEWAY_FILTER_MENU_PERMISSION:false}
+      # 权限相关的内容
+      permission:
+        cache-seconds: 600 # 请求地址和对应的权限缓存时间
+        cache-size: 3000  # 请求地址和对应的权限缓存大小
+        skip-paths:
+          - /oauth/**
+          - /swagger/swagger-ui.html
+          - /swagger/swagger-resources/**
+          - /swagger/webjars/**
+          - /swagger/docs/**
+          - /*/sock-js/**
+          - /*/websocket/**
+          - /maintain
+          - /actuator/**
+          - /hims/lib/**
+          - /hfle/lib/**
+          - /*/lib/**
+          - /**/webjars/**

@@ -16,6 +16,7 @@
         <module>ttdo-gateway</module>
         <module>study-demo</module>
         <module>spring-demo</module>
+        <module>ttdo-oauth</module>
     </modules>
 
 

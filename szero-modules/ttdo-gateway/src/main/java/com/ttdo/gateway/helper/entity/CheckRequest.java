@@ -2,15 +2,16 @@ package com.ttdo.gateway.helper.entity;
 
 public class CheckRequest {
 
-    public final String uri;
-
     public final String accessToken;
+
+    public final String uri;
 
     public final String method;
 
-    public CheckRequest(String uri, String accessToken, String method) {
-        this.uri = uri;
+
+    public CheckRequest(String accessToken, String uri, String method) {
         this.accessToken = accessToken;
+        this.uri = uri;
         this.method = method;
     }
 
