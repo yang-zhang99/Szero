@@ -30,6 +30,12 @@ spring:
             - Path=/oauth/**
           filters:
             - PreserveHostHeader
+        - id: tout
+          uri: lb://ttdo-oauth
+          predicates:
+            - Path=/toauth/**
+          filters:
+            - PreserveHostHeader
   main:
     allow-bean-definition-overriding: true
 logging:
