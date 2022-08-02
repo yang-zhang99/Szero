@@ -86,7 +86,7 @@ public class GatewayHelperProperties {
     public static class Permission {
         private Boolean enabled = true;
 
-        private List<String> skipPaths = Arrays.asList("/**/skip/**", "/oauth/**");
+        private List<String> skipPaths = Arrays.asList("/**/skip/**", "/oauth/**", "/toauth/**");
 
         private List<String> internalPaths = Arrays.asList("/oauth/admin/**", "/oauth/api/**", "/v2/choerodon/api-docs");
 

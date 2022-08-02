@@ -1,8 +1,8 @@
 server:
-  port: 8100
+  port: 28100
 management:
   server:
-    port: 8101
+    port: 28101
   endpoints:
     web:
       exposure:

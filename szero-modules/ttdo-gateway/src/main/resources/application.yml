@@ -89,6 +89,7 @@ y:
         cache-size: 3000  # 请求地址和对应的权限缓存大小
         skip-paths:
           - /oauth/**
+          - /toauth/**
           - /swagger/swagger-ui.html
           - /swagger/swagger-resources/**
           - /swagger/webjars/**

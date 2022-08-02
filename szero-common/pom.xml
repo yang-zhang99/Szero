@@ -13,11 +13,12 @@
 
 
     <modules>
-<!--        <module>szero-common-core</module>-->
-<!--        <module>szero-common-lock</module>-->
-<!--        <module>szero-common-redis</module>-->
-<!--        <module>szero-common-security</module>-->
-<!--        <module>szero-common-feign</module>-->
+        <module>ttdo-common-core</module>
+        <module>ttdo-common-mybatis-mapper</module>
+        <!--        <module>szero-common-lock</module>-->
+        <!--        <module>szero-common-redis</module>-->
+        <!--        <module>szero-common-security</module>-->
+        <!--        <module>szero-common-feign</module>-->
     </modules>
 
 

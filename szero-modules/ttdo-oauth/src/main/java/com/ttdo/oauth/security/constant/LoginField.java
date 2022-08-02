@@ -1,0 +1,29 @@
+package com.ttdo.oauth.security.constant;
+
+import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+public enum LoginField {
+
+
+    USERNAME("username"),
+
+    PHONE("phone"),
+
+    EMAIL("email");
+
+    private String code;
+
+    LoginField(String code) {
+        this.code = code;
+    }
+
+    public static Set<String> codes() {
+        return Arrays.stream(LoginField.values()).map(LoginField::code).collect(Collectors.toSet());
+    }
+
+    public String code() {
+        return code;
+    }
+}
