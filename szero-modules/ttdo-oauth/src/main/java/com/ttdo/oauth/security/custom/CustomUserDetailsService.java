@@ -21,7 +21,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     private final LoginRecordService loginRecordService;
 
-    public CustomUserDetailsService(LoginRecordService loginRecordService) {
+    public CustomUserDetailsService(UserAccountService userAccountService, LoginRecordService loginRecordService) {
+        this.userAccountService = userAccountService;
         this.loginRecordService = loginRecordService;
     }
 
@@ -36,10 +37,10 @@ public class CustomUserDetailsService implements UserDetailsService {
         User user = getLoginRecordService().getLocalLoginUser();
         if (user == null) {
             String userType = RequestUtil.getParameterValueFromRequestOrSavedRequest(UserType.PARAM_NAME, UserType.DEFAULT_USER_TYPE);
-            user = getUserAccountService().findLoginUser(username, UserType.ofDefault(userType));
+//            user = getUserAccountService().findLoginUser(username, "P");
             LOGGER.debug("loaded user, userType is {}, user is {}", userType, user);
             if (user == null) {
-                throw new CustomAuthenticationException(LoginExceptions.USERNAME_OR_PASSWORD_ERROR.value());
+//                throw new CustomAuthenticationException(LoginExceptions.USERNAME_OR_PASSWORD_ERROR.value());
             }
             getLoginRecordService().saveLocalLoginUser(user);
         }

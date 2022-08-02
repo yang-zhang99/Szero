@@ -44,7 +44,8 @@ public class RequestUtil {
         if (session == null) {
             return defaultValue;
         }
-        DefaultSavedRequest saveRequest = (DefaultSavedRequest) session.getAttribute(SecurityAttributes.SECURITY_SAVED_REQUEST);
+//        SecurityAttributes.SECURITY_SAVED_REQUEST
+        DefaultSavedRequest saveRequest = (DefaultSavedRequest) session.getAttribute(null);
         if (saveRequest != null) {
             String[] values = saveRequest.getParameterValues(parameterName);
             if (values != null) {

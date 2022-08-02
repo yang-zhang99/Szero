@@ -14,7 +14,7 @@ public class DefaultUserAccountService implements UserAccountService {
         switch (loginType) {
             case ACCOUNT:
         }
-
-        return user;
+        return null;
+//        return user;
     }
 }
