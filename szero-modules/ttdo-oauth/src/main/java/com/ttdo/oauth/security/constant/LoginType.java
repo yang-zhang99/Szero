@@ -1,8 +1,14 @@
 package com.ttdo.oauth.security.constant;
 
+
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 登录类型
+ *
+ * @author bojiangzhou 2018/09/29
+ */
 public enum LoginType {
 
     /**
@@ -40,6 +46,5 @@ public enum LoginType {
     public String code() {
         return code;
     }
-
 
 }

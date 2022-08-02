@@ -4,8 +4,10 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * 可支持的登录字段
+ */
 public enum LoginField {
-
 
     USERNAME("username"),
 

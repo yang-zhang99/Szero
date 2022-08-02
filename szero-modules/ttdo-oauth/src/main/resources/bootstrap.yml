@@ -1,8 +1,10 @@
 server:
-  port: 28100
+  port: 28110
+  servlet:
+    context-path: /toauth
 management:
   server:
-    port: 28101
+    port: 28111
   endpoints:
     web:
       exposure:

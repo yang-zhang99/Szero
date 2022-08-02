@@ -1,12 +1,12 @@
 package com.ttdo.oauth.security.custom;
 
+import com.ttdo.core.user.UserType;
 import com.ttdo.oauth.domain.entity.User;
+import com.ttdo.oauth.security.service.LoginRecordService;
 import com.ttdo.oauth.security.service.UserAccountService;
-import com.ttdo.oauth.security.service.UserDetailsBuilder;
-import com.yang.core.exception.CommonException;
+import com.ttdo.oauth.security.util.RequestUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,27 +15,43 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CustomUserDetailsService.class);
 
-
-    @Autowired
-    private UserAccountService userAccountService;
-    @Autowired
-    private UserDetailsBuilder userDetailsBuilder;
-
     private static final ThreadLocal<UserDetails> LOCAL_USER_DETAILS = new ThreadLocal<>();
+
+    private final UserAccountService userAccountService;
+
+    private final LoginRecordService loginRecordService;
+
+    public CustomUserDetailsService(LoginRecordService loginRecordService) {
+        this.loginRecordService = loginRecordService;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        // 获取当前线程池的用户信息
         UserDetails userDetails = LOCAL_USER_DETAILS.get();
         if (userDetails != null) {
             return userDetails;
         }
-        User user = userAccountService.findLoginUser(username, "P");
-        LOGGER.debug("loaded user, user is {}", user);
+        // 获取线程池用户信息
+        User user = getLoginRecordService().getLocalLoginUser();
         if (user == null) {
-            throw new CommonException("用户名和密码错误");
+            String userType = RequestUtil.getParameterValueFromRequestOrSavedRequest(UserType.PARAM_NAME, UserType.DEFAULT_USER_TYPE);
+            user = getUserAccountService().findLoginUser(username, UserType.ofDefault(userType));
+            LOGGER.debug("loaded user, userType is {}, user is {}", userType, user);
+            if (user == null) {
+                throw new CustomAuthenticationException(LoginExceptions.USERNAME_OR_PASSWORD_ERROR.value());
+            }
+            getLoginRecordService().saveLocalLoginUser(user);
         }
-        userDetails = userDetailsBuilder.buildUserDetails(user);
-        LOCAL_USER_DETAILS.set(userDetails);
-        return userDetails;
+
+        return null;
+    }
+
+    protected UserAccountService getUserAccountService() {
+        return userAccountService;
+    }
+
+    protected LoginRecordService getLoginRecordService() {
+        return loginRecordService;
     }
 }
