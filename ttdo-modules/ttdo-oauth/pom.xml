@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>com.ttdo</groupId>
-    <artifactId>oauth</artifactId>
+    <artifactId>ttdo-oauth</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>ttdo-oauth</name>
     <description>ttdo-oauth</description>
