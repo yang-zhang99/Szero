@@ -17,14 +17,6 @@
         <module>ttdo-oauth</module>
     </modules>
 
-
-    <dependencies>
-        <dependency>
-            <groupId>com.me</groupId>
-            <artifactId>ttdo-common-core</artifactId>
-        </dependency>
-    </dependencies>
-
     <description>
         业务模块
     </description>

@@ -10,4 +10,6 @@ import java.lang.annotation.*;
 @Documented
 @Import(OauthAutoConfiguration.class)
 public @interface EnableOauth {
+
+
 }

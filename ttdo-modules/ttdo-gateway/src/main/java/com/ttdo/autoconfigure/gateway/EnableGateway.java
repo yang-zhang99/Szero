@@ -11,4 +11,5 @@ import java.lang.annotation.*;
 @Inherited
 @Import({WebConditionAutoConfiguration.class})
 public @interface EnableGateway {
+
 }

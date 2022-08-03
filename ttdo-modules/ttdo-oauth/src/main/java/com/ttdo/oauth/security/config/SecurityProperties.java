@@ -1,16 +1,14 @@
-package com.ttdo.oauth.security;
+package com.ttdo.oauth.security.config;
 
-
-import java.util.List;
-import java.util.Set;
 
 import com.google.common.collect.Lists;
 import com.ttdo.oauth.security.constant.LoginField;
 import org.apache.commons.lang.StringUtils;
-//import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-//import org.hzero.oauth.security.constant.LoginField;
+import java.util.List;
+import java.util.Set;
+
 
 /**
  * @author bojiangzhou
@@ -18,7 +16,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = SecurityProperties.PREFIX)
 public class SecurityProperties {
 
-    public static final String PREFIX = "hzero.oauth";
+    public static final String PREFIX = "y.oauth";
 
     /**
      * 登录配置
