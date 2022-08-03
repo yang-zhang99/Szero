@@ -47,12 +47,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- bootstrap 启动器 -->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-bootstrap</artifactId>
-                <version>3.1.1</version>
-            </dependency>
+
 
             <dependency>
                 <groupId>com.me</groupId>
@@ -63,6 +58,13 @@
         </dependencies>
     </dependencyManagement>
 
+    <dependencies>
+        <!-- bootstrap 启动器 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+    </dependencies>
 
     <modules>
         <module>ttdo-common</module>
