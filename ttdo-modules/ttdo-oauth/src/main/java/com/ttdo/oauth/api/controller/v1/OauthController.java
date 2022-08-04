@@ -1,18 +1,19 @@
 package com.ttdo.oauth.api.controller.v1;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.apache.commons.lang3.StringUtils;
+import com.ttdo.oauth.domain.utils.ConfigGetter;
+import com.ttdo.oauth.domain.utils.ProfileCode;
+import com.ttdo.oauth.security.util.LoginUtil;
+import com.ttdo.oauth.security.util.RequestUtil;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @RefreshScope
 @Controller
@@ -20,15 +21,24 @@ public class OauthController {
 
     private static final String LOGIN_DEFAULT = "login";
 
+    private final ConfigGetter configGetter;
+
+
+    public OauthController(ConfigGetter configGetter) {
+        this.configGetter = configGetter;
+    }
+
 
     /**
      * 默认登录页面
+     * <p>
+     * 如果不做匹配那么直接返回 templates 的 html 模板即可。
      */
     @GetMapping(value = "/login")
     public String login(HttpServletRequest request, Model model, HttpSession session,
                         @RequestParam(required = false) String device,
                         @RequestParam(required = false) String type) throws JsonProcessingException {
-//        setPageDefaultData(request, session, model);
+        setPageDefaultData(request, session, model);
 //        String template = (String) session.getAttribute(LoginUtil.FIELD_TEMPLATE);
 //        // 登录页面
 //        String returnPage = "mobile".equals(device) ? LOGIN_MOBILE : LOGIN_DEFAULT;
@@ -63,5 +73,39 @@ public class OauthController {
         return "/main/login";
     }
 
-
+    // 设置页面的默认数据   request、session、model
+    private void setPageDefaultData(HttpServletRequest request, HttpSession session, Model model) throws JsonProcessingException {
+        // 模板
+//        String template = RequestUtil.getParameterValueFromRequestOrSavedRequest(request, LoginUtil.FIELD_TEMPLATE, configGetter.getValue(ProfileCode.OAUTH_DEFAULT_TEMPLATE));
+//        // 控制用户类型
+//        String userType = RequestUtil.getParameterValueFromRequestOrSavedRequest(request, UserType.PARAM_NAME, UserType.DEFAULT_USER_TYPE);
+//        // 控制登录字段
+//        String loginField = RequestUtil.getParameterValueFromRequestOrSavedRequest(request, LoginUtil.FIELD_LOGIN_FIELD, null);
+//
+//        model.addAttribute(LoginUtil.FIELD_TEMPLATE, template);
+//
+//        session.setAttribute(LoginUtil.FIELD_TEMPLATE, template);
+//        session.setAttribute(UserType.PARAM_NAME, userType);
+//        session.setAttribute(LoginUtil.FIELD_LOGIN_FIELD, loginField);
+//
+//        // 是否加密
+//        if (securityProperties.getPassword().isEnableEncrypt()) {
+//            String publicKey = encryptClient.getPublicKey();
+//            model.addAttribute(LoginUtil.FIELD_PUBLIC_KEY, publicKey);
+//            session.setAttribute(LoginUtil.FIELD_PUBLIC_KEY, publicKey);
+//        }
+//        setCommonPageConfigData(model);
+//        // 三方登录方式
+//        List<BaseOpenApp> apps = userLoginService.queryOpenLoginWays(request);
+//        model.addAttribute(SecurityAttributes.FIELD_OPEN_LOGIN_WAYS, apps);
+//        model.addAttribute(SecurityAttributes.FIELD_OPEN_LOGIN_WAYS_JSON, BaseConstants.MAPPER.writeValueAsString(apps));
+//        // 语言
+//        if (configGetter.isTrue(ProfileCode.OAUTH_SHOW_LANGUAGE)) {
+//            List<Language> languages = languageService.listLanguage();
+//            model.addAttribute(SecurityAttributes.FIELD_LANGUAGES, languages);
+//            model.addAttribute(SecurityAttributes.FIELD_LANGUAGES_JSON, BaseConstants.MAPPER.writeValueAsString(languages));
+//        }
+//
+//        setLoginPageLabel(model, session);
+    }
 }

@@ -54,7 +54,11 @@
                 <artifactId>ttdo-common-core</artifactId>
                 <version>${ttdo.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.me</groupId>
+                <artifactId>ttdo-common-redis</artifactId>
+                <version>${ttdo.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

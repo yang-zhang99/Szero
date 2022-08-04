@@ -87,7 +87,10 @@
             <groupId>com.me</groupId>
             <artifactId>ttdo-common-core</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>com.me</groupId>
+            <artifactId>ttdo-common-redis</artifactId>
+        </dependency>
         <!-- thymeleaf springboot2.0以前的版本需要引入 nekohtml，否则页面对于 <input /> 此类的标签报错必须要结束标签 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
