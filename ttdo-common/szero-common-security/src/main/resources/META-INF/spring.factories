@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.yang.redis.WlhyRedisAutoConfiguration
+com.yang.security.config.WebSecurityConfig
