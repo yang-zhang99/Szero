@@ -16,6 +16,7 @@
         <module>ttdo-common-core</module>
         <module>ttdo-common-mybatis-mapper</module>
         <module>ttdo-common-redis</module>
+        <module>ttdo-common-lock</module>
     </modules>
 
 
