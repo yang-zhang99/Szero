@@ -26,8 +26,8 @@
   <script th:src="@{/static/main/js/open-app-bind.js}"></script>
 
   <!--/* use for template data */-->
-  <template id="templateData" data-linkToFindPwd="/oauth/public/main/password_find.html"
-    data-captchaGetUrl="/oauth/public/captcha"
+  <template id="templateData" data-linkToFindPwd="/toauth/public/main/password_find.html"
+    data-captchaGetUrl="/toauth/public/captcha"
     th:attr="data-copyright=${copyright},data-logoSrc=${logoUrl},data-captchaMessage=${captchaMessage},data-captchaMessage=${captchaMessage},data-passwordMessage=${passwordMessage},data-userNameMessage=${userNameMessage},data-isNeedCaptcha=${isNeedCaptcha},data-loginErrorMsg=${loginErrorMsg},data-publicKey=${publicKey}">
   </template>
 </head>
@@ -42,7 +42,7 @@
               <div class="bind-tabs-tab-pane  bind-tab-pane bind-account">
                 <div class="logo">
                   <a href="">
-                    <img height="32px" th:src="${logoUrl}?${logoUrl}:'/oauth/static/main/img/logo.svg'" alt="HZERO" />
+                    <img height="32px" th:src="${logoUrl}?${logoUrl}:'/toauth/static/main/img/logo.svg'" alt="HZERO" />
                   </a>
                 </div>
                 <form id="bindFormAccount">
@@ -102,7 +102,7 @@
                           </div>
                           <div class="bind-col-12">
                             <a class="bind-account-captcha">
-                              <img class="bind-account-captcha-image" src="/oauth/public/captcha" alt="Captcha" />
+                              <img class="bind-account-captcha-image" src="/toauth/public/captcha" alt="Captcha" />
                             </a>
                           </div>
                         </div>
@@ -110,7 +110,7 @@
                     </div>
                     <div class="bind-account-find-password bind-form-item">
                       <span class="bind-form-item-children">
-                        <a th:text="${findPassword}" href="/oauth/public/main/password_find.html" target="_self">
+                        <a th:text="${findPassword}" href="/toauth/public/main/password_find.html" target="_self">
                         </a>
                       </span>
                     </div>

@@ -3,18 +3,13 @@ package com.ttdo.oauth.domain.service.impl;
 import com.ttdo.oauth.domain.entity.User;
 import com.ttdo.oauth.domain.service.UserLoginService;
 import com.ttdo.oauth.security.constant.SecurityAttributes;
-import org.apache.commons.lang3.StringUtils;
-
+import com.ttdo.oauth.security.service.UserAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-import org.springframework.util.CollectionUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * 用户登录业务默认实现
@@ -22,14 +17,14 @@ import java.util.Map;
  * @author bojiangzhou 2019/02/25
  */
 @Component
-public class  UserLoginServiceImpl implements UserLoginService {
+public class UserLoginServiceImpl implements UserLoginService {
 
-//    @Autowired
+    //    @Autowired
 //    private CaptchaMessageHelper captchaMessageHelper;
 //    @Autowired
 //    private MessageClient messageClient;
-//    @Autowired
-//    private UserAccountService userAccountService;
+    @Autowired
+    private UserAccountService userAccountService;
 //    @Autowired
 //    private BaseClientRepository clientRepository;
 //    @Autowired
@@ -49,6 +44,7 @@ public class  UserLoginServiceImpl implements UserLoginService {
 
     /**
      * 在登录页面根据用户名获取登录用户时，直接从session获取，登录失败时将用户信息放入session中.
+     *
      * @param request HttpServletRequest
      */
 
@@ -62,12 +58,12 @@ public class  UserLoginServiceImpl implements UserLoginService {
         }
         return result;
     }
-//
-//    @Override
-//    public boolean isNeedCaptcha(User user) {
-//        return userAccountService.isNeedCaptcha(user);
-//    }
-//
+
+    @Override
+    public boolean isNeedCaptcha(User user) {
+        return userAccountService.isNeedCaptcha(user);
+    }
+
 //    @Override
 //    public List<BaseOpenApp> queryOpenLoginWays(String channel) {
 //        List<BaseOpenApp> apps = baseOpenAppRepository.getOpenApps(channel);

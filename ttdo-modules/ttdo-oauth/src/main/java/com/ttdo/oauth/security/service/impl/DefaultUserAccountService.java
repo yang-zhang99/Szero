@@ -9,9 +9,13 @@ import com.yang.core.util.Regexs;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import static com.ttdo.oauth.security.constant.LoginField.*;
 import static com.yang.core.base.BaseConstants.Symbol.MIDDLE_LINE;
+
+
+@Component
 
 public class DefaultUserAccountService implements UserAccountService {
 
@@ -49,6 +53,17 @@ public class DefaultUserAccountService implements UserAccountService {
         }
 
         return user;
+    }
+
+    @Override
+    public boolean isNeedCaptcha(User user) {
+//        BaseUser baseUser = null;
+//        if (user != null) {
+//            baseUser = new BaseUser(user.getId(), user.getLoginName(), user.getOrganizationId(), user.getLocked());
+//        }
+//        return passwordPolicyManager.isNeedCaptcha(baseUser);
+        // 查询是否需要验证码
+        return false;
     }
 
     protected User queryByLoginField(String account, String userType) {

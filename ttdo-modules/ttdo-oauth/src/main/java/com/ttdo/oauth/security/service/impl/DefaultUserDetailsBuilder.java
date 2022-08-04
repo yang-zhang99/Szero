@@ -3,8 +3,10 @@ package com.ttdo.oauth.security.service.impl;
 import com.ttdo.oauth.domain.entity.User;
 import com.ttdo.oauth.security.custom.CustomUserDetails;
 import com.ttdo.oauth.security.service.UserDetailsBuilder;
+import org.springframework.stereotype.Component;
 
 import java.util.Collections;
+@Component
 
 public class DefaultUserDetailsBuilder implements UserDetailsBuilder {
 

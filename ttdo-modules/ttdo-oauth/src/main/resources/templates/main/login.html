@@ -26,8 +26,8 @@
   <script th:src="@{static/main/js/login.js}"></script>
 
   <!--/* use for template data */-->
-  <template id="templateData" data-linkToFindPwd="/oauth/public/main/password_find.html"
-    data-captchaGetUrl="/oauth/public/captcha"
+  <template id="templateData" data-linkToFindPwd="/toauth/public/main/password_find.html"
+    data-captchaGetUrl="/toauth/public/captcha"
     th:attr="data-languagesJson=${languagesJson},data-copyright=${copyright},data-logoSrc=${logoUrl},data-loginButton=${loginButton},data-userNamePlaceholder=${userNamePlaceholder},data-userNameMessage=${userNameMessage},data-passwordPlaceholder=${passwordPlaceholder},data-passwordMessage=${passwordMessage},data-captchaPlaceholder=${captchaPlaceholder},data-captchaMessage=${captchaMessage},data-findPassword=${findPassword},data-captchaKeyMsg=${captchaKeyMsg},data-captchaLoadErrgMsg=${captchaLoadErrgMsg},data-phoneMsg=${phoneMsg},data-phonePlaceholder=${phonePlaceholder},data-captchaLoadingMsg=${captchaLoadingMsg},data-accountType=${accountType},data-mobileType=${mobileType},data-isNeedCaptcha=${isNeedCaptcha},data-usernameNotFound=${usernameNotFound},data-loginErrorMsg=${loginErrorMsg},data-openLoginWays=${openLoginWaysJson},data-phone=${phone},data-publicKey=${publicKey}">
   </template>
 </head>
@@ -37,7 +37,7 @@
     <div class="login-container login-layout">
       <div class="lang-type">
         <a class="lang-icon" th:each="language:${languages}" th:title="${language.description}"><img
-            th:src="'/oauth/static/main/img/' + ${language.code} + '.png'" th:alt="${language.description}"></a>
+            th:src="'/toauth/static/main/img/' + ${language.code} + '.png'" th:alt="${language.description}"></a>
       </div>
       <div class="login-layout-content">
         <div class="login-tab">
@@ -57,7 +57,7 @@
                 th:classappend="${param.type != null ? param.type[0] : 'account'} == 'account' ? 'login-tabs-tab-pane-active' : ''">
                 <div class="logo">
                   <a href="">
-                    <img height="32px" th:src="${logoUrl}?${logoUrl}:'/oauth/static/main/img/logo.svg'" alt="HZERO" />
+                    <img height="32px" th:src="${logoUrl}?${logoUrl}:'/toauth/static/main/img/logo.svg'" alt="HZERO" />
                   </a>
                 </div>
                 <form id="loginFormAccount">
@@ -117,7 +117,7 @@
                           </div>
                           <div class="login-col-12">
                             <a class="login-account-captcha">
-                              <img class="login-account-captcha-image" src="/oauth/public/captcha" alt="Captcha" />
+                              <img class="login-account-captcha-image" src="/toauth/public/captcha" alt="Captcha" />
                             </a>
                           </div>
                         </div>
@@ -125,7 +125,7 @@
                     </div>
                     <div class="login-account-find-password login-form-item">
                       <span class="login-form-item-children">
-                        <a th:text="${findPassword}" href="/oauth/public/main/password_find.html" target="_self">
+                        <a th:text="${findPassword}" href="/toauth/public/main/password_find.html" target="_self">
                         </a>
                       </span>
                     </div>
@@ -141,7 +141,7 @@
                   <span class="login-form-item-children">
                     <div class="login-open-app">
                       <span th:each="openLoginWay:${openLoginWays}" th:title="${openLoginWay.appName}">
-                        <form th:action="'/oauth/open/'+${openLoginWay.appCode}+'?channel='+${openLoginWay.channel}"
+                        <form th:action="'/toauth/open/'+${openLoginWay.appCode}+'?channel='+${openLoginWay.channel}"
                           method="POST" target="_self">
                           <button class="login-open-app-icon-btn-wrap" type="submit">
                             <img class="login-open-app-icon" width="40" height="40" type="image"
@@ -158,7 +158,7 @@
                 th:classappend="${param.type != null ? param.type[0] : 'account'} != 'account' ? 'login-tabs-tab-pane-active' : ''">
                 <div class="logo">
                   <a href="">
-                    <img height="32px" th:src="${logoUrl}?${logoUrl}:'/oauth/static/main/img/logo.svg'" alt="HZERO" />
+                    <img height="32px" th:src="${logoUrl}?${logoUrl}:'/toauth/static/main/img/logo.svg'" alt="HZERO" />
                   </a>
                 </div>
                 <form id="loginFormPhone">

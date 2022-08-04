@@ -1,9 +1,12 @@
 package com.ttdo.oauth.security.service;
 
 import com.ttdo.oauth.domain.entity.User;
+import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
 
+
+@Component
 /**
  * 登录记录
  */

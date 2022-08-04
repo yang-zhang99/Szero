@@ -29,7 +29,7 @@ public interface UserLoginService {
      *
      * @param user 用户
      */
-//    boolean isNeedCapcha(User user);
+    boolean isNeedCaptcha(User user);
 
 //    Map<String, Object> getLoginInitParams(HttpServletRequest request);
 //

@@ -2,8 +2,11 @@ package com.ttdo.oauth.security.service.impl;
 
 import com.ttdo.oauth.domain.entity.User;
 import com.ttdo.oauth.security.service.LoginRecordService;
+import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
+
+@Component
 
 public class DefaultLoginRecordService implements LoginRecordService {
 
