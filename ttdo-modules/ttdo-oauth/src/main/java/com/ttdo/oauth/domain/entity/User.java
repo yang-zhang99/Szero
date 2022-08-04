@@ -15,9 +15,9 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 
-
-//@ModifyAudit
-//@VersionAudit
+/**
+ * 用户
+ */
 @TableName(value = "iam_user")
 @Data
 public class User extends AuditDomain implements Serializable {
