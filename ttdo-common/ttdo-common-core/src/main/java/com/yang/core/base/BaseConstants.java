@@ -1,6 +1,11 @@
 package com.yang.core.base;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public interface BaseConstants {
+
+
+    ObjectMapper MAPPER = new ObjectMapper();
 
     /**
      * 错误消息
