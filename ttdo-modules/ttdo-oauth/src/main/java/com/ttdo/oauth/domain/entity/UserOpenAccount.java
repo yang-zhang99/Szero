@@ -3,7 +3,7 @@ package com.ttdo.oauth.domain.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.ttdo.core.mybatis.AuditDomain;
+import com.yang.core.mybatis.AuditDomain;
 
 import java.io.Serializable;
 

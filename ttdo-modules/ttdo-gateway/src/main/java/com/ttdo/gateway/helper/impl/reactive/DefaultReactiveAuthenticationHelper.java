@@ -6,12 +6,10 @@ import com.ttdo.gateway.helper.entity.CheckResponse;
 import com.ttdo.gateway.helper.entity.RequestContext;
 import com.ttdo.gateway.helper.entity.ResponseContext;
 import com.ttdo.gateway.helper.impl.HelperChain;
-import com.ttdo.utils.ServerRequestUtils;
+import com.ttdo.gateway.helper.util.ServerRequestUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.server.ServerWebExchange;
-
-import java.io.IOException;
 
 public class DefaultReactiveAuthenticationHelper implements ReactiveAuthenticationHelper {
 

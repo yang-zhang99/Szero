@@ -1,4 +1,4 @@
-package com.ttdo.core.mybatis;
+package com.yang.core.mybatis;
 
 
 import java.util.Date;

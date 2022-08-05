@@ -1,7 +1,7 @@
 package com.ttdo.oauth.domain.vo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.ttdo.core.mybatis.SecurityToken;
+import com.yang.core.mybatis.SecurityToken;
 import com.ttdo.oauth.domain.entity.User;
 
 import java.time.LocalDate;

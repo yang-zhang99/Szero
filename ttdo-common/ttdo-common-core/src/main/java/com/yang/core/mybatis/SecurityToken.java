@@ -1,4 +1,4 @@
-package com.ttdo.core.mybatis;
+package com.yang.core.mybatis;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;

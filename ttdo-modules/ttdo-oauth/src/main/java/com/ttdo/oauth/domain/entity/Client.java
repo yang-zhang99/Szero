@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.ttdo.core.mybatis.AuditDomain;
+import com.yang.core.mybatis.AuditDomain;
 import com.ttdo.oauth.domain.vo.Role;
 
 import java.io.Serializable;
