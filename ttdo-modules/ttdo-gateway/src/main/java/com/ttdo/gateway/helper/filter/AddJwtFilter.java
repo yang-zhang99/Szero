@@ -5,20 +5,21 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ttdo.gateway.helper.api.HelperFilter;
 import com.ttdo.gateway.helper.entity.CheckState;
 import com.ttdo.gateway.helper.entity.RequestContext;
-import org.springframework.security.jwt.JwtHelper;
-import org.springframework.security.jwt.crypto.sign.Signer;
+//import org.springframework.security.jwt.JwtHelper;
+//import org.springframework.security.jwt.crypto.sign.Signer;
 import org.springframework.stereotype.Component;
+
 
 @Component
 public class AddJwtFilter implements HelperFilter {
 
 
     private final ObjectMapper objectMapper = new ObjectMapper();
-    private Signer jwtSigner;
-
-    public AddJwtFilter(Signer jwtSigner) {
-        this.jwtSigner = jwtSigner;
-    }
+//    private Signer jwtSigner;
+//
+//    public AddJwtFilter(Signer jwtSigner) {
+//        this.jwtSigner = jwtSigner;
+//    }
 
 
     @Override
@@ -35,8 +36,8 @@ public class AddJwtFilter implements HelperFilter {
     public boolean run(RequestContext context) {
         try {
             String token = this.objectMapper.writeValueAsString(context.getCustomUserDetails());
-            String jwt = "Bearer " + JwtHelper.encode(token, this.jwtSigner).getEncoded();
-            context.response.setJwt(jwt);
+//            String jwt = "Bearer " + JwtHelperlper.encode(token, this.jwtSigner).getEncoded();
+//            context.response.setJwt(jwt);
             return true;
         } catch (JsonProcessingException e) {
             context.response.setStatus(CheckState.EXCEPTION_GATEWAY_HELPER);

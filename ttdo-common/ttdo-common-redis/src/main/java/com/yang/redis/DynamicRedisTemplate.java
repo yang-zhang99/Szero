@@ -1,4 +1,4 @@
-package com.ttdo.core.redis;
+package com.yang.redis;
 
 import com.ttdo.core.redis.config.DynamicRedisTemplateFactory;
 import org.springframework.data.redis.core.RedisTemplate;

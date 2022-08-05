@@ -1,7 +1,7 @@
-package com.ttdo.core.variable;
+package com.yang.core.variable;
 
-import com.ttdo.core.base.TokenConstants;
-//import com.netflix.hystrix.strategy.concurrency.HystrixRequestVariableDefault;
+
+import com.yang.core.base.TokenConstants;
 
 public class RequestVariableHolder {
 

@@ -1,22 +1,6 @@
 package com.ttdo.core.message;
 
 
-import java.text.MessageFormat;
-import java.util.Locale;
-import java.util.Optional;
-
-import com.ttdo.core.redis.RedisHelper;
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.context.MessageSource;
-import org.springframework.context.NoSuchMessageException;
-import org.springframework.context.support.AbstractMessageSource;
-import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.core.env.Environment;
-
 //public class RedisMessageSource extends AbstractMessageSource implements IMessageSource {
 //    private static final Logger LOGGER = LoggerFactory.getLogger(RedisMessageSource.class);
 //    private static final String MESSAGE_KEY = "hpfm:message:";

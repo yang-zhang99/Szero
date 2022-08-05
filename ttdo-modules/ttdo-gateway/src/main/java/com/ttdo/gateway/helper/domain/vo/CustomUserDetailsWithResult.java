@@ -1,7 +1,7 @@
 package com.ttdo.gateway.helper.domain.vo;
 
-import com.ttdo.core.oauth.CustomUserDetails;
 import com.ttdo.gateway.helper.entity.CheckState;
+import com.yang.core.oauth.CustomUserDetails;
 
 import java.io.Serializable;
 

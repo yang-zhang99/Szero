@@ -1,6 +1,7 @@
-package com.ttdo.core.user;
+package com.yang.core.user;
 
-import com.ttdo.core.oauth.CustomUserDetails;
+
+import com.yang.core.oauth.CustomUserDetails;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.Currency;

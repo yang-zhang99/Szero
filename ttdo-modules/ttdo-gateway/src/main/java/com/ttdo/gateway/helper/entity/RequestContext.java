@@ -1,6 +1,7 @@
 package com.ttdo.gateway.helper.entity;
 
-import com.ttdo.core.oauth.CustomUserDetails;
+
+import com.yang.core.oauth.CustomUserDetails;
 
 public class RequestContext {
 

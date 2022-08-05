@@ -1,10 +1,10 @@
 package com.ttdo.gateway.filter.metric;
 
-import com.ttdo.core.redis.RedisHelper;
 import com.ttdo.gateway.filter.RedisBlackSetRepository;
 import com.ttdo.gateway.filter.RedisWhiteSetRepository;
 import com.ttdo.utils.RedisOpUtils;
 import com.ttdo.utils.RequestCountUtils;
+import com.yang.redis.RedisHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.AntPathMatcher;

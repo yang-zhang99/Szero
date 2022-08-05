@@ -1,4 +1,4 @@
-package com.ttdo.core.redis;
+package com.yang.redis;
 
 
 import org.springframework.beans.factory.InitializingBean;

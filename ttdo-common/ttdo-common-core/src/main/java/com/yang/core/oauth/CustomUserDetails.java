@@ -1,12 +1,13 @@
-package com.ttdo.core.oauth;
+package com.yang.core.oauth;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.ttdo.core.user.UserType;
+import com.yang.core.user.UserType;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.util.CollectionUtils;
@@ -536,5 +537,9 @@ public class CustomUserDetails extends User {
                 ", timeZone='" + timeZone +
                 ", language='" + language +
                 '}';
+    }
+
+    public String getUsername() {
+        return null;
     }
 }

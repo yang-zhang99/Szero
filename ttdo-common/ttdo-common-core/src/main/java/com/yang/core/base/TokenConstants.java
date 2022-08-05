@@ -1,4 +1,4 @@
-package com.ttdo.core.base;
+package com.yang.core.base;
 
 public class TokenConstants {
 

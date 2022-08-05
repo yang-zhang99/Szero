@@ -9,7 +9,9 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@Import({WebConditionAutoConfiguration.class})
+@Import({
+        WebConditionAutoConfiguration.class
+})
 public @interface EnableGateway {
 
 }

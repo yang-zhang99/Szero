@@ -1,12 +1,12 @@
-package com.ttdo.core.util;
-
-import static com.yang.core.variable.RequestVariableHolder.*;
+package com.yang.core.util;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+
+import static com.yang.core.variable.RequestVariableHolder.*;
 
 /**
  * @author qingsheng.chen@hand-china.com

@@ -1,7 +1,7 @@
 package com.ttdo.utils;
 
-import com.ttdo.core.redis.RedisHelper;
-import com.ttdo.gateway.filter.metric.Query;
+import com.ttdo.gateway.filter.Query;
+import com.yang.redis.RedisHelper;
 
 
 public class RedisOpUtils {

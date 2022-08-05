@@ -1,6 +1,6 @@
 package com.ttdo.gateway.filter;
 
-import com.ttdo.core.redis.RedisHelper;
+import com.yang.redis.RedisHelper;
 
 import java.util.Set;
 public class RedisWhiteSetRepository extends RedisSetRepository {

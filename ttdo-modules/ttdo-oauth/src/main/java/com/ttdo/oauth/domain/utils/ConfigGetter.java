@@ -1,6 +1,5 @@
 package com.ttdo.oauth.domain.utils;
 
-import com.yang.core.base.BaseConstants;
 import com.yang.redis.RedisHelper;
 import com.yang.redis.safe.SafeRedisHelper;
 import org.apache.commons.lang3.StringUtils;

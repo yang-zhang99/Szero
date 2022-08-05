@@ -1,9 +1,8 @@
 package com.ttdo.gateway.filter;
 
-import com.ttdo.core.redis.RedisHelper;
 import com.ttdo.gateway.common.StringSetRepository;
-import com.ttdo.gateway.filter.metric.Query;
 import com.ttdo.utils.RedisOpUtils;
+import com.yang.redis.RedisHelper;
 
 import java.util.Set;
 

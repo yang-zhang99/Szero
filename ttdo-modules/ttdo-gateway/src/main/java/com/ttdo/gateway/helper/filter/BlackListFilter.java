@@ -1,9 +1,9 @@
 package com.ttdo.gateway.helper.filter;
 
-import com.ttdo.core.redis.RedisHelper;
 import com.ttdo.gateway.helper.api.HelperFilter;
 import com.ttdo.gateway.helper.config.ListFilterProperties;
 import com.ttdo.gateway.helper.entity.RequestContext;
+import com.yang.redis.RedisHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;

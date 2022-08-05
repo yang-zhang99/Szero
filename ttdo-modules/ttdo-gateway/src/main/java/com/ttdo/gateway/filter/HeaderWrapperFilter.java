@@ -14,7 +14,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.List;
 
-import static com.ttdo.core.variable.RequestVariableHolder.HEADER_JWT;
+import static com.yang.core.variable.RequestVariableHolder.HEADER_JWT;
 
 
 /**

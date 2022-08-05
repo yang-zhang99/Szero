@@ -4,7 +4,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ttdo.core.util.TokenUtils;
+import com.yang.core.util.TokenUtils;
 import com.ttdo.gateway.helper.api.AuthenticationHelper;
 import com.ttdo.gateway.helper.entity.CheckRequest;
 import com.ttdo.gateway.helper.entity.CheckResponse;
