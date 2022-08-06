@@ -228,8 +228,8 @@
 
     <!-- 查询Root用户要访问的租户及对应的租户管理员 -->
     <select id="selectRootUserRoleDetails" resultMap="RoleDetails">
-        <bind name="siteSuperRole" value="@org.hzero.common.HZeroConstant$RoleCode@SITE"/>
-        <bind name="tenantSuperRole" value="@org.hzero.common.HZeroConstant$RoleCode@TENANT"/>
+<!--        <bind name="siteSuperRole" value="@org.hzero.common.HZeroConstant$RoleCode@SITE"/>-->
+<!--        <bind name="tenantSuperRole" value="@org.hzero.common.HZeroConstant$RoleCode@TENANT"/>-->
         SELECT
         hui.default_tenant_id,
         ir.h_tenant_id AS tenant_id,
@@ -253,7 +253,7 @@
         AND iu.is_locked = 0
         AND iu.is_admin = 1
         AND (
-        ir.code in (#{siteSuperRole}, #{tenantSuperRole})
+--         ir.code in (#{siteSuperRole}, #{tenantSuperRole})
         or (
         EXISTS (
         SELECT 1

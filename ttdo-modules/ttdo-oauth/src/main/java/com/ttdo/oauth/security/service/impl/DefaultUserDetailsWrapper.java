@@ -94,18 +94,18 @@ public class DefaultUserDetailsWrapper implements UserDetailsWrapper {
                     } else {
                         details.setTenantId(tenantId);
                         details.setTenantNum(roleDetails.getTenantNum());
-                        details.setRoleMergeFlag(Optional.ofNullable(roleDetails.getRoleMergeFlag())
-                                .orElseGet(() -> {
-                                    String roleMergeFlag = SafeRedisHelper.execute(HZeroService.Platform.REDIS_DB, () -> {
-                                        String str = redisHelper.strGet(ROLE_MERGE_PREFIX + details.getTenantId());
-                                        if (StringUtils.isBlank(str)) {
-                                            str = redisHelper.strGet(ROLE_MERGE_PREFIX + BaseConstants.DEFAULT_TENANT_ID.toString());
-                                        }
-                                        return str;
-                                    });
-
-                                    return "1".equals(roleMergeFlag);
-                                }));
+//                        details.setRoleMergeFlag(Optional.ofNullable(roleDetails.getRoleMergeFlag())
+//                                .orElseGet(() -> {
+//                                    String roleMergeFlag = SafeRedisHelper.execute(HZeroService.Platform.REDIS_DB, () -> {
+//                                        String str = redisHelper.strGet(ROLE_MERGE_PREFIX + details.getTenantId());
+//                                        if (StringUtils.isBlank(str)) {
+//                                            str = redisHelper.strGet(ROLE_MERGE_PREFIX + BaseConstants.DEFAULT_TENANT_ID.toString());
+//                                        }
+//                                        return str;
+//                                    });
+//
+//                                    return "1".equals(roleMergeFlag);
+//                                }));
                     }
                     break;
                 }
@@ -124,19 +124,19 @@ public class DefaultUserDetailsWrapper implements UserDetailsWrapper {
 
         if (RootUserService.isRootUser(details)) {
             // 查询出 root 用户可访问的其它租户
-            userRepository.selectRootUserRoleDetails(details.getUserId(), tenantId)
-                .stream()
-                .findFirst()
-                .ifPresent((tenant) -> {
-                    UserRoleDetails userRoleDetails = roleDetailList.stream().filter(item -> Objects.equals(item.getTenantId(), tenantId)).findFirst().orElse(null);
-                    if (userRoleDetails == null) {
-                        roleDetailList.add(tenant);
-                    } else {
-                        Set<Long> ids = userRoleDetails.getRoles().stream().map(Role::getId).collect(Collectors.toSet());
-                        List<Role> adminRoles = tenant.getRoles().stream().filter(r -> !ids.contains(r.getId())).collect(Collectors.toList());
-                        userRoleDetails.getRoles().addAll(adminRoles);
-                    }
-                });
+//            userRepository.selectRootUserRoleDetails(details.getUserId(), tenantId)
+//                .stream()
+//                .findFirst()
+//                .ifPresent((tenant) -> {
+//                    UserRoleDetails userRoleDetails = roleDetailList.stream().filter(item -> Objects.equals(item.getTenantId(), tenantId)).findFirst().orElse(null);
+//                    if (userRoleDetails == null) {
+//                        roleDetailList.add(tenant);
+//                    } else {
+//                        Set<Long> ids = userRoleDetails.getRoles().stream().map(Role::getId).collect(Collectors.toSet());
+//                        List<Role> adminRoles = tenant.getRoles().stream().filter(r -> !ids.contains(r.getId())).collect(Collectors.toList());
+//                        userRoleDetails.getRoles().addAll(adminRoles);
+//                    }
+//                });
         }
 
         return roleDetailList;

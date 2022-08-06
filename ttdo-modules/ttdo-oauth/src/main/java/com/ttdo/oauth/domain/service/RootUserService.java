@@ -41,9 +41,9 @@ public class RootUserService {
             return false;
         }
 
-        Environment env = ApplicationContextHelper.getContext().getBean(Environment.class);
-
-        return env.getProperty(ROOT_CONFIG_KEY, Boolean.class, false);
+//        Environment env = ApplicationContextHelper.getContext().getBean(Environment.class);
+//        return env.getProperty(ROOT_CONFIG_KEY, Boolean.class, false);
+        return true;
     }
 
 }

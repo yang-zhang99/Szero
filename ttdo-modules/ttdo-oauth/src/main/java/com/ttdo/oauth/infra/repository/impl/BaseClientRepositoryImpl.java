@@ -37,27 +37,27 @@ public class BaseClientRepositoryImpl implements BaseClientRepository {
     public BaseClient selectClient(String clientName) {
         Assert.notNull(clientName, "clientName not be null.");
 
-        String str = SafeRedisHelper.execute(HZeroService.Oauth.REDIS_DB,
-                () -> redisHelper.hshGet(CLIENT_KEY, clientName));
+//        String str = SafeRedisHelper.execute(HZeroService.Oauth.REDIS_DB,
+//                () -> redisHelper.hshGet(CLIENT_KEY, clientName));
         BaseClient client = null;
-        if (StringUtils.isNotBlank(str)) {
-            client = redisHelper.fromJson(str, BaseClient.class);
-        } else {
-//            BaseClient param = new BaseClient();
-//            param.setName(clientName);
+//        if (StringUtils.isNotBlank(str)) {
+//            client = redisHelper.fromJson(str, BaseClient.class);
+//        } else {
+            BaseClient param = new BaseClient();
+            param.setName("hzero-front-dev");
             QueryWrapper queryWrapper = new QueryWrapper();
-            queryWrapper.eq("client_name", clientName);
+            queryWrapper.eq("name", clientName);
             client = baseClientMapper.selectOne(queryWrapper);
-            if (client != null) {
-                BaseClient finalClient = client;
-                SafeRedisHelper.execute(HZeroService.Oauth.REDIS_DB,
-                        () -> redisHelper.hshPut(CLIENT_KEY, clientName, redisHelper.toJson(finalClient)));
-            }
-        }
-        Assert.notNull(client, "error.client.notFound");
-        if (Objects.equals(client.getEnabledFlag(), BaseConstants.Flag.NO)) {
-            throw new AuthenticationServiceException("hoth.warn.password.client.disabled");
-        }
+//            if (client != null) {
+//                BaseClient finalClient = client;
+//                SafeRedisHelper.execute(HZeroService.Oauth.REDIS_DB,
+//                        () -> redisHelper.hshPut(CLIENT_KEY, clientName, redisHelper.toJson(finalClient)));
+//            }
+//        }
+//        Assert.notNull(client, "error.client.notFound");
+//        if (Objects.equals(client.getEnabledFlag(), BaseConstants.Flag.NO)) {
+//            throw new AuthenticationServiceException("hoth.warn.password.client.disabled");
+//        }
         return client;
     }
 

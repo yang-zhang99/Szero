@@ -1,19 +1,90 @@
 package com.ttdo.oauth.security.custom;
 
+import java.security.SecureRandom;
+import java.util.regex.Pattern;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+/**
+ * 修改自BCryptPasswordEncoder
+ * 数据库oauth_client的secret存储为明文，升级之后要求为秘文存储
+ * 因此如果match不到，则先加密再次进行匹配
+ *
+ * @author flyleft
+ * @since 0.15.0
+ */
 public class CustomBCryptPasswordEncoder implements PasswordEncoder {
-    @Override
-    public String encode(CharSequence rawPassword) {
-        String salt;
 
+    private static final Pattern BCRYPT_PATTERN = Pattern.compile("\\A\\$2a?\\$\\d\\d\\$[./0-9A-Za-z]{53}");
 
+    private static final int MIN_LOG_ROUNDS = 4;
 
-        return null;
+    private static final int MAX_LOG_ROUNDS = 31;
+
+    private final Logger log = LoggerFactory.getLogger(CustomBCryptPasswordEncoder.class);
+
+    private final int strength;
+
+    private final SecureRandom random;
+
+    public CustomBCryptPasswordEncoder() {
+        this(-1);
+    }
+
+    public CustomBCryptPasswordEncoder(int strength) {
+        this(strength, null);
+    }
+
+    public CustomBCryptPasswordEncoder(int strength, SecureRandom random) {
+        if (strength != -1 && (strength < MIN_LOG_ROUNDS || strength > MAX_LOG_ROUNDS)) {
+            throw new IllegalArgumentException("Bad strength");
+        }
+        this.strength = strength;
+        this.random = random;
     }
 
     @Override
+    public String encode(CharSequence rawPassword) {
+        String salt;
+        if (strength > 0) {
+            if (random != null) {
+                salt = BCrypt.gensalt(strength, random);
+            } else {
+                salt = BCrypt.gensalt(strength);
+            }
+        } else {
+            salt = BCrypt.gensalt();
+        }
+        return BCrypt.hashpw(rawPassword.toString(), salt);
+    }
+
+    /**
+     * 根据一组已知的凭证来校验所提供的密码
+     *
+     * @param rawPassword rawPassword
+     * @param encodedPassword encodedPassword
+     * @return boolean
+     */
+    @Override
     public boolean matches(CharSequence rawPassword, String encodedPassword) {
-        return false;
+        if (encodedPassword == null || encodedPassword.length() == 0) {
+            log.warn("Empty encoded password");
+            return false;
+        }
+        if (BCRYPT_PATTERN.matcher(encodedPassword).matches()) {
+            // 匹配不到先加密再匹配
+            return BCrypt.checkpw(rawPassword.toString(), encodedPassword);
+        } else {
+            String ep = this.encode(encodedPassword);
+            if (BCRYPT_PATTERN.matcher(this.encode(ep)).matches()) {
+                return BCrypt.checkpw(rawPassword.toString(), ep);
+            }
+            log.warn("Encoded password does not look like BCrypt");
+            return false;
+        }
+
     }
 }
