@@ -3,19 +3,22 @@ package com.yang.core.oauth;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.yang.core.user.UserType;
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.util.CollectionUtils;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class CustomUserDetails extends User {
 
+/**
+ * 定制的userDetail对象
+ */
+public class CustomUserDetails extends User implements Serializable {
     private static final Logger logger = LoggerFactory.getLogger(CustomUserDetails.class);
     private static final long serialVersionUID = -3762281463683847665L;
 
@@ -513,9 +516,9 @@ public class CustomUserDetails extends User {
                 '}';
     }
 
-//    public String toJSONString() {
-//        return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
-//    }
+    public String toJSONString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
+    }
 
     /**
      * @return 打印简单必要的用户信息
@@ -537,9 +540,5 @@ public class CustomUserDetails extends User {
                 ", timeZone='" + timeZone +
                 ", language='" + language +
                 '}';
-    }
-
-    public String getUsername() {
-        return null;
     }
 }

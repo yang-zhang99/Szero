@@ -1,7 +1,6 @@
 package com.ttdo.oauth.api.controller.v1;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.ttdo.core.user.UserType;
 import com.ttdo.oauth.config.MultiLanguageConfig;
 import com.ttdo.oauth.domain.entity.Language;
 import com.ttdo.oauth.domain.entity.User;
@@ -15,6 +14,7 @@ import com.ttdo.oauth.security.constant.SecurityAttributes;
 import com.ttdo.oauth.security.util.LoginUtil;
 import com.ttdo.oauth.security.util.RequestUtil;
 import com.yang.core.base.BaseConstants;
+import com.yang.core.user.UserType;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;

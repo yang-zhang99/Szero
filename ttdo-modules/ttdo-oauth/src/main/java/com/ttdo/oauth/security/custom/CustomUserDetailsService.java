@@ -5,6 +5,7 @@ import com.ttdo.oauth.security.service.LoginRecordService;
 import com.ttdo.oauth.security.service.UserAccountService;
 import com.ttdo.oauth.security.service.UserDetailsBuilder;
 import com.yang.core.exception.CommonException;
+import com.yang.core.user.UserType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (userDetails != null) {
             return userDetails;
         }
-        User user = userAccountService.findLoginUser(username, "P");
+        User user = userAccountService.findLoginUser(username, UserType.ofDefault());
         LOGGER.debug("loaded user, user is {}", user);
         // 获取线程池用户信息
         if (user == null) {

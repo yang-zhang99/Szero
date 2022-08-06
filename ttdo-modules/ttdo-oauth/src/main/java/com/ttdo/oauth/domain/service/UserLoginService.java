@@ -2,7 +2,6 @@ package com.ttdo.oauth.domain.service;
 
 
 
-import com.ttdo.core.user.UserType;
 import com.ttdo.oauth.domain.entity.User;
 
 import javax.servlet.http.HttpServletRequest;

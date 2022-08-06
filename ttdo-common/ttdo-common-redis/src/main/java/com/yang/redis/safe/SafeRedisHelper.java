@@ -1,15 +1,28 @@
 package com.yang.redis.safe;
 
-
 import com.yang.redis.RedisHelper;
 import com.yang.redis.convertor.ApplicationContextHelper;
 
+/**
+ * 提供一个便捷的方式安全的切换 Redis db
+ *
+ * Note：必须在程序启动好之后才能使用此类
+ *
+ */
 public class SafeRedisHelper {
+
     private static RedisHelper redisHelper;
 
-    public SafeRedisHelper() {
+    static {
+        ApplicationContextHelper.asyncStaticSetter(RedisHelper.class, SafeRedisHelper.class, "redisHelper");
     }
 
+    /**
+     * 无返回值 Redis 操作
+     *
+     * @param db Redis db
+     * @param executor Redis 操作
+     */
     public static void execute(int db, ExecuteNoneResult executor) {
         try {
             redisHelper.setCurrentDatabase(db);
@@ -17,21 +30,32 @@ public class SafeRedisHelper {
         } finally {
             redisHelper.clearCurrentDatabase();
         }
-
     }
 
+    /**
+     * 有返回值 Redis 操作
+     *
+     * @param db Redis db
+     * @param executor Redis 操作
+     * @param <T> 返回类型
+     * @return Redis 操作返回值
+     */
     public static <T> T execute(int db, ExecuteWithResult<T> executor) {
-        Object var2;
         try {
             redisHelper.setCurrentDatabase(db);
-            var2 = executor.get();
+            return executor.get();
         } finally {
             redisHelper.clearCurrentDatabase();
         }
-
-        return (T) var2;
     }
 
+    /**
+     * 无返回值 Redis 操作
+     *
+     * @param db Redis db
+     * @param redisHelper 一般在程序启动期间，可自行传入 redisHelper
+     * @param executor Redis 操作
+     */
     public static void execute(int db, RedisHelper redisHelper, ExecuteNoneResult executor) {
         try {
             redisHelper.setCurrentDatabase(db);
@@ -39,22 +63,24 @@ public class SafeRedisHelper {
         } finally {
             redisHelper.clearCurrentDatabase();
         }
-
     }
 
+    /**
+     * 有返回值 Redis 操作
+     *
+     * @param db Redis db
+     * @param redisHelper 一般在程序启动期间，可自行传入 redisHelper
+     * @param executor Redis 操作
+     * @param <T> 返回类型
+     * @return Redis 操作返回值
+     */
     public static <T> T execute(int db, RedisHelper redisHelper, ExecuteWithResult<T> executor) {
-        Object var3;
         try {
             redisHelper.setCurrentDatabase(db);
-            var3 = executor.get();
+            return executor.get();
         } finally {
             redisHelper.clearCurrentDatabase();
         }
-
-        return (T) var3;
     }
 
-    static {
-        ApplicationContextHelper.asyncStaticSetter(RedisHelper.class, SafeRedisHelper.class, "redisHelper");
-    }
 }
