@@ -11,11 +11,14 @@ package com.yang.core;
 //import org.hzero.core.user.PlatformUserType;
 //import org.hzero.core.user.UserType;
 
+import com.yang.core.convertor.ApplicationContextHelper;
 import com.yang.core.exception.BaseExceptionHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.cloud.context.refresh.ContextRefresher;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.beanvalidation.BeanValidationPostProcessor;
 
@@ -30,6 +33,7 @@ import org.springframework.validation.beanvalidation.BeanValidationPostProcessor
 //        ServiceProperties.class
 //})
 //@EnableAspectJAutoProxy(proxyTargetClass = true, exposeProxy = true)
+@Configuration
 public class SZeroAutoConfiguration {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SZeroAutoConfiguration.class);
@@ -128,5 +132,12 @@ public class SZeroAutoConfiguration {
 //        }
 //        return registration;
 //    }
+
+
+        @Bean
+        public ApplicationContextHelper applicationContextHelper() {
+            return new ApplicationContextHelper();
+        }
+
 
 }

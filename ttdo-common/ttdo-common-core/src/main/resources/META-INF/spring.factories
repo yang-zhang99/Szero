@@ -1,2 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.yang.core.exception.BaseExceptionHandler
+com.yang.core.exception.BaseExceptionHandler, \
+  com.yang.core.SZeroAutoConfiguration

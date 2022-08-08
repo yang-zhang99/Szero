@@ -27,3 +27,17 @@ spring:
         # 当资源池连接用尽后，调用者的最大等待时间(单位为毫秒)
         # 默认 -1 表示永不超时，设置5秒
         max-wait: ${SPRING_REDIS_POOL_MAX_WAIT:5000}
+
+y:
+  oauth:
+    login:
+      # 允许使用的登录名，默认有 用户名、邮箱、手机号
+      support-fields: ${HZERO_OAUTH_LOGIN_SUPPORT_FIELDS:username,email,phone}
+      # 前端默认模板
+      default-template: ${HZERO_OAUTH_LOGIN_DEFAULT_TEMPLATE:main}
+      # 跳转到默认登录成功地址时使用的客户端ID
+      default-client-id: ${HZERO_OAUTH_LOGIN_DEFAULT_CLIENT_ID:hzero-front-dev}
+      # 默认登录成功跳转地址
+      success-url: ${HZERO_OAUTH_LOGIN_SUCCESS_URL:http://dev.hzero.org/workplace}
+      # 密码防重放缓存过期时间，单位(天)
+      pass-replay-expire: ${HZERO_OAUTH_LOGIN_PASS_REPLAY_EXPIRE:30}

@@ -4,10 +4,7 @@ import com.ttdo.oauth.domain.repository.AuditLoginRepository;
 import com.ttdo.oauth.domain.repository.BaseClientRepository;
 import com.ttdo.oauth.domain.repository.UserRepository;
 import com.ttdo.oauth.infra.constant.Constants;
-import com.ttdo.oauth.security.custom.CustomAuthenticationKeyGenerator;
-import com.ttdo.oauth.security.custom.CustomBCryptPasswordEncoder;
-import com.ttdo.oauth.security.custom.CustomRedisTokenStore;
-import com.ttdo.oauth.security.custom.CustomUserDetailsService;
+import com.ttdo.oauth.security.custom.*;
 import com.ttdo.oauth.security.service.LoginRecordService;
 import com.ttdo.oauth.security.service.UserAccountService;
 import com.ttdo.oauth.security.service.UserDetailsBuilder;
@@ -27,6 +24,8 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.PortMapper;
 import org.springframework.security.web.PortMapperImpl;
+import org.springframework.security.web.PortResolver;
+import org.springframework.security.web.PortResolverImpl;
 //import org.springframework.session.SessionRepository;
 
 import java.util.Map;
@@ -154,5 +153,22 @@ public class SecurityConfiguration {
     public CustomAuthenticationKeyGenerator authenticationKeyGenerator () {
         return new CustomAuthenticationKeyGenerator(loginUtil);
     }
+
+    @Bean
+    public PortMapper portMapper() {
+        PortMapperImpl portMapper = new PortMapperImpl();
+        Map<String, String> portMap = securityProperties.getPortMapper().stream()
+                .collect(Collectors.toMap(m -> String.valueOf(m.getSourcePort()), m -> String.valueOf(m.getSourcePort())));
+        portMapper.setPortMappings(portMap);
+        return portMapper;
+    }
+
+    @Bean
+    public PortResolver portResolver() {
+        PortResolverImpl portResolver = new PortResolverImpl();
+        portResolver.setPortMapper(portMapper());
+        return portResolver;
+    }
+
 
 }
