@@ -3,7 +3,10 @@ package com.ttdo.oauth.security.config;
 import com.ttdo.oauth.domain.repository.AuditLoginRepository;
 import com.ttdo.oauth.domain.repository.BaseClientRepository;
 import com.ttdo.oauth.domain.repository.UserRepository;
+import com.ttdo.oauth.infra.constant.Constants;
+import com.ttdo.oauth.security.custom.CustomAuthenticationKeyGenerator;
 import com.ttdo.oauth.security.custom.CustomBCryptPasswordEncoder;
+import com.ttdo.oauth.security.custom.CustomRedisTokenStore;
 import com.ttdo.oauth.security.custom.CustomUserDetailsService;
 import com.ttdo.oauth.security.service.LoginRecordService;
 import com.ttdo.oauth.security.service.UserAccountService;
@@ -24,6 +27,7 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.PortMapper;
 import org.springframework.security.web.PortMapperImpl;
+//import org.springframework.session.SessionRepository;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -42,9 +46,10 @@ public class SecurityConfiguration {
     private SecurityProperties securityProperties;
     @Autowired
     private RedisConnectionFactory redisConnectionFactory;
+    @Autowired
+    private LoginUtil loginUtil;
 //    @Autowired
-//    private LoginUtil loginUtil;
-
+//    private SessionRepository<?> sessionRepository;
     //    @Autowired(required = false)
 //    private DomainRepository domainRepository;
 //    @Autowired
@@ -132,6 +137,22 @@ public class SecurityConfiguration {
     @ConditionalOnMissingBean(PasswordEncoder.class)
     public PasswordEncoder passwordEncoder() {
         return new CustomBCryptPasswordEncoder();
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(CustomRedisTokenStore.class)
+    public CustomRedisTokenStore tokenStore() {
+        // todo
+        CustomRedisTokenStore redisTokenStore = new CustomRedisTokenStore(redisConnectionFactory, loginUtil);
+        redisTokenStore.setAuthenticationKeyGenerator(authenticationKeyGenerator());
+        redisTokenStore.setPrefix(Constants.CacheKey.ACCESS_TOKEN);
+        return redisTokenStore;
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(CustomAuthenticationKeyGenerator.class)
+    public CustomAuthenticationKeyGenerator authenticationKeyGenerator () {
+        return new CustomAuthenticationKeyGenerator(loginUtil);
     }
 
 }

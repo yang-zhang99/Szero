@@ -5,6 +5,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
 
 @ComponentScan(value = {
         "com.ttdo.oauth.security",
@@ -17,6 +18,9 @@ import org.springframework.context.annotation.Configuration;
 
 @EnableConfigurationProperties
 @Configuration
+
+@EnableOAuth2Client
+
 public class OauthAutoConfiguration {
 
 

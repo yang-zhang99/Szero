@@ -15,6 +15,7 @@
     <modules>
         <module>ttdo-gateway</module>
         <module>ttdo-oauth</module>
+        <module>study-demo</module>
     </modules>
 
     <description>
