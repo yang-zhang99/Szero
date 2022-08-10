@@ -4,15 +4,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.szero</groupId>
-        <artifactId>szero-modules</artifactId>
-        <version>0.0.1</version>
+        <groupId>com.me</groupId>
+        <artifactId>ttdo-modules</artifactId>
+        <version>1.0.0</version>
     </parent>
 
-    <artifactId>szero-jdbc-examples</artifactId>
+    <artifactId>ttdo-iam</artifactId>
     <version>0.0.1</version>
-    <name>szero-system</name>
-    <description>szero-jdbc-examples</description>
+    <name>ttdo-iam</name>
+    <description>ttdo-iam</description>
 
     <properties>
         <java.version>1.8</java.version>
