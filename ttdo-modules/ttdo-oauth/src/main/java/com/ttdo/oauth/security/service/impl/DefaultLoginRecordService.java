@@ -7,13 +7,10 @@ import com.yang.redis.RedisHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
-@Component
 
 public class DefaultLoginRecordService implements LoginRecordService {
 
@@ -23,16 +20,17 @@ public class DefaultLoginRecordService implements LoginRecordService {
 
     private static final ThreadLocal<User> LOCAL_LOGIN_USER = new ThreadLocal<>();
 
-//    private final BaseUserService baseUserService;
+    //    private final BaseUserService baseUserService;
 //    private final PasswordErrorTimesService passwordErrorTimesService;
 //    private final BasePasswordPolicyRepository basePasswordPolicyRepository;
     private final RedisHelper redisHelper;
+
     public DefaultLoginRecordService(
 //            BaseUserService baseUserService,
 //                                     PasswordErrorTimesService passwordErrorTimesService,
 //                                     BasePasswordPolicyRepository basePasswordPolicyRepository,
-                                     RedisHelper redisHelper
-                                     ) {
+            RedisHelper redisHelper
+    ) {
 //        this.baseUserService = baseUserService;
 //        this.passwordErrorTimesService = passwordErrorTimesService;
 //        this.basePasswordPolicyRepository = basePasswordPolicyRepository;

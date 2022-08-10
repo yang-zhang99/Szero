@@ -3,8 +3,11 @@ package com.ttdo.oauth.security.config;
 import com.ttdo.oauth.domain.repository.AuditLoginRepository;
 import com.ttdo.oauth.domain.repository.BaseClientRepository;
 import com.ttdo.oauth.domain.repository.UserRepository;
+import com.ttdo.oauth.domain.service.AuditLoginService;
+import com.ttdo.oauth.domain.service.impl.AuditLoginServiceImpl;
 import com.ttdo.oauth.infra.constant.Constants;
 import com.ttdo.oauth.security.custom.*;
+import com.ttdo.oauth.security.custom.processor.login.LoginSuccessProcessor;
 import com.ttdo.oauth.security.service.LoginRecordService;
 import com.ttdo.oauth.security.service.UserAccountService;
 import com.ttdo.oauth.security.service.UserDetailsBuilder;
@@ -19,15 +22,15 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.PortMapper;
 import org.springframework.security.web.PortMapperImpl;
 import org.springframework.security.web.PortResolver;
 import org.springframework.security.web.PortResolverImpl;
-//import org.springframework.session.SessionRepository;
 
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -59,8 +62,8 @@ public class SecurityConfiguration {
 //    private BaseLdapRepository baseLdapRepository;
 //    @Autowired
 //    private BasePasswordPolicyRepository basePasswordPolicyRepository;
-    @Autowired
-    private BaseClientRepository baseClientRepository;
+@Autowired
+private BaseClientRepository baseClientRepository;
     //    @Autowired
 //    private PasswordErrorTimesService passwordErrorTimesService;
 //    @Autowired
@@ -68,9 +71,8 @@ public class SecurityConfiguration {
 //
 //    @Autowired
 //    private SessionRepository<?> sessionRepository;
-//    @Autowired
-//    private AuditLoginRepository auditLoginRepository;
-
+    @Autowired
+    private AuditLoginRepository auditLoginRepository;
     /**
      * 用户账户业务服务
      */
@@ -170,5 +172,24 @@ public class SecurityConfiguration {
         return portResolver;
     }
 
+    @Bean
+    @ConditionalOnMissingBean(AuditLoginService.class)
+    public AuditLoginService auditLoginService() {
+        return new AuditLoginServiceImpl(auditLoginRepository, userRepository, tokenStore());
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(CustomAuthenticationFailureHandler.class)
+    @DependsOn("loginRecordService")
+    public CustomAuthenticationFailureHandler authenticationFailureHandler() {
+        return new CustomAuthenticationFailureHandler(loginRecordService(), securityProperties, auditLoginService());
+    }
+
+
+    @Bean
+    @ConditionalOnMissingBean(CustomAuthenticationSuccessHandler.class)
+    public CustomAuthenticationSuccessHandler authenticationSuccessHandler(List<LoginSuccessProcessor> successProcessors) {
+        return new CustomAuthenticationSuccessHandler(securityProperties, successProcessors);
+    }
 
 }

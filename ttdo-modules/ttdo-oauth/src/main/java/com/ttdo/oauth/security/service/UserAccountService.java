@@ -1,13 +1,11 @@
 package com.ttdo.oauth.security.service;
 
 import com.ttdo.oauth.domain.entity.BaseClient;
-import com.ttdo.oauth.domain.entity.Client;
 import com.ttdo.oauth.domain.entity.User;
 import com.ttdo.oauth.security.constant.LoginType;
 import com.yang.core.user.UserType;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
-import com.ttdo.oauth.domain.entity.User;
 
 
 /**
@@ -98,5 +96,13 @@ public interface UserAccountService {
 //     */
 //    @Nullable
     BaseClient findCurrentClient();
+
+    /**
+     * 查询当前客户端
+     *
+     * @return Client
+     */
+//    @Nullable
+//    BaseClient findCurrentClient();
 
 }

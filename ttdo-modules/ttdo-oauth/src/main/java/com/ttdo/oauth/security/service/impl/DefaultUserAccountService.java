@@ -2,7 +2,6 @@ package com.ttdo.oauth.security.service.impl;
 
 import com.ttdo.oauth.domain.entity.BaseClient;
 import com.ttdo.oauth.domain.entity.BaseUser;
-import com.ttdo.oauth.domain.entity.Client;
 import com.ttdo.oauth.domain.entity.User;
 import com.ttdo.oauth.domain.repository.BaseClientRepository;
 import com.ttdo.oauth.domain.repository.UserRepository;
@@ -14,10 +13,10 @@ import com.ttdo.oauth.security.exception.LoginExceptions;
 import com.ttdo.oauth.security.service.UserAccountService;
 import com.ttdo.oauth.security.util.RequestUtil;
 import com.yang.core.base.BaseConstants;
+import com.yang.core.user.UserType;
 import com.yang.core.util.Regexs;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.BooleanUtils;
-import org.apache.commons.lang.time.DateUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,10 +27,7 @@ import org.springframework.util.Assert;
 
 import java.time.LocalDate;
 import java.util.Date;
-import java.util.Objects;
 import java.util.Set;
-
-import com.yang.core.user.UserType;
 
 import static com.ttdo.oauth.security.constant.LoginField.*;
 import static com.yang.core.base.BaseConstants.Symbol.MIDDLE_LINE;
@@ -328,7 +324,7 @@ public class DefaultUserAccountService implements UserAccountService {
             baseUser = new BaseUser(user.getId(), user.getLoginName(), user.getOrganizationId(), user.getLocked());
         }
 //        return passwordPolicyManager.isNeedCaptcha(baseUser);
-        return true;
+        return false;
     }
 
 //    @Override
