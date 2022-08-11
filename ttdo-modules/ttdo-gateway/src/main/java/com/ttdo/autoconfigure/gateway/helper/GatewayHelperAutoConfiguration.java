@@ -3,9 +3,12 @@ package com.ttdo.autoconfigure.gateway.helper;
 import com.ttdo.gateway.helper.api.AuthenticationHelper;
 import com.ttdo.gateway.helper.api.HelperFilter;
 import com.ttdo.gateway.helper.api.reactive.ReactiveAuthenticationHelper;
+import com.ttdo.gateway.helper.config.GatewayHelperProperties;
 import com.ttdo.gateway.helper.impl.DefaultAuthenticationHelper;
 import com.ttdo.gateway.helper.impl.reactive.DefaultReactiveAuthenticationHelper;
 import com.ttdo.gateway.helper.impl.HelperChain;
+import com.ttdo.gateway.helper.service.CustomPermissionCheckService;
+import com.ttdo.gateway.helper.service.impl.DefaultCustomPermissionCheckService;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -15,6 +18,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.jwt.crypto.sign.MacSigner;
+import org.springframework.security.jwt.crypto.sign.Signer;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -27,6 +32,11 @@ import java.util.Optional;
 @Order(2147483642)
 public class GatewayHelperAutoConfiguration {
 
+    @Bean
+    @ConditionalOnMissingBean(Signer.class)
+    public Signer jwtSigner(GatewayHelperProperties gatewayHelperProperties) {
+        return new MacSigner(gatewayHelperProperties.getJwtKey());
+    }
     /**
      * 过滤器链
      * @param optionalHelperFilters
@@ -73,4 +83,12 @@ public class GatewayHelperAutoConfiguration {
 //    public SignatureService signatureService(GatewayHelperProperties properties, RedisHelper redisHelper) {
 //        return new DefaultSignatureService(properties, redisHelper);
 //    }
+
+    @Bean
+    @ConditionalOnMissingBean(CustomPermissionCheckService.class)
+    public CustomPermissionCheckService customPermissionCheckService() {
+        return new DefaultCustomPermissionCheckService();
+    }
+
+
 }

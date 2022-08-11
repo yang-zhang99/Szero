@@ -5,36 +5,62 @@ import com.yang.core.oauth.CustomUserDetails;
 
 public class RequestContext {
 
-
     private static final ThreadLocal<RequestContext> CONTEXT_THREAD_LOCAL = new ThreadLocal<>();
 
-
-    public static RequestContext initRequestContext(CheckRequest request, CheckResponse response) {
+    public static RequestContext initRequestContext(CheckRequest request, CheckResponse response){
         RequestContext requestContext = new RequestContext(request, response);
         CONTEXT_THREAD_LOCAL.set(requestContext);
         return requestContext;
     }
 
+    public static RequestContext currentRequestContext(){
+        return CONTEXT_THREAD_LOCAL.get();
+    }
+
+    public static void clearRequestContext(){
+        CONTEXT_THREAD_LOCAL.remove();
+    }
 
     public final CheckRequest request;
 
     public final CheckResponse response;
 
-    /**
-     * Servlet 的 Request 请求
-     */
-    private Object servletRequest;
+    private String requestKey;
 
-
-    /**
-     * 用户的个性化信息
-     */
-    private CustomUserDetails customUserDetails;
-
+    private PermissionDO permission;
 
     private CommonRoute route;
 
-    private PermissionDO permissionDO;
+    private String trueUri;
+
+    private CustomUserDetails customUserDetails;
+
+    private String lovCode;
+
+    private Object servletRequest;
+
+    private Long menuId;
+
+    public RequestContext(CheckRequest request, CheckResponse builder) {
+        this.request = request;
+        this.response = builder;
+    }
+
+    public String getRequestKey() {
+        return requestKey;
+    }
+
+    public void setRequestKey(String requestKey) {
+        this.requestKey = requestKey;
+    }
+
+    public PermissionDO getPermission() {
+        return permission;
+    }
+
+    public void setPermission(PermissionDO permission) {
+        this.permission = permission;
+    }
 
     public CommonRoute getRoute() {
         return route;
@@ -44,17 +70,28 @@ public class RequestContext {
         this.route = route;
     }
 
-    public PermissionDO getPermissionDO() {
-        return permissionDO;
+    public String getTrueUri() {
+        return trueUri;
     }
 
-    public void setPermissionDO(PermissionDO permissionDO) {
-        this.permissionDO = permissionDO;
+    public void setTrueUri(String trueUri) {
+        this.trueUri = trueUri;
     }
 
-    public RequestContext(CheckRequest request, CheckResponse response) {
-        this.request = request;
-        this.response = response;
+    public CustomUserDetails getCustomUserDetails() {
+        return customUserDetails;
+    }
+
+    public void setCustomUserDetails(CustomUserDetails customUserDetails) {
+        this.customUserDetails = customUserDetails;
+    }
+
+    public String getLovCode() {
+        return lovCode;
+    }
+
+    public void setLovCode(String lovCode) {
+        this.lovCode = lovCode;
     }
 
     public Object getServletRequest() {
@@ -65,11 +102,28 @@ public class RequestContext {
         this.servletRequest = servletRequest;
     }
 
-    public CustomUserDetails getCustomUserDetails() {
-        return customUserDetails;
+    public Long getMenuId() {
+        return menuId;
     }
 
-    public void setCustomUserDetails(CustomUserDetails customUserDetails) {
-        this.customUserDetails = customUserDetails;
+    public void setMenuId(Long menuId) {
+        this.menuId = menuId;
     }
+
+    @Override
+    public String toString() {
+        return "RequestContext{" +
+                "request=" + request +
+                ", response=" + response +
+                ", requestKey='" + requestKey + '\'' +
+                ", menuId='" + menuId + '\'' +
+                ", permission=" + permission +
+                ", route=" + route +
+                ", trueUri='" + trueUri + '\'' +
+                ", customUserDetails=" + customUserDetails +
+                '}';
+    }
+
+
 }
+

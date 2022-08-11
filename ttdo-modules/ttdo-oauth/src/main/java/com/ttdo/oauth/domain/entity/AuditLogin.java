@@ -6,8 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.yang.core.mybatis.AuditDomain;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+//import javax.validation.constraints.NotBlank;
+//import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -45,23 +45,23 @@ public class AuditLogin extends AuditDomain {
     @TableId(type = IdType.AUTO)
     private Long auditId;
     @TableField
-    @NotBlank
+//    @NotBlank
     private String auditType;
     @TableField
-    @NotNull
+//    @NotNull
     private Long userId;
     @TableField
-    @NotBlank
+//    @NotBlank
     private String loginName;
     @TableField
     private String phone;
     @TableField
     private String email;
     @TableField
-    @NotNull
+//    @NotNull
     private Long tenantId;
     @TableField
-    @NotNull
+//    @NotNull
     private Date loginDate;
     @TableField
     private String loginIp;
@@ -74,7 +74,7 @@ public class AuditLogin extends AuditDomain {
     @TableField
     private String loginBrowser;
     @TableField
-    @NotNull
+//    @NotNull
     private Integer loginStatus;
     @TableField
     private String loginMessage;

@@ -11,6 +11,7 @@ import com.ttdo.gateway.filter.metric.*;
 import com.ttdo.gateway.helper.api.reactive.ReactiveAuthenticationHelper;
 import com.ttdo.gateway.ratelimit.RateLimitConfiguration;
 import com.yang.redis.RedisHelper;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -29,6 +30,7 @@ import java.util.List;
 @EnableConfigurationProperties({YGatewayProperties.class, // 服务的Cors
         MaintainProperties.class  // 服务的监控
 })
+@MapperScan("com.ttdo.gateway.helper.infra.mapper")
 public class WebConditionAutoConfiguration {
 
     @Bean
