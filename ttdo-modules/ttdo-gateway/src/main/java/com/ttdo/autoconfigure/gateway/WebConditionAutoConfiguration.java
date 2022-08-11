@@ -18,7 +18,11 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.core.annotation.Order;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.reactive.CorsWebFilter;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Configuration
@@ -47,6 +51,31 @@ public class WebConditionAutoConfiguration {
         @Bean
         public com.ttdo.gateway.filter.GateWayHelperFilter gateWayHelperFilter(ReactiveAuthenticationHelper gatewayHelper) {
             return new com.ttdo.gateway.filter.GateWayHelperFilter(gatewayHelper);
+        }
+
+        @Bean
+        @Order(Integer.MIN_VALUE)
+        public CorsWebFilter corsWebFilter(YGatewayProperties properties) {
+            org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource source = new org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource();
+            CorsConfiguration config = new CorsConfiguration();
+            config.setAllowCredentials(true);
+            for (String allowedOrigin : properties.getCors().getAllowedOrigins()) {
+                config.addAllowedOriginPattern(allowedOrigin);
+            }
+            for (String allowedHeader : properties.getCors().getAllowedHeaders()) {
+                config.addAllowedHeader(allowedHeader);
+            }
+            for (String allowedMethod : properties.getCors().getAllowedMethods()) {
+                config.addAllowedMethod(allowedMethod);
+            }
+            config.setMaxAge(18000L);
+            //添加response暴露的header
+            String[] responseHeader =
+                    {"date", "content-encoding", "server", "etag", "vary", "Cache-Control", "Last-Modified",
+                            "content-type", "transfer-encoding", "connection", "x-application-context"};
+            config.setExposedHeaders(Arrays.asList(responseHeader));
+            source.registerCorsConfiguration("/**", config);
+            return new CorsWebFilter(source);
         }
 
     }

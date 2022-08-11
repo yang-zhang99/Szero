@@ -36,6 +36,12 @@ spring:
             - Path=/toauth/**
           filters:
             - PreserveHostHeader
+        - id: tiam
+          uri: lb://ttdo-iam
+          predicates:
+            - Path=/tiam/**
+          filters:
+            - PreserveHostHeader
   main:
     allow-bean-definition-overriding: true
 logging:

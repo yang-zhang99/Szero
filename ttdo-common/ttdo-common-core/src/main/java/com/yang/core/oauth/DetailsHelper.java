@@ -5,7 +5,6 @@ import com.yang.core.base.BaseConstants;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 
 import java.util.Collections;
 
@@ -55,12 +54,12 @@ public class DetailsHelper {
             return (CustomUserDetails) principal;
         }
         Object details = SecurityContextHolder.getContext().getAuthentication().getDetails();
-        if (details instanceof OAuth2AuthenticationDetails) {
-            Object decodedDetails = ((OAuth2AuthenticationDetails) details).getDecodedDetails();
-            if (decodedDetails instanceof CustomUserDetails) {
-                return (CustomUserDetails) decodedDetails;
-            }
-        }
+//        if (details instanceof OAuth2AuthenticationDetails) {
+//            Object decodedDetails = ((OAuth2AuthenticationDetails) details).getDecodedDetails();
+//            if (decodedDetails instanceof CustomUserDetails) {
+//                return (CustomUserDetails) decodedDetails;
+//            }
+//        }
         return null;
     }
 

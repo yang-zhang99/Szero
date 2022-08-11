@@ -17,7 +17,7 @@ public class AdminUserPermissionFilter implements HelperFilter {
 
     @Override
     public boolean shouldFilter(RequestContext context) {
-        return context.getCustomUserDetails().getAdmin() != null && context.getCustomUserDetails().getAdmin();
+        return context.getCustomUserDetails() != null && context.getCustomUserDetails().getAdmin() != null && context.getCustomUserDetails().getAdmin();
     }
 
     @Override

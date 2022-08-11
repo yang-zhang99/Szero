@@ -22,6 +22,8 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 
+import static com.yang.core.base.TokenConstants.HEADER_JWT;
+
 //import static com.ttdo.core.variable.RequestVariableHolder.HEADER_JWT;
 
 
@@ -60,7 +62,7 @@ public class GateWayHelperFilter implements WebFilter {
             if (responseContext.getHttpStatus().is2xxSuccessful()) {
                 String jwtToken = responseContext.getJwtToken();
                 return chain.filter(exchange.mutate()
-//                        .request(builder -> builder.header(HEADER_JWT, jwtToken))
+                        .request(builder -> builder.header(HEADER_JWT, jwtToken))
                         .build());
             } else {
                 return handleError(exchange.getResponse(), responseContext);
