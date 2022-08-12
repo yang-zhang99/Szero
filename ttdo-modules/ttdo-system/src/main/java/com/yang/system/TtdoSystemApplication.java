@@ -14,10 +14,10 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan({"com.yang.system.api", "com.yang.system.app", "com.yang.system.domain", "com.yang.system.infra"})
 //@EnableWebSecurity
 //@EnableOAuth2Sso
-public class SzeroSystemApplication {
+public class TtdoSystemApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SzeroSystemApplication.class, args);
+        SpringApplication.run(TtdoSystemApplication.class, args);
     }
 
 
