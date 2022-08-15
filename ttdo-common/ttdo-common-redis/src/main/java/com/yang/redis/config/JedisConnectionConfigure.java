@@ -1,4 +1,4 @@
-package com.ttdo.core.redis.config;
+package com.me.core.redis.config;
 
 
 import org.springframework.beans.factory.ObjectProvider;

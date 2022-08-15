@@ -2,9 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ttdo.oauth.infra.mapper.UserOpenAccountMapper">
 
-    <select id="selectListByUserOpenAccount" resultType="com.ttdo.oauth.domain.entity.UserOpenAccount">
+    <select id="selectListByUserOpenAccount" resultType="com.me.oauth.domain.entity.UserOpenAccount">
 
-        select * from hiam_user_open_account
+        select *
+        from hiam_user_open_account
 
 
     </select>
