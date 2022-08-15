@@ -1,4 +1,4 @@
-package com.ttdo.core.message;
+package com.me.core.message;
 
 
 //public class RedisMessageSource extends AbstractMessageSource implements IMessageSource {
