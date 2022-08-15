@@ -12,7 +12,7 @@
 
     <properties>
         <ttdo.version>1.0.0</ttdo.version>
-        <java.version>1.17</java.version>
+        <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-cloud.version>2021.0.3</spring-cloud.version>
         <spring-boot.version>2.6.8</spring-boot.version>
