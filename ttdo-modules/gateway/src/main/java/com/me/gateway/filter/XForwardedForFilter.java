@@ -8,6 +8,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
+
+/**
+ * 将 远程地址 放到 header 的 X-Forwarded-For 中
+ */
 @Component
 public class XForwardedForFilter implements GlobalFilter, Ordered {
 

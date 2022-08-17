@@ -21,9 +21,6 @@ import java.util.Collections;
 
 /**
  * 整体运维，判断服务是否可用
- *
- * @author XCXCXCXCX
- * @since 1.0
  */
 public class AvailableServiceFilter implements GlobalFilter, Ordered {
 
@@ -54,7 +51,7 @@ public class AvailableServiceFilter implements GlobalFilter, Ordered {
         }
 
         MaintainProperties.MaintainState state = identifyState(serviceName);
-        String msg = null;
+        String msg;
         if (state == MaintainProperties.MaintainState.PAUSED) {
             msg = "This service is temporarily unavailable.";
         } else if (state == MaintainProperties.MaintainState.STOPPED) {
@@ -71,6 +68,14 @@ public class AvailableServiceFilter implements GlobalFilter, Ordered {
         }
     }
 
+    /**
+     * 返回服务不可以的错误码
+     *
+     * @param response response
+     * @param message  message
+     * @param state    state
+     * @return Mono<Void>
+     */
     private Mono<Void> responseIfMatch(ServerHttpResponse response, String message, MaintainProperties.MaintainState state) {
         if (state == MaintainProperties.MaintainState.NORMAL) {
             return null;
@@ -97,6 +102,12 @@ public class AvailableServiceFilter implements GlobalFilter, Ordered {
         }
     }
 
+    /**
+     * 找出服务名
+     *
+     * @param requestURI
+     * @return String
+     */
     private String parseServiceName(String requestURI) {
         if (requestURI == null || requestURI.isEmpty()) {
             return null;

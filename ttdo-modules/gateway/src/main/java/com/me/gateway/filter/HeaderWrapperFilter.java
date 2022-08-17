@@ -20,7 +20,6 @@ import static com.yang.core.variable.RequestVariableHolder.HEADER_JWT;
 /**
  * 添加token和label到请求header
  *
- * @author flyleft
  */
 public class HeaderWrapperFilter implements GlobalFilter, Ordered {
 
