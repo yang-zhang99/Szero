@@ -1,6 +1,6 @@
 package com.me.gateway.ratelimit.dimension;
 
-import com.me.gateway.helper.entity.RequestContext;
+import com.me.gateway.helper.domain.entity.RequestContext;
 import com.me.gateway.ratelimit.switcher.DoubleModeSwitcher;
 import com.me.gateway.ratelimit.switcher.ModeSwitcher;
 import com.me.gateway.ratelimit.switcher.SwitcherDelegate;

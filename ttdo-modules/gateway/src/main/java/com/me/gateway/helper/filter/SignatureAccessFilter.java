@@ -2,8 +2,8 @@ package com.me.gateway.helper.filter;
 
 import com.me.gateway.helper.api.HelperFilter;
 import com.me.gateway.helper.config.GatewayHelperProperties;
-import com.me.gateway.helper.entity.CheckState;
-import com.me.gateway.helper.entity.RequestContext;
+import com.me.gateway.helper.domain.entity.CheckState;
+import com.me.gateway.helper.domain.entity.RequestContext;
 import com.me.gateway.helper.service.SignatureService;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.BooleanUtils;
