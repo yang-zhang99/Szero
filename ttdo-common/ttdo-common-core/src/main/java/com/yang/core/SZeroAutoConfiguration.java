@@ -134,10 +134,10 @@ public class SZeroAutoConfiguration {
 //    }
 
 
-        @Bean
-        public ApplicationContextHelper applicationContextHelper() {
-            return new ApplicationContextHelper();
-        }
+//        @Bean
+//        public ApplicationContextHelper applicationContextHelper() {
+//            return new ApplicationContextHelper();
+//        }
 
 
 }

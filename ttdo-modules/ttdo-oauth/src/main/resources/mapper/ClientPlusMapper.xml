@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ttdo.oauth.infra.mapper.ClientPlusMapper">
+<mapper namespace="com.me.oauth.infra.mapper.ClientPlusMapper">
     <resultMap id="RoleDetails" type="com.me.oauth.domain.vo.ClientRoleDetails">
         <result column="h_tenant_id" property="tenantId" jdbcType="BIGINT"/>
         <collection property="roles" ofType="com.me.oauth.domain.vo.Role">

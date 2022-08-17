@@ -8,6 +8,7 @@ import com.me.oauth.domain.service.LanguageService;
 import com.me.oauth.domain.service.UserLoginService;
 import com.me.oauth.domain.utils.ConfigGetter;
 import com.me.oauth.domain.utils.ProfileCode;
+import com.me.oauth.infra.encrypt.EncryptClient;
 import com.me.oauth.security.config.SecurityProperties;
 import com.me.oauth.security.constant.LoginType;
 import com.me.oauth.security.constant.SecurityAttributes;
@@ -50,14 +51,18 @@ public class OauthController {
     @Autowired
     private MultiLanguageConfig multiLanguageConfig;
 
+    private final EncryptClient encryptClient;
+
     public OauthController(LanguageService languageService,
                            ConfigGetter configGetter,
                            SecurityProperties securityProperties,
-                           UserLoginService userLoginService) {
+                           UserLoginService userLoginService,
+                           EncryptClient encryptClient) {
         this.languageService = languageService;
         this.configGetter = configGetter;
         this.securityProperties = securityProperties;
         this.userLoginService = userLoginService;
+        this.encryptClient = encryptClient;
     }
 
 
@@ -123,9 +128,9 @@ public class OauthController {
 //
         // 是否加密
         if (securityProperties.getPassword().isEnableEncrypt()) {
-//            String publicKey = encryptClient.getPublicKey();
-//            model.addAttribute(LoginUtil.FIELD_PUBLIC_KEY, publicKey);
-//            session.setAttribute(LoginUtil.FIELD_PUBLIC_KEY, publicKey);
+            String publicKey = encryptClient.getPublicKey();
+            model.addAttribute(LoginUtil.FIELD_PUBLIC_KEY, publicKey);
+            session.setAttribute(LoginUtil.FIELD_PUBLIC_KEY, publicKey);
         }
 //        setCommonPageConfigData(model);
         // 三方登录方式

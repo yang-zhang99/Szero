@@ -1,6 +1,7 @@
 package com.yang.redis;
 
 
+import com.yang.redis.convertor.ApplicationContextHelper;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.cache.CacheProperties;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -24,6 +25,12 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @EnableConfigurationProperties({WlhyRedisProperties.class, CacheProperties.class})
 @AutoConfigureBefore(RedisAutoConfiguration.class)
 public class WlhyRedisAutoConfiguration {
+
+    // todo
+    @Bean
+    public ApplicationContextHelper applicationContextHelper() {
+        return new ApplicationContextHelper();
+    }
 
     @Bean
     public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory redisConnectionFactory) {

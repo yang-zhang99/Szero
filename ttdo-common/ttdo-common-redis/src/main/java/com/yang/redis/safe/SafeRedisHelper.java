@@ -83,4 +83,7 @@ public class SafeRedisHelper {
         }
     }
 
+    public static void setRedisHelper(RedisHelper redisHelper) {
+        SafeRedisHelper.redisHelper = redisHelper;
+    }
 }
