@@ -57,6 +57,7 @@ spring:
             - Path=/oauth/**
           filters:
             - PreserveHostHeader
+
         - id: tout
           uri: lb://ttdo-oauth
           predicates:
@@ -78,10 +79,6 @@ logging:
 
 
 y:
-  request:
-    counter:
-      # http请求监控
-      enable: true
   gateway:
     # 跨域配置
     cors:
@@ -135,3 +132,18 @@ y:
           - /hfle/lib/**
           - /*/lib/**
           - /**/webjars/**
+  ## 服务整体运维配置
+  maintain:
+    # 全局运维信息
+    global-info:
+      state: NORMAL
+    # 服务运维信息
+    service-maintain-info:
+      oauth:
+        state: NORMAL
+    # 运维接口密钥，不配置则在程序启动时生成随机key
+    secret-key: hzero
+  request:
+    counter:
+      # http请求监控
+      enable: true
