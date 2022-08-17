@@ -14,7 +14,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
         "com.me.oauth.domain",
         "com.me.oauth.infra",
 })
-@MapperScan("com.ttdo.oauth.infra.mapper")
+@MapperScan("com.me.oauth.infra.mapper")
 
 @EnableConfigurationProperties
 @Configuration
