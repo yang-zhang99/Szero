@@ -1,7 +1,7 @@
 package com.me.gateway.helper.service;
 
 
-import com.me.gateway.helper.entity.RequestContext;
+import com.me.gateway.helper.domain.entity.RequestContext;
 
 /**
  * API 签名服务

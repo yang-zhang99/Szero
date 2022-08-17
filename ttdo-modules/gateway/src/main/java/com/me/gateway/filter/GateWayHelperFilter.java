@@ -1,8 +1,8 @@
 package com.me.gateway.filter;
 
 import com.me.gateway.helper.api.reactive.ReactiveAuthenticationHelper;
-import com.me.gateway.helper.entity.CheckState;
-import com.me.gateway.helper.entity.ResponseContext;
+import com.me.gateway.helper.domain.entity.CheckState;
+import com.me.gateway.helper.domain.entity.ResponseContext;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.me.gateway.helper.infra.mapper.PermissionPlusMapper">
 
-    <resultMap id="PermissionMap" type="com.me.gateway.helper.entity.PermissionDO">
+    <resultMap id="PermissionMap" type="com.me.gateway.helper.domain.entity.PermissionDO">
         <id column="id" property="id"/>
         <result column="code" property="code"/>
         <result column="path" property="path"/>

@@ -1,10 +1,10 @@
 package com.me.gateway.helper.impl.reactive;
 
 import com.me.gateway.helper.api.reactive.ReactiveAuthenticationHelper;
-import com.me.gateway.helper.entity.CheckRequest;
-import com.me.gateway.helper.entity.CheckResponse;
-import com.me.gateway.helper.entity.RequestContext;
-import com.me.gateway.helper.entity.ResponseContext;
+import com.me.gateway.helper.domain.entity.CheckRequest;
+import com.me.gateway.helper.domain.entity.CheckResponse;
+import com.me.gateway.helper.domain.entity.RequestContext;
+import com.me.gateway.helper.domain.entity.ResponseContext;
 import com.me.gateway.helper.impl.HelperChain;
 import com.me.gateway.helper.util.ServerRequestUtils;
 import org.apache.commons.lang.StringUtils;

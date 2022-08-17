@@ -1,7 +1,7 @@
 package com.me.gateway.helper.api;
 
 
-import com.me.gateway.helper.entity.RequestContext;
+import com.me.gateway.helper.domain.entity.RequestContext;
 
 /**
  * 鉴权过滤器，可以提供实现接口加入自定义的鉴权方式

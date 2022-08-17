@@ -1,9 +1,9 @@
 package com.me.gateway.helper.filter;
 
 import com.me.gateway.helper.api.HelperFilter;
-import com.me.gateway.helper.entity.CheckState;
-import com.me.gateway.helper.entity.PermissionDO;
-import com.me.gateway.helper.entity.RequestContext;
+import com.me.gateway.helper.domain.entity.CheckState;
+import com.me.gateway.helper.domain.entity.PermissionDO;
+import com.me.gateway.helper.domain.entity.RequestContext;
 import com.me.gateway.helper.service.PermissionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

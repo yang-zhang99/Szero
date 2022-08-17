@@ -3,7 +3,7 @@ package com.me.gateway.helper.infra.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.me.gateway.helper.domain.PermissionCheckDTO;
 import com.me.gateway.helper.domain.vo.RoleVO;
-import com.me.gateway.helper.entity.PermissionDO;
+import com.me.gateway.helper.domain.entity.PermissionDO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

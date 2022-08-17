@@ -1,8 +1,8 @@
 package com.me.gateway.helper.filter;
 
 import com.me.gateway.helper.api.HelperFilter;
-import com.me.gateway.helper.entity.CheckState;
-import com.me.gateway.helper.entity.RequestContext;
+import com.me.gateway.helper.domain.entity.CheckState;
+import com.me.gateway.helper.domain.entity.RequestContext;
 import org.springframework.stereotype.Component;
 
 

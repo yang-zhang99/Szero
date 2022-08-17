@@ -2,7 +2,7 @@ package com.me.gateway.helper.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.me.gateway.helper.domain.vo.CustomUserDetailsWithResult;
-import com.me.gateway.helper.entity.CheckState;
+import com.me.gateway.helper.domain.entity.CheckState;
 import com.me.gateway.helper.service.GetUserDetailsService;
 import com.yang.common.HZeroService;
 import com.yang.core.base.BaseConstants;

@@ -1,6 +1,6 @@
 package com.me.gateway.helper.config;
 
-import com.me.gateway.helper.entity.CommonRoute;
+import com.me.gateway.helper.domain.entity.CommonRoute;
 import com.me.gateway.helper.resolver.PropertiesResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 

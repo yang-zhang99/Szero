@@ -2,8 +2,8 @@ package com.me.gateway.helper.service.impl;
 
 
 import com.me.gateway.helper.domain.repository.PermissionCheckRepository;
-import com.me.gateway.helper.entity.CheckResponse;
-import com.me.gateway.helper.entity.RequestContext;
+import com.me.gateway.helper.domain.entity.CheckResponse;
+import com.me.gateway.helper.domain.entity.RequestContext;
 import com.me.gateway.helper.service.PermissionCheckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;

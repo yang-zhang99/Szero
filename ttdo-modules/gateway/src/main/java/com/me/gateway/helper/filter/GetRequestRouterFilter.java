@@ -2,9 +2,9 @@ package com.me.gateway.helper.filter;
 
 import com.me.gateway.helper.api.HelperFilter;
 import com.me.gateway.helper.config.GatewayPropertiesWrapper;
-import com.me.gateway.helper.entity.CheckState;
-import com.me.gateway.helper.entity.CommonRoute;
-import com.me.gateway.helper.entity.RequestContext;
+import com.me.gateway.helper.domain.entity.CheckState;
+import com.me.gateway.helper.domain.entity.CommonRoute;
+import com.me.gateway.helper.domain.entity.RequestContext;
 import com.me.gateway.helper.util.ServerRequestUtils;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;

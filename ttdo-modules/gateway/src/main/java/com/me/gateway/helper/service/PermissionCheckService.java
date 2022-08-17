@@ -1,8 +1,8 @@
 package com.me.gateway.helper.service;
 
 
-import com.me.gateway.helper.entity.CheckResponse;
-import com.me.gateway.helper.entity.RequestContext;
+import com.me.gateway.helper.domain.entity.CheckResponse;
+import com.me.gateway.helper.domain.entity.RequestContext;
 
 /**
  * 缺失权限应用服务实现

@@ -7,12 +7,13 @@ import com.me.gateway.helper.resolver.GatewayPropertiesResolver;
 import com.me.gateway.helper.resolver.PropertiesResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-//import org.springframework.security.jwt.crypto.sign.MacSigner;
-//import org.springframework.security.jwt.crypto.sign.Signer;
+import org.springframework.security.jwt.crypto.sign.MacSigner;
+import org.springframework.security.jwt.crypto.sign.Signer;
 
 
 @Configuration
@@ -26,11 +27,11 @@ public class GatewayHelperConfiguration {
      * @param gatewayHelperProperties
      * @return Signer
      */
-//    @Bean
-//    @ConditionalOnMissingBean(Signer.class)
-//    public Signer jwtSigner(GatewayHelperProperties gatewayHelperProperties) {
-//        return new MacSigner(gatewayHelperProperties.getJwtKey());
-//    }
+    @Bean
+    @ConditionalOnMissingBean(Signer.class)
+    public Signer jwtSigner(GatewayHelperProperties gatewayHelperProperties) {
+        return new MacSigner(gatewayHelperProperties.getJwtKey());
+    }
 
     /**
      *

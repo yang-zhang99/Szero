@@ -1,6 +1,6 @@
 package com.me.gateway.helper.resolver;
 
-import com.me.gateway.helper.entity.CommonRoute;
+import com.me.gateway.helper.domain.entity.CommonRoute;
 
 import java.util.Map;
 

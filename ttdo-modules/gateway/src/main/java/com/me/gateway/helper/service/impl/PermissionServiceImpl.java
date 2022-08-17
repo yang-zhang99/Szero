@@ -1,7 +1,7 @@
 package com.me.gateway.helper.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.me.gateway.helper.entity.PermissionDO;
+import com.me.gateway.helper.domain.entity.PermissionDO;
 import com.me.gateway.helper.infra.mapper.PermissionPlusMapper;
 import com.me.gateway.helper.service.PermissionService;
 import com.yang.core.base.BaseConstants;

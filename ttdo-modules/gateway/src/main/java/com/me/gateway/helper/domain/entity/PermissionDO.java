@@ -1,4 +1,4 @@
-package com.me.gateway.helper.entity;
+package com.me.gateway.helper.domain.entity;
 
 //@Table(name = "iam_permission")
 public class PermissionDO {

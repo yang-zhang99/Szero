@@ -1,2 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.me.autoconfigure.gateway.helper.GatewayHelperAutoConfiguration 
+  com.me.autoconfigure.gateway.helper.GatewayHelperAutoConfiguration, \
+  com.me.autoconfigure.gateway.helper.api.GatewayHelperConfiguration

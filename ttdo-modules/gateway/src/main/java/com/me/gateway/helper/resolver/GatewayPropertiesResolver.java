@@ -1,6 +1,6 @@
 package com.me.gateway.helper.resolver;
 
-import com.me.gateway.helper.entity.CommonRoute;
+import com.me.gateway.helper.domain.entity.CommonRoute;
 import org.springframework.cloud.gateway.config.GatewayProperties;
 import org.springframework.cloud.gateway.event.RefreshRoutesEvent;
 import org.springframework.cloud.gateway.filter.FilterDefinition;

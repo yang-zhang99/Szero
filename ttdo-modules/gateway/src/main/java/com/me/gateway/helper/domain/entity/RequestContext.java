@@ -1,4 +1,4 @@
-package com.me.gateway.helper.entity;
+package com.me.gateway.helper.domain.entity;
 
 
 import com.yang.core.oauth.CustomUserDetails;

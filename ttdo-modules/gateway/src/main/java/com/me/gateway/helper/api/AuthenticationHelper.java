@@ -1,6 +1,6 @@
 package com.me.gateway.helper.api;
 
-import com.me.gateway.helper.entity.ResponseContext;
+import com.me.gateway.helper.domain.entity.ResponseContext;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

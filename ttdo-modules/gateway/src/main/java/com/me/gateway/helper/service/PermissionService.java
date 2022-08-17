@@ -1,7 +1,7 @@
 package com.me.gateway.helper.service;
 
 
-import com.me.gateway.helper.entity.PermissionDO;
+import com.me.gateway.helper.domain.entity.PermissionDO;
 
 public interface PermissionService {
 

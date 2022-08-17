@@ -1,10 +1,10 @@
 package com.me.gateway.helper.impl;
 
 import com.me.gateway.helper.api.AuthenticationHelper;
-import com.me.gateway.helper.entity.CheckRequest;
-import com.me.gateway.helper.entity.CheckResponse;
-import com.me.gateway.helper.entity.RequestContext;
-import com.me.gateway.helper.entity.ResponseContext;
+import com.me.gateway.helper.domain.entity.CheckRequest;
+import com.me.gateway.helper.domain.entity.CheckResponse;
+import com.me.gateway.helper.domain.entity.RequestContext;
+import com.me.gateway.helper.domain.entity.ResponseContext;
 import com.yang.core.util.TokenUtils;
 import org.apache.commons.lang3.StringUtils;
 

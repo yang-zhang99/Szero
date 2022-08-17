@@ -1,6 +1,6 @@
 package com.me.gateway.helper.api.reactive;
 
-import com.me.gateway.helper.entity.ResponseContext;
+import com.me.gateway.helper.domain.entity.ResponseContext;
 import org.springframework.web.server.ServerWebExchange;
 
 import java.io.IOException;

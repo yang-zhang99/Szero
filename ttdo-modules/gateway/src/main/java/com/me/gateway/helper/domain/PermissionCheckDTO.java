@@ -1,5 +1,6 @@
 package com.me.gateway.helper.domain;
 
+
 import java.util.List;
 
 /**
