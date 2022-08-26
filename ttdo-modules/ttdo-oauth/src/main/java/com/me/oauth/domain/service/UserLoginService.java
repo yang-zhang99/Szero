@@ -2,8 +2,10 @@ package com.me.oauth.domain.service;
 
 
 import com.me.oauth.domain.entity.User;
+import com.me.oauth.domain.vo.AuthenticationResult;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * 用户相关业务
@@ -27,30 +29,30 @@ public interface UserLoginService {
      */
     boolean isNeedCaptcha(User user);
 
-//    Map<String, Object> getLoginInitParams(HttpServletRequest request);
-//
-//    /**
-//     * 手机+验证码登录获取Token
-//     *
-//     * @param request HttpServletRequest
-//     * @return Token
-//     */
-//    AuthenticationResult loginMobileForToken(HttpServletRequest request);
-//
-//    /**
-//     * 三方登录获取Token
-//     *
-//     * @param request HttpServletRequest
-//     * @return Token
-//     */
-//    AuthenticationResult loginOpenForToken(HttpServletRequest request);
-//
-//    /**
-//     * 绑定三方账号
-//     *
-//     * @param request HttpServletRequest
-//     * @return Token
-//     */
-//    AuthenticationResult bindOpenAccount(HttpServletRequest request);
+    Map<String, Object> getLoginInitParams(HttpServletRequest request);
+
+    /**
+     * 手机+验证码登录获取Token
+     *
+     * @param request HttpServletRequest
+     * @return Token
+     */
+    AuthenticationResult loginMobileForToken(HttpServletRequest request);
+
+    /**
+     * 三方登录获取Token
+     *
+     * @param request HttpServletRequest
+     * @return Token
+     */
+    AuthenticationResult loginOpenForToken(HttpServletRequest request);
+
+    /**
+     * 绑定三方账号
+     *
+     * @param request HttpServletRequest
+     * @return Token
+     */
+    AuthenticationResult bindOpenAccount(HttpServletRequest request);
 
 }

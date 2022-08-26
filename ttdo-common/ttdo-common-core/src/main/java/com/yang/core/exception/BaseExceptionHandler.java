@@ -3,8 +3,12 @@ package com.yang.core.exception;
 
 //import static org.hzero.core.base.BaseConstants.DEFAULT_ENV;
 
+import com.yang.core.base.BaseConstants;
+import com.yang.core.message.Message;
+import com.yang.core.message.MessageAccessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -12,6 +16,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.HandlerMethod;
 
 import javax.servlet.http.HttpServletRequest;
+
+import static com.yang.core.base.BaseConstants.DEFAULT_ENV;
 //
 //import io.choerodon.core.exception.CommonException;
 //import io.choerodon.core.exception.ExceptionResponse;
@@ -36,9 +42,9 @@ public class BaseExceptionHandler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BaseExceptionHandler.class);
 
-//    @Value("${spring.profiles.active:" + DEFAULT_ENV + "}")
-//    private String env;
-//
+    @Value("${spring.profiles.active:" + DEFAULT_ENV + "}")
+    private String env;
+
 //    @ExceptionHandler(FeignException.class)
 //    public ResponseEntity<ExceptionResponse> processFeignException(HttpServletRequest request, HandlerMethod method, FeignException exception) {
 //        if (LOGGER.isInfoEnabled()) {
@@ -143,23 +149,23 @@ public class BaseExceptionHandler {
 //        return new ResponseEntity<>(er, HttpStatus.OK);
 //    }
 //
-//    /**
-//     * 拦截 {@link MessageException} 异常信息，直接返回封装的异常消息
-//     *
-//     * @param exception MessageException
-//     * @return ExceptionResponse
-//     */
-//    @ExceptionHandler(MessageException.class)
-//    public ResponseEntity<ExceptionResponse> process(HttpServletRequest request, HandlerMethod method, MessageException exception) {
-//        if (LOGGER.isWarnEnabled()) {
-//            LOGGER.warn(exception.getMessage(), exception);
-//        }
-//        // 获取异常消息的警告类型：info、warn、error，默认为warn
-//        Message message = MessageAccessor.getMessage(exception.getCode());
-//        ExceptionResponse er = new ExceptionResponse(exception.getCode(), exception.getMessage(), message.getType());
-//        setDevException(er, exception);
-//        return new ResponseEntity<>(er, HttpStatus.OK);
-//    }
+    /**
+     * 拦截 {@link MessageException} 异常信息，直接返回封装的异常消息
+     *
+     * @param exception MessageException
+     * @return ExceptionResponse
+     */
+    @ExceptionHandler(MessageException.class)
+    public ResponseEntity<ExceptionResponse> process(HttpServletRequest request, HandlerMethod method, MessageException exception) {
+        if (LOGGER.isWarnEnabled()) {
+            LOGGER.warn(exception.getMessage(), exception);
+        }
+        // 获取异常消息的警告类型：info、warn、error，默认为warn
+        Message message = MessageAccessor.getMessage(exception.getCode());
+        ExceptionResponse er = new ExceptionResponse(exception.getCode(), exception.getMessage(), message.getType());
+        setDevException(er, exception);
+        return new ResponseEntity<>(er, HttpStatus.OK);
+    }
 //
 //    /**
 //     * 拦截 {@link HystrixRuntimeException} 异常信息，返回 “网络异常，请稍后重试” 信息
@@ -280,17 +286,17 @@ public class BaseExceptionHandler {
 //    private String currentUserInfo() {
 //        return Optional.ofNullable(DetailsHelper.getUserDetails()).map(CustomUserDetails::simpleUserInfo).orElse("null");
 //    }
-//
-//    private void setDevException(ExceptionResponse er, Exception ex) {
-//        if (BaseConstants.DEFAULT_ENV.equals(env)) {
-//            er.setException(ex.getMessage());
-//            er.setTrace(ex.getStackTrace());
-//
-//            Throwable cause = ex.getCause();
-//            if (cause != null) {
-//                er.setThrowable(cause.getMessage(), cause.getStackTrace());
-//            }
-//        }
-//    }
+
+    private void setDevException(ExceptionResponse er, Exception ex) {
+        if (DEFAULT_ENV.equals(env)) {
+            er.setException(ex.getMessage());
+            er.setTrace(ex.getStackTrace());
+
+            Throwable cause = ex.getCause();
+            if (cause != null) {
+                er.setThrowable(cause.getMessage(), cause.getStackTrace());
+            }
+        }
+    }
 
 }

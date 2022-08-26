@@ -1,2 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.yang.redis.captcha.CaptchaAutoConfiguration, \
   com.yang.redis.WlhyRedisAutoConfiguration

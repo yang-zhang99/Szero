@@ -13,6 +13,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
         "com.me.oauth.config",
         "com.me.oauth.domain",
         "com.me.oauth.infra",
+        "com.me.oauth.policy"
 })
 @MapperScan("com.me.oauth.infra.mapper")
 

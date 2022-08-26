@@ -1,30 +1,48 @@
 package com.me.oauth.domain.utils;
 
 public enum ProfileCode {
+
     /**
-     * 默认模板
+     * 消息代码：登录
      */
-    OAUTH_DEFAULT_TEMPLATE(null, "main", "hzero.oauth.login.default-template"),
+    MSG_CODE_MOBILE_LOGIN(null, "HOTH.MOBILE_LOGIN", "hzero.send-message.mobile-login"),
+    /**
+     * 消息代码：修改登录密码
+     */
+    MSG_CODE_MODIFY_PASSWORD(null, "HOTH.MODIFY_PASSWORD", "hzero.send-message.modify-login-password"),
+
+    /**
+     * Title
+     */
+    OAUTH_TITLE("HOTH.TITLE", "HZERO", "hzero.oauth.title"),
+    /**
+     * Copyright
+     */
+    OAUTH_COPYRIGHT("HOTH.COPYRIGHT", "Copyright © The HZERO Author®. All rights reserved.", "hzero.oauth.copyright"),
+    /**
+     * Logo URL
+     */
+    OAUTH_LOGO_URL("HOTH.LOGO_URL", "/oauth/static/main/img/logo.svg", "hzero.oauth.logo-url"),
+    /**
+     * 默认语言
+     */
+    OAUTH_DEFAULT_LANGUAGE("HOTH.DEFAULT_LANGUAGE", "zh_CN", "hzero.oauth.default-language"),
     /**
      * 是否显示语言
      */
     OAUTH_SHOW_LANGUAGE("HOTH.SHOW_LANGUAGE", "1", "hzero.oauth.show-language"),
     /**
-     * 默认语言
+     * 默认模板
      */
-    OAUTH_DEFAULT_LANGUAGE("HOTH.DEFAULT_LANGUAGE", "zh_CN", "hzero.oauth.default-language"),
+    OAUTH_DEFAULT_TEMPLATE(null, "main", "hzero.oauth.login.default-template"),
+
     ;
 
-
-    // key
     private String profileKey;
-    // 默认值
     private String defaultValue;
-    // 配置值
     private String configKey;
 
-
-    ProfileCode(String profileKey, String defaultValue, String configKey) {
+    ProfileCode (String profileKey, String defaultValue, String configKey) {
         this.profileKey = profileKey;
         this.defaultValue = defaultValue;
         this.configKey = configKey;

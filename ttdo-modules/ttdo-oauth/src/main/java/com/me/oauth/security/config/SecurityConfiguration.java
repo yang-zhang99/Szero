@@ -2,16 +2,15 @@ package com.me.oauth.security.config;
 
 import com.me.oauth.domain.repository.AuditLoginRepository;
 import com.me.oauth.domain.repository.BaseClientRepository;
+import com.me.oauth.domain.repository.ClientRepository;
 import com.me.oauth.domain.repository.UserRepository;
 import com.me.oauth.domain.service.AuditLoginService;
 import com.me.oauth.domain.service.impl.AuditLoginServiceImpl;
 import com.me.oauth.infra.constant.Constants;
 import com.me.oauth.security.custom.*;
 import com.me.oauth.security.custom.processor.login.LoginSuccessProcessor;
-import com.me.oauth.security.service.LoginRecordService;
-import com.me.oauth.security.service.UserAccountService;
-import com.me.oauth.security.service.UserDetailsBuilder;
-import com.me.oauth.security.service.UserDetailsWrapper;
+import com.me.oauth.security.service.*;
+import com.me.oauth.security.service.impl.DefaultClientDetailsWrapper;
 import com.me.oauth.security.service.impl.DefaultLoginRecordService;
 import com.me.oauth.security.service.impl.DefaultUserAccountService;
 import com.me.oauth.security.service.impl.DefaultUserDetailsBuilder;
@@ -191,5 +190,12 @@ private BaseClientRepository baseClientRepository;
     public CustomAuthenticationSuccessHandler authenticationSuccessHandler(List<LoginSuccessProcessor> successProcessors) {
         return new CustomAuthenticationSuccessHandler(securityProperties, successProcessors);
     }
+
+    @Bean
+    @ConditionalOnMissingBean(ClientDetailsWrapper.class)
+    public ClientDetailsWrapper clientDetailsWrapper(ClientRepository clientRepository) {
+        return new DefaultClientDetailsWrapper(clientRepository);
+    }
+
 
 }

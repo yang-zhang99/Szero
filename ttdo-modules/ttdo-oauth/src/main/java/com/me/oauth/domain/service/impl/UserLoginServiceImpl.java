@@ -1,14 +1,23 @@
 package com.me.oauth.domain.service.impl;
 
+import com.me.oauth.domain.entity.BaseClient;
 import com.me.oauth.domain.entity.User;
+import com.me.oauth.domain.repository.BaseClientRepository;
 import com.me.oauth.domain.service.UserLoginService;
+import com.me.oauth.domain.vo.AuthenticationResult;
+import com.me.oauth.policy.PasswordPolicyManager;
 import com.me.oauth.security.constant.SecurityAttributes;
 import com.me.oauth.security.service.UserAccountService;
+import com.me.oauth.security.util.LoginUtil;
+import com.yang.core.user.UserType;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 用户登录业务默认实现
@@ -20,18 +29,18 @@ public class UserLoginServiceImpl implements UserLoginService {
 
     //    @Autowired
 //    private CaptchaMessageHelper captchaMessageHelper;
-//    @Autowired
-//    private MessageClient messageClient;
+////    @Autowired
+////    private MessageClient messageClient;
     @Autowired
     private UserAccountService userAccountService;
-//    @Autowired
-//    private BaseClientRepository clientRepository;
-//    @Autowired
+    @Autowired
+    private BaseClientRepository clientRepository;
+    //    @Autowired
 //    private MobileLoginTokenService mobileLoginTokenService;
 //    @Autowired
 //    private OpenLoginTokenService openLoginTokenService;
-//    @Autowired
-//    private PasswordPolicyManager passwordPolicyManager;
+    @Autowired
+    private PasswordPolicyManager passwordPolicyManager;
 //    @Autowired
 //    private BaseOpenAppRepository baseOpenAppRepository;
 //    @Autowired
@@ -46,16 +55,14 @@ public class UserLoginServiceImpl implements UserLoginService {
      *
      * @param request HttpServletRequest
      */
-
     @Override
     public User queryRequestUser(HttpServletRequest request) {
-        User result = null;
         HttpSession session = request.getSession();
         String username = (String) session.getAttribute(SecurityAttributes.SECURITY_LOGIN_USERNAME);
         if (username != null) {
-            result = (User) session.getAttribute(SecurityAttributes.SECURITY_LOGIN_USER);
+            return (User) session.getAttribute(SecurityAttributes.SECURITY_LOGIN_USER);
         }
-        return result;
+        return null;
     }
 
     @Override
@@ -118,53 +125,57 @@ public class UserLoginServiceImpl implements UserLoginService {
 //
 //        return captchaResult;
 //    }
-//
-//    @Override
-//    public Map<String, Object> getLoginInitParams(HttpServletRequest request) {
-//        Map<String, Object> result = new HashMap<>(2);
-//
-//        String clientId = request.getParameter(LoginUtil.FIELD_CLIENT_ID);
-//        String username = request.getParameter(LoginUtil.FIELD_USERNAME);
-//        String userType = request.getParameter(UserType.PARAM_NAME);
-//
-//        Long organizationId = null;
-//        User user = null;
-//        //登录验证码策略
-//        if (StringUtils.isNotBlank(clientId)) {
-//            BaseClient client = clientRepository.selectClient(clientId);
-//            if (client != null) {
-//                organizationId = client.getOrganizationId();
-//            }
-//        }
-//
-//        if (StringUtils.isNotBlank(username)) {
-//            user = userAccountService.findLoginUser(username, UserType.ofDefault(userType));
-//            if (user != null) {
-//                organizationId = user.getOrganizationId();
-//            }
-//        }
-//
-//        // 是否需要验证码
-//        result.put(SecurityAttributes.FIELD_IS_NEED_CAPTCHA, passwordPolicyManager.isNeedCaptcha(organizationId));
-//        // 三方登录方式
-//        result.put(SecurityAttributes.FIELD_OPEN_LOGIN_WAYS, queryOpenLoginWays(request));
-//
-//        return result;
-//    }
-//
-//    @Override
-//    public AuthenticationResult loginMobileForToken(HttpServletRequest request) {
-//        return mobileLoginTokenService.loginForToken(request);
-//    }
-//
-//    @Override
-//    public AuthenticationResult loginOpenForToken(HttpServletRequest request) {
-//        return openLoginTokenService.loginForToken(request);
-//    }
-//
-//    @Override
-//    public AuthenticationResult bindOpenAccount(HttpServletRequest request) {
-//        return socialUserBindService.bindOpenAccount(request);
-//    }
 
+    @Override
+    public Map<String, Object> getLoginInitParams(HttpServletRequest request) {
+        Map<String, Object> result = new HashMap<>(2);
+
+        String clientId = request.getParameter(LoginUtil.FIELD_CLIENT_ID);
+        String username = request.getParameter(LoginUtil.FIELD_USERNAME);
+        String userType = request.getParameter(UserType.PARAM_NAME);
+
+        Long organizationId = null;
+        User user = null;
+        //登录验证码策略
+        if (StringUtils.isNotBlank(clientId)) {
+            BaseClient client = clientRepository.selectClient(clientId);
+            if (client != null) {
+                organizationId = client.getOrganizationId();
+            }
+        }
+
+        if (StringUtils.isNotBlank(username)) {
+            user = userAccountService.findLoginUser(username, UserType.ofDefault(userType));
+            if (user != null) {
+                organizationId = user.getOrganizationId();
+            }
+        }
+
+        // 是否需要验证码
+        result.put(SecurityAttributes.FIELD_IS_NEED_CAPTCHA, passwordPolicyManager.isNeedCaptcha(organizationId));
+        // 三方登录方式
+//        result.put(SecurityAttributes.FIELD_OPEN_LOGIN_WAYS, queryOpenLoginWays(request));
+
+        return result;
+    }
+
+    @Override
+    public AuthenticationResult loginMobileForToken(HttpServletRequest request) {
+//        return mobileLoginTokenService.loginForToken(request);
+        return null;
+    }
+
+    @Override
+    public AuthenticationResult loginOpenForToken(HttpServletRequest request) {
+//        return openLoginTokenService.loginForToken(request);
+        return null;
+
+    }
+
+    @Override
+    public AuthenticationResult bindOpenAccount(HttpServletRequest request) {
+//        return socialUserBindService.bindOpenAccount(request);
+        return null;
+
+    }
 }
