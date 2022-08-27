@@ -3,8 +3,8 @@ package com.me.oauth.api.controller.v1;
 
 
 import com.me.oauth.security.service.ClientDetailsWrapper;
-import com.yang.core.oauth.CustomClientDetails;
-import com.yang.core.util.Results;
+import com.me.core.oauth.CustomClientDetails;
+import com.me.core.util.Results;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

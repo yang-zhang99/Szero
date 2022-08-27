@@ -2,8 +2,8 @@ package com.me.gateway.helper.domain.entity;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.common.collect.Sets;
-import com.yang.core.base.BaseConstants;
-import com.yang.core.mybatis.AuditDomain;
+import com.me.core.base.BaseConstants;
+import com.me.core.mybatis.AuditDomain;
 import jodd.util.StringUtil;
 
 import javax.validation.constraints.NotNull;

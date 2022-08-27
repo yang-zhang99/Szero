@@ -18,11 +18,9 @@
 
 
     <dependencies>
-
         <dependency>
             <groupId>com.me</groupId>
             <artifactId>ttdo-common-core</artifactId>
-            <version>1.0.0</version>
         </dependency>
 
     </dependencies>

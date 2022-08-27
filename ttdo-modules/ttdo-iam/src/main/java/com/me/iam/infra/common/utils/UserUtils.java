@@ -1,7 +1,7 @@
 package com.me.iam.infra.common.utils;
 
-import com.yang.core.oauth.CustomUserDetails;
-import com.yang.core.oauth.DetailsHelper;
+import com.me.core.oauth.CustomUserDetails;
+import com.me.core.oauth.DetailsHelper;
 
 public class UserUtils {
 

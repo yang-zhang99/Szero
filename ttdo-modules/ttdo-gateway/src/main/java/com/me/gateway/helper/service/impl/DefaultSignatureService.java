@@ -5,7 +5,7 @@ import com.me.gateway.helper.config.GatewayHelperProperties.Signature;
 import com.me.gateway.helper.domain.entity.RequestContext;
 import com.me.gateway.helper.service.SignatureService;
 import com.me.gateway.helper.util.SignatureUtils;
-import com.yang.redis.RedisHelper;
+import com.me.redis.RedisHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.slf4j.Logger;

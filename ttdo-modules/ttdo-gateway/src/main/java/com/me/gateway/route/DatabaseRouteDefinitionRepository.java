@@ -3,7 +3,7 @@ package com.me.gateway.route;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.me.gateway.route.entity.ServiceRoute;
-import com.yang.common.HZeroService;
+import com.me.common.HZeroService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

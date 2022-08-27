@@ -19,7 +19,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
 import com.me.oauth.security.exception.CustomAuthenticationException;
 import com.me.oauth.security.exception.ErrorWithTimesException;
-import com.yang.core.message.MessageAccessor;
+import com.me.core.message.MessageAccessor;
 import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
 import org.springframework.web.util.HtmlUtils;
 

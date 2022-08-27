@@ -1,6 +1,6 @@
 package com.me.gateway.helper.util;
 
-import com.yang.core.base.BaseConstants;
+import com.me.core.base.BaseConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;

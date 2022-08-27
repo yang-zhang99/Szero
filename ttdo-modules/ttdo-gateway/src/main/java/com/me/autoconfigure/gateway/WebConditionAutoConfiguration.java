@@ -9,7 +9,7 @@ import com.me.gateway.helper.api.reactive.ReactiveAuthenticationHelper;
 import com.me.gateway.helper.config.GatewayHelperProperties;
 import com.me.gateway.ratelimit.RateLimitConfiguration;
 import com.me.gateway.route.DatabaseRouteDefinitionRepository;
-import com.yang.redis.RedisHelper;
+import com.me.redis.RedisHelper;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;

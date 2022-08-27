@@ -2,7 +2,7 @@ package com.me.iam.api.controller.v1;
 
 
 import com.me.iam.infra.common.utils.UserUtils;
-import com.yang.core.oauth.CustomUserDetails;
+import com.me.core.oauth.CustomUserDetails;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

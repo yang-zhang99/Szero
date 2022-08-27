@@ -1,8 +1,8 @@
 package com.me.gateway.route.entity;
 
 
-import com.yang.core.base.BaseConstants;
-import com.yang.core.mybatis.AuditDomain;
+import com.me.core.base.BaseConstants;
+import com.me.core.mybatis.AuditDomain;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

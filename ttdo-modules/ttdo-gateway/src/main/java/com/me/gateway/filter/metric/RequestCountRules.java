@@ -4,7 +4,7 @@ import com.me.gateway.filter.RedisBlackSetRepository;
 import com.me.gateway.filter.RedisWhiteSetRepository;
 import com.me.utils.RedisOpUtils;
 import com.me.utils.RequestCountUtils;
-import com.yang.redis.RedisHelper;
+import com.me.redis.RedisHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.AntPathMatcher;

@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 
-import static com.yang.core.base.TokenConstants.HEADER_JWT;
+import static com.me.core.base.TokenConstants.HEADER_JWT;
 
 //import static com.ttdo.core.variable.RequestVariableHolder.HEADER_JWT;
 

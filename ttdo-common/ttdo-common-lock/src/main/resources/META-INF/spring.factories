@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.yang.lock.autoconfigure.LockAutoConfiguration
+com.me.lock.autoconfigure.LockAutoConfiguration

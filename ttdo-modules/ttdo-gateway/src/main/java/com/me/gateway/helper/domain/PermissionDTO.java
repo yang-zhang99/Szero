@@ -1,7 +1,7 @@
 package com.me.gateway.helper.domain;
 
 
-import com.yang.core.mybatis.AuditDomain;
+import com.me.core.mybatis.AuditDomain;
 
 import java.io.Serializable;
 

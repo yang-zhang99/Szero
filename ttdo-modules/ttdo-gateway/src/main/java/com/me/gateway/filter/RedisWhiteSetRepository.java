@@ -1,6 +1,6 @@
 package com.me.gateway.filter;
 
-import com.yang.redis.RedisHelper;
+import com.me.redis.RedisHelper;
 
 import java.util.Set;
 public class RedisWhiteSetRepository extends RedisSetRepository {

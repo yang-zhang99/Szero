@@ -3,8 +3,8 @@ package com.me.oauth.api.controller.v1;
 
 import com.me.oauth.security.custom.CustomRedisTokenStore;
 import com.me.oauth.security.service.UserDetailsWrapper;
-import com.yang.core.oauth.CustomUserDetails;
-import com.yang.core.util.Results;
+import com.me.core.oauth.CustomUserDetails;
+import com.me.core.util.Results;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

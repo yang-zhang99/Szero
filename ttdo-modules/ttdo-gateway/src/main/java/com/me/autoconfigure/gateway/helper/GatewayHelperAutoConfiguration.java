@@ -12,7 +12,7 @@ import com.me.gateway.helper.service.CustomPermissionCheckService;
 import com.me.gateway.helper.service.SignatureService;
 import com.me.gateway.helper.service.impl.DefaultCustomPermissionCheckService;
 import com.me.gateway.helper.service.impl.DefaultSignatureService;
-import com.yang.redis.RedisHelper;
+import com.me.redis.RedisHelper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;

@@ -2,10 +2,10 @@ package com.me.oauth.api.controller.v1;
 
 
 import com.me.oauth.security.custom.CustomRedisTokenStore;
-import com.yang.core.base.BaseConstants;
-import com.yang.core.oauth.CustomUserDetails;
-import com.yang.core.oauth.DetailsHelper;
-import com.yang.core.util.Results;
+import com.me.core.base.BaseConstants;
+import com.me.core.oauth.CustomUserDetails;
+import com.me.core.oauth.DetailsHelper;
+import com.me.core.util.Results;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.web.bind.annotation.*;

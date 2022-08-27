@@ -1,7 +1,7 @@
 package com.me.gateway.helper.domain.entity;
 
 
-import com.yang.core.oauth.CustomUserDetails;
+import com.me.core.oauth.CustomUserDetails;
 
 public class RequestContext {
 

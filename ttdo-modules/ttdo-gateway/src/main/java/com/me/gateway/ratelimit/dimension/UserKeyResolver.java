@@ -5,7 +5,7 @@ import com.me.gateway.ratelimit.switcher.DoubleModeSwitcher;
 import com.me.gateway.ratelimit.switcher.ModeSwitcher;
 import com.me.gateway.ratelimit.switcher.SwitcherDelegate;
 import com.me.utils.KeyGenerator;
-import com.yang.core.oauth.CustomUserDetails;
+import com.me.core.oauth.CustomUserDetails;
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;

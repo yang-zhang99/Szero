@@ -140,8 +140,8 @@
     </select>
 
     <select id="selectSuperAdminRole" resultMap="RoleMap">
-        <bind name="siteSuperRole" value="@com.yang.common.HZeroConstant$RoleCode@SITE"/>
-        <bind name="tenantSuperRole" value="@com.yang.common.HZeroConstant$RoleCode@TENANT"/>
+        <bind name="siteSuperRole" value="@com.me.common.HZeroConstant$RoleCode@SITE"/>
+        <bind name="tenantSuperRole" value="@com.me.common.HZeroConstant$RoleCode@TENANT"/>
         select
             id,
             code as code,

@@ -3,7 +3,7 @@ package com.me.gateway.helper.filter;
 import com.me.gateway.helper.api.HelperFilter;
 import com.me.gateway.helper.config.ListFilterProperties;
 import com.me.gateway.helper.domain.entity.RequestContext;
-import com.yang.redis.RedisHelper;
+import com.me.redis.RedisHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;

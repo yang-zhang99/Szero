@@ -5,7 +5,7 @@ import com.me.gateway.helper.domain.entity.CheckRequest;
 import com.me.gateway.helper.domain.entity.CheckResponse;
 import com.me.gateway.helper.domain.entity.RequestContext;
 import com.me.gateway.helper.domain.entity.ResponseContext;
-import com.yang.core.util.TokenUtils;
+import com.me.core.util.TokenUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;

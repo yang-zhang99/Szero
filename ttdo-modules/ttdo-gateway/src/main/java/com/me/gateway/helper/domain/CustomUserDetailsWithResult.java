@@ -2,7 +2,7 @@ package com.me.gateway.helper.domain;
 
 
 import com.me.gateway.helper.domain.entity.CheckState;
-import com.yang.core.oauth.CustomUserDetails;
+import com.me.core.oauth.CustomUserDetails;
 
 import java.io.Serializable;
 

@@ -16,7 +16,7 @@
 package com.me.springframework.web.authentication;
 
 import com.me.oauth.security.config.SecurityProperties;
-import com.yang.core.convertor.ApplicationContextHelper;
+import com.me.core.convertor.ApplicationContextHelper;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.security.core.Authentication;
