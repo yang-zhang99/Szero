@@ -29,7 +29,7 @@
 //                                   List<AuthorizeSuccessProcessor> authorizeSuccessProcessors) {
 //        super(tokenGranter, clientDetailsService, oAuth2RequestFactory, authenticationProvider, authorizeSuccessProcessors);
 //        this.authenticationDetailsSource = authenticationDetailsSource;
-//        this.securityProperties = securityProperties;
+//        this.securityProperties = securityPropertieses;
 //    }
 //
 //    @Override
