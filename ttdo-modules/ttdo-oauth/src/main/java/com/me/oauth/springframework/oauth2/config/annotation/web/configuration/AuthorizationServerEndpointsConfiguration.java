@@ -11,7 +11,7 @@
  * specific language governing permissions and limitations under the License.
  */
 
-package com.me.springframework.oauth2.config.annotation.web.configuration;
+package com.me.oauth.springframework.oauth2.config.annotation.web.configuration;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanCreationException;

@@ -11,7 +11,7 @@
  * specific language governing permissions and limitations under the License.
  */
 
-package com.me.springframework.oauth2.provider.endpoint;
+package com.me.oauth.springframework.oauth2.provider.endpoint;
 
 import com.me.oauth.security.custom.processor.authorize.AuthorizeSuccessProcessor;
 import org.slf4j.Logger;

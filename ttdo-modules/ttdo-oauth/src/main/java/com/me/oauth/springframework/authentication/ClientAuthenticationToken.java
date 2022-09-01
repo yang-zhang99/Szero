@@ -1,4 +1,4 @@
-package com.me.springframework.authentication;
+package com.me.oauth.springframework.authentication;
 
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 

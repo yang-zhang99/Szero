@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.me.springframework.web;
+package com.me.oauth.springframework.web;
 
 import org.springframework.security.web.PortMapper;
 import org.springframework.util.Assert;

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.me.springframework.web.authentication;
+package com.me.oauth.springframework.web.authentication;
 
 import com.me.oauth.security.config.SecurityProperties;
 import com.me.core.convertor.ApplicationContextHelper;

@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.me.springframework.oauth2.config.annotation.web.configurers;
+package com.me.oauth.springframework.oauth2.config.annotation.web.configurers;
 
 import com.me.oauth.security.custom.processor.authorize.AuthorizeSuccessProcessor;
 import org.springframework.beans.BeansException;

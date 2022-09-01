@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.me.springframework.oauth2.provider.client;
+package com.me.oauth.springframework.oauth2.provider.client;
 
 //import org.springframework.security.authentication.ClientAuthenticationToken;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;

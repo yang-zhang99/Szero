@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.me.springframework.web.savedrequest;
+package com.me.oauth.springframework.web.savedrequest;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;

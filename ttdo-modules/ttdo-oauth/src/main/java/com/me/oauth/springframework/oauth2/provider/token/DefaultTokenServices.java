@@ -11,7 +11,7 @@
  * specific language governing permissions and limitations under the License.
  */
 
-package com.me.springframework.oauth2.provider.token;
+package com.me.oauth.springframework.oauth2.provider.token;
 
 import com.me.oauth.security.custom.CustomRedisTokenStore;
 import org.springframework.beans.factory.InitializingBean;
