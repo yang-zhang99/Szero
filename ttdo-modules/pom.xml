@@ -17,7 +17,6 @@
         <module>ttdo-oauth</module>
         <module>ttdo-iam</module>
         <module>ttdo-system</module>
-        <module>study-demo</module>
     </modules>
 
     <description>
