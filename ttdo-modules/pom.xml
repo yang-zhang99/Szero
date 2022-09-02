@@ -16,7 +16,7 @@
         <module>ttdo-gateway</module>
         <module>ttdo-oauth</module>
         <module>ttdo-iam</module>
-        <module>ttdo-system</module>
+        <module>ttdo-platform</module>
     </modules>
 
     <description>
