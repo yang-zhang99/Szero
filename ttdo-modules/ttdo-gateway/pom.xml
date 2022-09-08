@@ -10,9 +10,9 @@
     </parent>
 
     <groupId>com.me</groupId>
-    <artifactId>gateway</artifactId>
+    <artifactId>ttdo-gateway</artifactId>
     <version>1.0.0</version>
-    <name>gateway</name>
+    <name>ttdo-gateway</name>
     <description>gateway 网关服务</description>
 
     <dependencies>
