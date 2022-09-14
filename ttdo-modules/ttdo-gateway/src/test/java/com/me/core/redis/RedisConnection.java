@@ -17,7 +17,6 @@ public class RedisConnection {
     @Test
     void contextLoads() {
 
-        System.out.println(stringRedisTemplate.opsForSet().add("test","redis"));
 
 
     }
