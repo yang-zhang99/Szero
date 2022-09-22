@@ -11,12 +11,14 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Date;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = TtdoIamApplication.class)
-public class RedisConnection {
+class RedisConnection {
 
     @Autowired
     private StringRedisTemplate redisTemplate;
@@ -28,8 +30,18 @@ public class RedisConnection {
         for (int i = 0; i < 1; i++) {
             executor.execute(() -> {
                 for (int j = 0; j < 10000; j++) {
-                    String x = redisTemplate.opsForValue().get("list");
-                    System.out.println(Thread.currentThread().getName() + " " + x);
+                    try {
+                        TimeUnit.SECONDS.sleep(1);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    try {
+                        String x = redisTemplate.opsForValue().get("list");
+                        System.out.println(new Date() + " " +Thread.currentThread().getName() + " " + x);
+                    } catch (Exception e) {
+                        System.out.println("exception" + e);
+                    }
+
                 }
             });
         }

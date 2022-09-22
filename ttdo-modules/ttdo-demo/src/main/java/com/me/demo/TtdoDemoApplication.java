@@ -1,15 +1,13 @@
-package com.me.iam;
+package com.me.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-
-//@EnableDiscoveryClient
-public class TtdoIamApplication {
+public class TtdoDemoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(TtdoIamApplication.class, args);
+        SpringApplication.run(TtdoDemoApplication.class, args);
     }
 
 }
