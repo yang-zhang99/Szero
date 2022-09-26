@@ -1,6 +1,7 @@
 package com.me.autoconfigure.gateway;
 
 
+import com.me.core.resource.annoation.EnableResourceServer;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;
@@ -12,6 +13,8 @@ import java.lang.annotation.*;
 @Import({
         WebConditionAutoConfiguration.class
 })
+
+
 public @interface EnableGateway {
 
 }
