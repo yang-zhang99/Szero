@@ -8,18 +8,20 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 
+/**
+ * 网关服务
+ */
 @SpringBootApplication
 @EnableDiscoveryClient
 
 @EnableResourceServer
 
 @EnableGateway
-
-public class Gateway {
+public class TtdoGateway {
 
     public static void main(String[] args) {
 
-        new SpringApplicationBuilder(Gateway.class).web(WebApplicationType.REACTIVE).run(args);
+        new SpringApplicationBuilder(TtdoGateway.class).web(WebApplicationType.REACTIVE).run(args);
 
     }
 
