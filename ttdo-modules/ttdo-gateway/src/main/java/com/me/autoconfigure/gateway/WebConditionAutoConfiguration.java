@@ -23,6 +23,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.env.Environment;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.reactive.CorsWebFilter;
 
@@ -40,6 +41,7 @@ import java.util.List;
         MaintainProperties.class  // 服务的监控
 })
 @MapperScan("com.me.gateway.helper.infra.mapper")
+@EnableWebSecurity
 public class WebConditionAutoConfiguration {
 
     @Bean
