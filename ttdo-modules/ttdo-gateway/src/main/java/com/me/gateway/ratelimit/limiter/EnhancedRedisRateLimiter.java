@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.cloud.gateway.filter.ratelimit.AbstractRateLimiter;
-import org.springframework.cloud.gateway.support.ConfigurationService;
+//import org.springframework.cloud.gateway.support.ConfigurationService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.data.redis.core.ReactiveRedisTemplate;
@@ -62,7 +62,7 @@ public class EnhancedRedisRateLimiter extends AbstractRateLimiter<EnhancedRedisR
 
     public EnhancedRedisRateLimiter(ReactiveRedisTemplate<String, String> redisTemplate,
                                     RedisScript<List<Long>> script, Validator validator) {
-        super(EnhancedRedisRateLimiter.Config.class, CONFIGURATION_PROPERTY_NAME, (ConfigurationService) validator);
+        super(EnhancedRedisRateLimiter.Config.class, CONFIGURATION_PROPERTY_NAME,  validator);
         this.redisTemplate = redisTemplate;
         this.script = script;
         this.defaultConfig = new EnhancedRedisRateLimiter.Config();

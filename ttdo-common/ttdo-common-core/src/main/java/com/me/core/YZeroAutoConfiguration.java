@@ -1,20 +1,11 @@
 package com.me.core;
 
-//
-//import org.hzero.core.exception.BaseExceptionHandler;
-//import org.hzero.core.helper.DetailsExtractor;
-//import org.hzero.core.metadata.MetadataEntry;
-//import org.hzero.core.net.RequestHeaderCopyInterceptor;
-//import org.hzero.core.properties.CoreProperties;
-//import org.hzero.core.properties.ServiceProperties;
-//import org.hzero.core.user.CustomerUserType;
-//import org.hzero.core.user.PlatformUserType;
-//import org.hzero.core.user.UserType;
-
+//import com.me.core.config.CoreProperties;
 import com.me.core.exception.BaseExceptionHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
@@ -26,15 +17,15 @@ import org.springframework.validation.beanvalidation.BeanValidationPostProcessor
  * @author jiangzhou.bo@hand-china.com 2018/06/25 16:45
  */
 @Component
-//@EnableConfigurationProperties({
+@EnableConfigurationProperties({
 //        CoreProperties.class,
 //        ServiceProperties.class
-//})
+})
 //@EnableAspectJAutoProxy(proxyTargetClass = true, exposeProxy = true)
 @Configuration
-public class SZeroAutoConfiguration {
+public class YZeroAutoConfiguration {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(SZeroAutoConfiguration.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(YZeroAutoConfiguration.class);
 
 //    private static final Pattern[] PATTERNS = new Pattern[]{
 //            Pattern.compile("(\\S*)(hzero-starter-core/)([0-9.]+)((.RELEASE)|(-SNAPSHOT))(/hzero-starter-core)(\\S*)"),

@@ -9,7 +9,7 @@ import com.me.lock.enums.ServerPattern;
 import com.me.lock.factory.LockServiceFactory;
 import com.me.lock.factory.ServerPatternFactory;
 import com.me.lock.service.impl.*;
-import io.micrometer.core.instrument.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.*;

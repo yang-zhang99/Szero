@@ -48,70 +48,70 @@ public class WebConditionAutoConfiguration {
     public MaintainEndpoint maintainEndpoint(MaintainProperties maintainProperties) {
         return new MaintainEndpoint(maintainProperties);
     }
-
-    /**
-     * 服务限流控制
-     */
-    @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.REACTIVE)
-    @Configuration
-    @Import(RateLimitConfiguration.class)
-    public static class GatewayConfig {
-        /**
-         * 声明 GateWayHelperFilter
-         *
-         * @return 配置的 GateWayHelperFilter
-         */
-        @Bean
-        public com.me.gateway.filter.GateWayHelperFilter gateWayHelperFilter(ReactiveAuthenticationHelper gatewayHelper) {
-            return new com.me.gateway.filter.GateWayHelperFilter(gatewayHelper);
-        }
-
-        @Bean
-        @Order(Integer.MIN_VALUE)
-        public CorsWebFilter corsWebFilter(YGatewayProperties properties) {
-            org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource source = new org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource();
-            CorsConfiguration config = new CorsConfiguration();
-            config.setAllowCredentials(true);
-            for (String allowedOrigin : properties.getCors().getAllowedOrigins()) {
-                config.addAllowedOriginPattern(allowedOrigin);
-            }
-            for (String allowedHeader : properties.getCors().getAllowedHeaders()) {
-                config.addAllowedHeader(allowedHeader);
-            }
-            for (String allowedMethod : properties.getCors().getAllowedMethods()) {
-                config.addAllowedMethod(allowedMethod);
-            }
-            config.setMaxAge(18000L);
-            //添加response暴露的header
-            String[] responseHeader =
-                    {"date", "content-encoding", "server", "etag", "vary", "Cache-Control", "Last-Modified",
-                            "content-type", "transfer-encoding", "connection", "x-application-context"};
-            config.setExposedHeaders(Arrays.asList(responseHeader));
-            source.registerCorsConfiguration("/**", config);
-            return new CorsWebFilter(source);
-        }
-
-        @Bean
-        public HeaderWrapperFilter headerWrapperFilter(GatewayHelperProperties gatewayHelperProperties) {
-            return new HeaderWrapperFilter(gatewayHelperProperties);
-        }
-
-        @Bean
-        public AvailableServiceFilter normalServiceFilter(MaintainProperties maintainProperties) {
-            return new AvailableServiceFilter(maintainProperties);
-        }
-
-        @Bean
-        public XForwardedForFilter xForwardedForFilter() {
-            return new XForwardedForFilter();
-        }
-
-        @Bean
-        public RouteDefinitionRepository routeDefinitionRepository(Environment environment, DiscoveryClient discoveryClient) {
-            return new DatabaseRouteDefinitionRepository(environment, discoveryClient);
-        }
-
-    }
+//
+//    /**
+//     * 服务限流控制
+//     */
+//    @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.REACTIVE)
+//    @Configuration
+//    @Import(RateLimitConfiguration.class)
+//    public static class GatewayConfig {
+//        /**
+//         * 声明 GateWayHelperFilter
+//         *
+//         * @return 配置的 GateWayHelperFilter
+//         */
+//        @Bean
+//        public com.me.gateway.filter.GateWayHelperFilter gateWayHelperFilter(ReactiveAuthenticationHelper gatewayHelper) {
+//            return new com.me.gateway.filter.GateWayHelperFilter(gatewayHelper);
+//        }
+//
+//        @Bean
+//        @Order(Integer.MIN_VALUE)
+//        public CorsWebFilter corsWebFilter(YGatewayProperties properties) {
+//            org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource source = new org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource();
+//            CorsConfiguration config = new CorsConfiguration();
+//            config.setAllowCredentials(true);
+//            for (String allowedOrigin : properties.getCors().getAllowedOrigins()) {
+//                config.addAllowedOrigin(allowedOrigin);
+//            }
+//            for (String allowedHeader : properties.getCors().getAllowedHeaders()) {
+//                config.addAllowedHeader(allowedHeader);
+//            }
+//            for (String allowedMethod : properties.getCors().getAllowedMethods()) {
+//                config.addAllowedMethod(allowedMethod);
+//            }
+//            config.setMaxAge(18000L);
+//            //添加response暴露的header
+//            String[] responseHeader =
+//                    {"date", "content-encoding", "server", "etag", "vary", "Cache-Control", "Last-Modified",
+//                            "content-type", "transfer-encoding", "connection", "x-application-context"};
+//            config.setExposedHeaders(Arrays.asList(responseHeader));
+//            source.registerCorsConfiguration("/**", config);
+//            return new CorsWebFilter(source);
+//        }
+//
+//        @Bean
+//        public HeaderWrapperFilter headerWrapperFilter(GatewayHelperProperties gatewayHelperProperties) {
+//            return new HeaderWrapperFilter(gatewayHelperProperties);
+//        }
+//
+//        @Bean
+//        public AvailableServiceFilter normalServiceFilter(MaintainProperties maintainProperties) {
+//            return new AvailableServiceFilter(maintainProperties);
+//        }
+//
+//        @Bean
+//        public XForwardedForFilter xForwardedForFilter() {
+//            return new XForwardedForFilter();
+//        }
+//
+//        @Bean
+//        public RouteDefinitionRepository routeDefinitionRepository(Environment environment, DiscoveryClient discoveryClient) {
+//            return new DatabaseRouteDefinitionRepository(environment, discoveryClient);
+//        }
+//
+//    }
 
 
     @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.REACTIVE)

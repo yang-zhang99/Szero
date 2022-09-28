@@ -1,7 +1,8 @@
 package com.me.autoconfigure.gateway;
 
 
-import com.me.core.resource.annoation.EnableResourceServer;
+//import com.me.core.resource.annoation.EnableResourceServer;
+import com.me.gateway.config.YGatewayProperties;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;
@@ -11,7 +12,8 @@ import java.lang.annotation.*;
 @Documented
 @Inherited
 @Import({
-        WebConditionAutoConfiguration.class
+        WebConditionAutoConfiguration.class,
+        YGatewayProperties.class
 })
 
 

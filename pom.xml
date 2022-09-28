@@ -14,10 +14,38 @@
         <ttdo.version>1.0.0</ttdo.version>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring-cloud.version>2021.0.3</spring-cloud.version>
+        <spring-cloud.version>Finchley.SR2</spring-cloud.version>
         <spring-boot.version>2.6.8</spring-boot.version>
         <spring-cloud-alibaba.version>2021.0.1.0</spring-cloud-alibaba.version>
         <ttdo.version>1.0.0</ttdo.version>
+
+
+
+        <spring.cloud.nacos.version>0.2.2.RELEASE</spring.cloud.nacos.version>
+        <com.baidu.formula.version>2.0.1-SNAPSHOT</com.baidu.formula.version>
+
+        <commons-collections4.version>4.1</commons-collections4.version>
+        <commons-lang3.version>3.7</commons-lang3.version>
+        <commons-io.version>2.6</commons-io.version>
+        <commons-io.codec>1.11</commons-io.codec>
+        <commons-io.beanutils>1.9.3</commons-io.beanutils>
+        <guava.beanutils>25.0-jre</guava.beanutils>
+        <squareup.retrofit2>2.3.0</squareup.retrofit2>
+        <jackson-dataformat>2.9.0</jackson-dataformat>
+        <fastjson.version>1.2.71</fastjson.version>
+        <cglib-nodep>3.1</cglib-nodep>
+        <poi.version>4.0.0</poi.version>
+        <jasypt.version>2.0.0</jasypt.version>
+        <spock.version>1.0-groovy-2.4</spock.version>
+        <powermock.version>1.7.4</powermock.version>
+        <mockito.version>1.10.19</mockito.version>
+        <io.micrometer.version>1.0.6</io.micrometer.version>
+        <elasticsearch.version>7.5.2</elasticsearch.version>
+
+        <oracle.version>12.1.0.1.0</oracle.version>
+        <sqlserver.version>4.2</sqlserver.version>
+        <spring.session.data.redis.version>2.0.10.RELEASE</spring.session.data.redis.version>
+        <mysql.version>5.1.47</mysql.version>
     </properties>
 
     <dependencyManagement>
@@ -34,15 +62,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <!-- SpringCloud Alibaba 微服务 -->
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${spring-cloud-alibaba.version}</version>
+                <version>2.0.6.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -56,6 +76,221 @@
                 <artifactId>ttdo-common-redis</artifactId>
                 <version>${ttdo.version}</version>
             </dependency>
+            <!-- Spring Cloud alibaba -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>2.0.1.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Seata -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-seata</artifactId>
+                <version>2.2.0.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>io.seata</groupId>
+                <artifactId>seata-spring-boot-starter</artifactId>
+                <version>1.1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>io.seata</groupId>
+                <artifactId>seata-all</artifactId>
+                <version>1.1.0</version>
+            </dependency>
+
+            <!-- commons -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>${commons-collections4.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>${commons-io.codec}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>${commons-io.beanutils}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.beanutils}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.retrofit2</groupId>
+                <artifactId>retrofit</artifactId>
+                <version>${squareup.retrofit2}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.retrofit2</groupId>
+                <artifactId>converter-jackson</artifactId>
+                <version>${squareup.retrofit2}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.dataformat</groupId>
+                <artifactId>jackson-dataformat-yaml</artifactId>
+                <version>${jackson-dataformat}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib-nodep</artifactId>
+                <version>${cglib-nodep}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.ulisesbocchio</groupId>
+                <artifactId>jasypt-spring-boot-starter</artifactId>
+                <version>${jasypt.version}</version>
+            </dependency>
+
+            <dependency>
+                <artifactId>mysql-connector-java</artifactId>
+                <groupId>mysql</groupId>
+                <version>${mysql.version}</version>
+            </dependency>
+
+            <!-- nacos -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+                <version>${spring.cloud.nacos.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+                <version>${spring.cloud.nacos.version}</version>
+            </dependency>
+            <!-- formula -->
+            <dependency>
+                <groupId>com.baidu.formula</groupId>
+                <artifactId>formula-cnap</artifactId>
+                <version>${com.baidu.formula.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baidu.formula</groupId>
+                <artifactId>discovery-spring-boot-starter</artifactId>
+                <version>${com.baidu.formula.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baidu.formula</groupId>
+                <artifactId>config-client-spring-boot-starter</artifactId>
+                <version>${com.baidu.formula.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baidu.formula</groupId>
+                <artifactId>env-core-spring-boot-starter</artifactId>
+                <version>${com.baidu.formula.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baidu.formula</groupId>
+                <artifactId>ratelimiter-spring-boot-starter</artifactId>
+                <version>${com.baidu.formula.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.session</groupId>
+                <artifactId>spring-session-data-redis</artifactId>
+                <version>${spring.session.data.redis.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>io.micrometer</groupId>
+                <artifactId>micrometer-registry-prometheus</artifactId>
+                <version>${io.micrometer.version}</version>
+            </dependency>
+
+            <!-- unit test -->
+            <dependency>
+                <groupId>org.spockframework</groupId>
+                <artifactId>spock-core</artifactId>
+                <version>${spock.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.spockframework</groupId>
+                <artifactId>spock-spring</artifactId>
+                <version>${spock.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-api-mockito</artifactId>
+                <version>${powermock.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-module-junit4</artifactId>
+                <version>${powermock.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-classloading-xstream</artifactId>
+                <version>${powermock.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-module-junit4-rule</artifactId>
+                <version>${powermock.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-module-junit4-rule-agent</artifactId>
+                <version>${powermock.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockito.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.elasticsearch</groupId>
+                <artifactId>elasticsearch</artifactId>
+                <version>${elasticsearch.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -64,6 +299,7 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
+            <version>3.1.3</version>
         </dependency>
     </dependencies>
 
@@ -73,44 +309,160 @@
     </modules>
     <packaging>pom</packaging>
 
-    <build>
-        <!-- 指定项目编译的 jdk 版本 -->
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+<!--    <build>-->
+<!--        &lt;!&ndash; 指定项目编译的 jdk 版本 &ndash;&gt;-->
+<!--        <plugins>-->
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-compiler-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    <source>${java.version}</source>-->
+<!--                    <target>${java.version}</target>-->
+<!--                    <encoding>${project.build.sourceEncoding}</encoding>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
+<!--    </build>-->
+
+    <distributionManagement>
+        <repository>
+            <id>HzeroRelease</id>
+            <name>Hzero-Release Repository</name>
+            <url>https://nexus.saas.hand-china.com/content/repositories/Hzero-Release/</url>
+        </repository>
+        <snapshotRepository>
+            <id>HzeroSnapshot</id>
+            <name>Hzero-Snapshot Repository</name>
+            <url>https://nexus.saas.hand-china.com/content/repositories/Hzero-Snapshot/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <repositories>
         <repository>
-            <id>public</id>
-            <name>aliyun nexus</name>
-            <url>https://maven.aliyun.com/repository/public</url>
+            <id>HandPublic</id>
+            <name>Hand-Public Repository</name>
+            <url>https://nexus.saas.hand-china.com/content/repositories/public/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
         </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>public</id>
-            <name>aliyun nexus</name>
-            <url>https://maven.aliyun.com/repository/public</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
+        <repository>
+            <id>HzeroRelease</id>
+            <name>Hzero-Release Repository</name>
+            <url>https://nexus.saas.hand-china.com/content/repositories/Hzero-Release/</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
+        </repository>
+        <repository>
+            <id>HzeroSnapshot</id>
+            <name>Hzero-Snapshot Repository</name>
+            <url>https://nexus.saas.hand-china.com/content/repositories/Hzero-Snapshot/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+
+    <build>
+        <finalName>app</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/**</include>
+                </includes>
+                <excludes>
+                    <exclude>saml/*.jks</exclude>
+                </excludes>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src</directory>
+                <includes>
+                    <include>**/*.sh</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <nonFilteredFileExtensions>
+                        <nonFilteredFileExtension>xlsx</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>xls</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>ttf</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>ttc</nonFilteredFileExtension>
+                    </nonFilteredFileExtensions>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <skip>${maven.javadoc.skip}</skip>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <additionalOptions>
+                                <additionalOption>
+                                    -Xdoclint:none
+                                </additionalOption>
+                            </additionalOptions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <skip>${maven.springboot.skip}</skip>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <includes>
+                        <include>**/*Test.java</include>
+                        <include>**/*Spec.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

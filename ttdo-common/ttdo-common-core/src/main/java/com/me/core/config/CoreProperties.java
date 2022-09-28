@@ -1,22 +1,22 @@
-package com.me.core.config;
-
-import org.springframework.context.annotation.Configuration;
-
-//@ConfigurationProperties(prefix = "szero.core")
-@Configuration
-public class CoreProperties {
-
-
-
-
+//package com.me.core.config;
 //
-//    private String host = "localhost";
+//import org.springframework.context.annotation.Configuration;
 //
-//    public String getHost() {
-//        return host;
-//    }
+////@ConfigurationProperties(prefix = "szero.core")
+//@Configuration
+//public class CoreProperties {
 //
-//    public void setHost(String host) {
-//        this.host = host;
-//    }
-}
+//
+//
+//
+////
+////    private String host = "localhost";
+////
+////    public String getHost() {
+////        return host;
+////    }
+////
+////    public void setHost(String host) {
+////        this.host = host;
+////    }
+//}
