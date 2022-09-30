@@ -8,7 +8,6 @@ import java.util.List;
 /**
  * @author XCXCXCXCX
  * @version 1.2.0
- * @date 2019/12/10 11:37 上午
  */
 @Endpoint(id = "refresh-metric-rule")
 public class MetricRuleEndpoint {

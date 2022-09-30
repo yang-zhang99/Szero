@@ -10,7 +10,6 @@ import java.util.regex.Pattern;
  *
  * @author XCXCXCXCX
  * @version 1.2.0
- * @date 2020/1/3 11:02 上午
  */
 public class RequestCountUtils {
 

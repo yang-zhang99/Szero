@@ -2,11 +2,7 @@ package com.me.utils;
 
 import java.util.Random;
 
-/**
- * @author XCXCXCXCX
- * @date 2019/10/17
- * @project hzero-gateway
- */
+
 public class KeyGenerator {
 
     private static final Random RANDOM = new Random();
