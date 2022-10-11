@@ -6,11 +6,12 @@ public class Main {
 
     public static void main(String[] args) {
 
-        final TaskLifecycle<String> lifecycle = new TaskLifecycle.EmptyLifecycle<String>(){
+        TaskLifecycle<String> lifecycle = new TaskLifecycle.EmptyLifecycle<String>(){
             public void onFinish(Thread thread, String result) {
                 System.out.println("This result is" + result);
             }
         };
+
 
         Observable observable = new ObservableThread<>(lifecycle,  () -> {
             try {
